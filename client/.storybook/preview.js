@@ -1,4 +1,3 @@
-import GlobalStyle from '../src/components/GlobalStyle'
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
 
 export const parameters = {
@@ -12,7 +11,6 @@ export const parameters = {
 export const decorators =[
   Story => (
     <>
-      <GlobalStyle />
       <Story />
     </>
   ),

@@ -2,12 +2,13 @@ import styled from 'styled-components/macro'
 import * as Icons from 'heroicons-react'
 import PropTypes from 'prop-types'
 
-export default function Button({ buttonText = 'Click me', iconName, iconPos }) {
+export default function Button({ buttonText, iconName, iconPos = '' }) {
+  console.log(iconName)
   return (
-    <ButtonStyled role="button">
-      {iconPos === 'left' && <Icons.iconName />}
+    <ButtonStyled role="button" iconPos={iconPos} iconName={iconName}>
+      {iconPos === 'left' && <Icons.ArrowCircleLeft size={20} />}
       {buttonText}
-      {iconPos === 'right' && <Icons.iconName />}
+      {iconPos === 'right' && <Icons.ArrowCircleRight size={20} />}
     </ButtonStyled>
   )
 }
@@ -15,14 +16,12 @@ export default function Button({ buttonText = 'Click me', iconName, iconPos }) {
 Button.propTypes = {
   buttontext: PropTypes.string,
   iconName: PropTypes.string,
-  iconPos: PropTypes.oneOf(['left', 'right']),
-  onClick: PropTypes.func,
+  iconPos: PropTypes.oneOf(['', 'left', 'right']),
 }
 
 Button.defaultProps = {
   primary: false,
-  iconPos: 'left',
-  onClick: undefined,
+  iconPos: '',
 }
 
 const ButtonStyled = styled.button`
@@ -33,5 +32,17 @@ const ButtonStyled = styled.button`
     rgba(215, 51, 163, 1) 100%
   );
   color: #fff;
-  padding: 5px 8px;
+  padding: 8px 15px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+
+  &.active {
+    background: rgb(215, 51, 163);
+    background: linear-gradient(
+      145deg,
+      rgba(215, 51, 163, 1) 100%,
+      rgba(53, 22, 178, 1) 18%
+    );
+  }
 `
