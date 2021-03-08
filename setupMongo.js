@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 module.exports = function setupMongo() {
   mongoose
-    .connect('mongodb://localhost/lean-coffee-board', {
+    .connect('mongodb://localhost/capstone-project', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
