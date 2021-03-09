@@ -48,7 +48,6 @@ const Btn = styled.button`
       : 'linear-gradient(145deg,rgba(53, 22, 178, 1) 18%,rgba(215,51, 163, 1) 100%)'};
   color: #fff;
   padding: 8px;
-  font-size: 1em;
   line-height: 1.3em;
   border: none;
   border-radius: 5px;
