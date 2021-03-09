@@ -1,14 +1,28 @@
 import { createGlobalStyle } from 'styled-components'
-import '../fonts/Fonts'
 
 export default createGlobalStyle`
+  :root {
+    --color-text: var(--color-space-cadet);
+    --color-background: var(--color-space-cadet);
+    --color-primary: var(--color-indigo);
+    --color-secondary: var(--color-byzantine);
+
+    --color-space-cadet: #171941ff;
+    --color-french-pink: #f46393ff;
+    --color-pink-pantone: #dc469fff;
+    --color-byzantine: #ba2faaff;
+    --color-purple-munsell: #9918b6ff;
+    --color-french-violet: #7700c1ff;
+    --color-indigo: #470D81ff;
+  }
   * {
     box-sizing: border-box
   }
 
   body {
     margin: 0;
-    font-family: sans-serif;
+    font-family: 'Josefin', sans-serif;
+    font-weight: 300;
     font-size: 112.5%;
     line-height: 1.5;
   }

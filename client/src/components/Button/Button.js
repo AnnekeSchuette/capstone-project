@@ -4,9 +4,9 @@ import PropTypes from 'prop-types'
 
 export default function Button({
   buttonText,
-  iconName = 'ArrowDown',
-  iconPos,
-  isActive,
+  iconName,
+  iconPos = 'default',
+  isActive = false,
   ...props
 }) {
   const btnClass = isActive ? 'button--active' : 'button'
@@ -32,25 +32,24 @@ Button.propTypes = {
   isActive: PropTypes.bool,
 }
 
-Button.defaultProps = {
-  isActive: false,
-  iconPos: 'default',
-  buttonText: 'Button',
-  iconName: 'ArrowLeft',
-}
-
 const Btn = styled.button`
   background: ${props =>
-    props.isActive ? 'rgb(215, 51, 163)' : 'rgb(53, 22, 178)'};
+    props.isActive ? 'var(--color-secondary)' : 'var(--color-primary)'};
   background: ${props =>
     props.isActive
-      ? 'linear-gradient(145deg,rgba(215, 51, 163, 1) 18%,rgba(53, 22, 178, 1) 100%)'
-      : 'linear-gradient(145deg,rgba(53, 22, 178, 1) 18%,rgba(215,51, 163, 1) 100%)'};
+      ? `
+      linear-gradient(145deg,
+        var(--color-secondary) 18%,
+        var(--color-primary) 100%)`
+      : `linear-gradient(145deg,
+        var(--color-primary) 18%,
+        var(--color-secondary) 100%)`};
   color: #fff;
   padding: 8px;
   line-height: 1.3em;
   border: none;
   border-radius: 5px;
+  box-shadow: 0px 2px 0px #00000020;
 
   &.active {
     background: rgb(215, 51, 163);
