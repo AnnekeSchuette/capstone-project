@@ -4,10 +4,7 @@ import AppHeader from '../AppHeader/AppHeader'
 export default function App({ content }) {
   return (
     <AppGrid>
-      <AppHeader
-        title="Pop &amp; Pour"
-        subtitle="Wine Assistant and Taste Journal"
-      />
+      <AppHeader title="Pop &amp; Pour" subtitle="Wine, Dine and Journal" />
       <AppMain>{content}</AppMain>
     </AppGrid>
   )
