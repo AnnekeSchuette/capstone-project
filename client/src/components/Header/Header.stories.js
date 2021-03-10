@@ -1,11 +1,11 @@
-import AppHeader from './AppHeader'
+import Header from './Header'
 
 export default {
-  title: 'AppHeader',
-  component: AppHeader,
+  title: 'Header',
+  component: Header,
 }
 
-const Template = args => <AppHeader {...args} />
+const Template = args => <Header {...args} />
 
 export const Main = Template.bind({})
 Main.args = {

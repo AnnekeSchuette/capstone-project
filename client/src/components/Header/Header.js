@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 
-export default function AppHeader({ title, subtitle }) {
+export default function Header({ title, subtitle }) {
   return (
     <HeaderStyled>
       <Title>{title}</Title>
@@ -10,8 +10,8 @@ export default function AppHeader({ title, subtitle }) {
   )
 }
 
-AppHeader.propTypes = {
-  title: PropTypes.string,
+Header.propTypes = {
+  title: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
 }
 
