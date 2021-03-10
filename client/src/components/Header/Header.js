@@ -1,6 +1,11 @@
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 
+Header.propTypes = {
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string,
+}
+
 export default function Header({ title, subtitle }) {
   return (
     <HeaderStyled>
@@ -8,11 +13,6 @@ export default function Header({ title, subtitle }) {
       <Subtitle>{subtitle}</Subtitle>
     </HeaderStyled>
   )
-}
-
-Header.propTypes = {
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string,
 }
 
 const HeaderStyled = styled.header`
@@ -36,6 +36,7 @@ const Title = styled.h1`
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  margin: 0;
 `
 const Subtitle = styled.h2`
   font-family: 'Lora', sans-serif;
@@ -47,4 +48,5 @@ const Subtitle = styled.h2`
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  margin: 0;
 `
