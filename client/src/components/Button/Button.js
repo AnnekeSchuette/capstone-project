@@ -2,6 +2,13 @@ import styled from 'styled-components/macro'
 import * as Icons from 'heroicons-react'
 import PropTypes from 'prop-types'
 
+Button.propTypes = {
+  buttonText: PropTypes.string,
+  iconName: PropTypes.string,
+  iconPos: PropTypes.oneOf(['default', 'left', 'right']),
+  isActive: PropTypes.bool,
+}
+
 export default function Button({
   buttonText,
   iconName,
@@ -23,13 +30,6 @@ export default function Button({
       {iconPos === 'right' && <Icons.ChevronRight size={20} />}
     </Btn>
   )
-}
-
-Button.propTypes = {
-  buttonText: PropTypes.string,
-  iconName: PropTypes.string,
-  iconPos: PropTypes.oneOf(['default', 'left', 'right']),
-  isActive: PropTypes.bool,
 }
 
 const Btn = styled.button`

@@ -14,6 +14,12 @@ export default createGlobalStyle`
     --color-purple-munsell: #9918b6ff;
     --color-french-violet: #7700c1ff;
     --color-indigo: #470D81ff;
+
+    --space-xsmall: 5px;
+    --space-small: 15px;
+    --space-medium: 25px;
+    --space-large: 35px;
+    --space-xlarge: 50px;
   }
   * {
     box-sizing: border-box
@@ -25,6 +31,13 @@ export default createGlobalStyle`
     font-weight: 300;
     font-size: 112.5%;
     line-height: 1.5;
+    padding:0;
+    background: linear-gradient(145deg,
+    var(--color-secondary) 18%,
+    var(--color-primary) 100%);
+    color: white;
+    background: var(--color-background);
+    height:100vh;
   }
 
   input, button, textarea {
@@ -49,4 +62,12 @@ export default createGlobalStyle`
     background: #ddd;
     border: none;
   }
+
+h1 {
+  font-size: 1.5em;
+}
+
+h2 {
+  font-size: 1.1em;
+}
 `
