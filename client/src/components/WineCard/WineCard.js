@@ -49,7 +49,7 @@ const CardContent = styled.div`
   color: var(--color-space-cadet);
   border-radius: 5px;
   font-size: 0.8em;
-  padding: 0 var(--space-small);
+  padding: 0 var(--space-small) var(--space-small);
   display: grid;
   gap: var(--space-xsmall);
 
@@ -63,11 +63,17 @@ const Descr = styled.p`
 `
 const ImgWrapper = styled.figure`
   width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; // aspect ratio 16:9
   margin: 0;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 
   img {
-    width: 100%;
+    max-width: 100%;
     height: auto;
+    text-align: center;
   }
 `
 const DescrList = styled.dl`
