@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
+import { truncateByWords } from 'lib/truncateByWords'
 
 WineCard.propTypes = {
   title: PropTypes.string,
@@ -18,7 +19,7 @@ export default function WineCard({
   averageRating,
   ratingCount,
 }) {
-  const shortDescription = truncate(description, 20)
+  const shortDescription = truncateByWords(description, 20)
   return (
     <WineCardContent>
       <h2>{title}</h2>
@@ -63,9 +64,3 @@ const ListTerm = styled.dt`
   font-weight: bold;
 `
 const ListDescr = styled.dd``
-
-function truncate(str, words) {
-  const strLength = str.split(' ').length
-  const indicateTrunc = strLength > words ? '(...)' : ''
-  return str.split(' ').splice(0, words).join(' ') + indicateTrunc
-}
