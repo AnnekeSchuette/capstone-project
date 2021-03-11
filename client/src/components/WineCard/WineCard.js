@@ -32,8 +32,6 @@ export default function WineCard({
           <ListDescr>{price}</ListDescr>
           <ListTerm>Rating:</ListTerm>
           <ListDescr>{averageRatingDecimal}</ListDescr>
-          <ListTerm>Rating Count:</ListTerm>
-          <ListDescr>{ratingCount}</ListDescr>
         </DescrList>
       </ImgWrapper>
       <InfoWrapper>
