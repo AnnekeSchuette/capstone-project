@@ -8,7 +8,8 @@
     "server": "nodemon server.js",
     "client": "cd client && npm start",
     "test": "cd client && npm test",
-    "postinstall": "cd client && npm install"
+    "postinstall": "cd client && npm install",
+    "storybook": "cd client && start-storybook -p 6006 -s public"
   },
   "author": "",
   "license": "ISC",

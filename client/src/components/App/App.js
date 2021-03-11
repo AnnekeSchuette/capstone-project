@@ -1,11 +1,13 @@
 import styled from 'styled-components'
 import Header from '../Header/Header'
+import WineCard from '../WineCard/WineCard'
+import { recommendedWines } from '../../data/wine_recommendations_malbec.json'
 
-export default function App({ content }) {
+export default function App() {
   return (
     <Grid>
       <Header title="Pop &amp; Pour" subtitle="Wine, Dine and Journal" />
-      <Main>{content}</Main>
+      <Main></Main>
     </Grid>
   )
 }
