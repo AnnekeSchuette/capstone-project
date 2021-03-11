@@ -17,16 +17,16 @@ export default function WineCard({
   imageUrl,
   price,
   averageRating,
-  ratingCount,
 }) {
   const shortDescription = truncateByWords(description, 20)
   const averageRatingDecimal = (averageRating * 10).toFixed(1)
+  const largeImageUrl = imageUrl.replace('312x231', '636x393')
 
   return (
     <CardContent>
       <h2>{title}</h2>
       <ImgWrapper>
-        <img src={imageUrl} alt="" />
+        <img src={largeImageUrl} alt="" />
         <DescrList>
           <ListTerm>Price (avg):</ListTerm>
           <ListDescr>{price}</ListDescr>
@@ -69,8 +69,9 @@ const ImgWrapper = styled.figure`
 
   img {
     max-width: 100%;
+    max-height: 180px;
     height: auto;
-    align-items: start;
+    justify-self: center;
   }
 `
 const DescrList = styled.dl`
