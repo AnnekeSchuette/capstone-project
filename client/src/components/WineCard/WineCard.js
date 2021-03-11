@@ -64,17 +64,19 @@ const ImgWrapper = styled.figure`
   margin: 0;
   overflow: wrap;
   display: grid;
+  gap: var(--space-small);
   grid-template-columns: 100px auto;
 
   img {
     max-width: 100%;
     height: auto;
-    place-self: center;
+    align-items: start;
   }
 `
 const DescrList = styled.dl`
   display: grid;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: repeat(2, 1fr);
+  place-content: start;
   font-size: 0.9em;
 `
 const ListTerm = styled.dt`
