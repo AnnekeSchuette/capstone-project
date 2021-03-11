@@ -1,7 +1,6 @@
 import GlobalStyle from 'components/GlobalStyle'
 import GlobalFonts from 'fonts/Fonts'
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
-import styled from 'styled-components'
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
