@@ -18,11 +18,14 @@ export default function WineCard({
   averageRating,
   ratingCount,
 }) {
+  const shortDescription = truncate(description, 20)
   return (
     <WineCardContent>
       <h2>{title}</h2>
-      <p>{description}</p>
-      <img src={imageUrl} alt="" />
+      <WineImg>
+        <img src={imageUrl} alt="" />
+      </WineImg>
+      <WineDescr>{shortDescription}</WineDescr>
       <DescrList>
         <ListTerm>Price (avg):</ListTerm>
         <ListDescr>{price}</ListDescr>
@@ -36,9 +39,21 @@ export default function WineCard({
 }
 
 const WineCardContent = styled.div`
-  background: #faf5ff;
+  background: #eae9ec;
   box-shadow: 2px 2px 0px #00000050;
-  color: var(--color-primary);
+  color: var(--color-space-cadet);
+  display: grid;
+  grid-gap: var(--space-small);
+  padding: var(--space-medium);
+  border-radius: 5px;
+  place-content: center;
+`
+const WineDescr = styled.p`
+  column-width: 50%;
+`
+const WineImg = styled.figure`
+  column-width: 50%;
+  height: auto;
 `
 const DescrList = styled.dl`
   display: grid;
@@ -48,3 +63,9 @@ const ListTerm = styled.dt`
   font-weight: bold;
 `
 const ListDescr = styled.dd``
+
+function truncate(str, words) {
+  const strLength = str.split(' ').length
+  const indicateTrunc = strLength > words ? '(...)' : ''
+  return str.split(' ').splice(0, words).join(' ') + indicateTrunc
+}

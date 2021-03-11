@@ -1,4 +1,4 @@
-import WineCard from './WineCard'
+import WineCard from 'components/WineCard/WineCard'
 
 export default {
   title: 'Capstone Project/WineCard',

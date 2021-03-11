@@ -32,12 +32,6 @@ export default createGlobalStyle`
     font-size: 112.5%;
     line-height: 1.5;
     padding:0;
-    background: linear-gradient(145deg,
-    var(--color-secondary) 18%,
-    var(--color-primary) 100%);
-    color: white;
-    background: var(--color-background);
-    height:100vh;
   }
 
   input, button, textarea {
