@@ -46,7 +46,7 @@ export default createGlobalStyle`
   }
 
   input, textarea {
-    border: 2px solid #ddd;
+    border: 1px solid #ddd;
     padding: 4px;
     width: 100%;
   }
@@ -56,7 +56,9 @@ export default createGlobalStyle`
     background: #ddd;
     border: none;
   }
-
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Lora', sans-serif;
+}
 h1 {
   font-size: 1.5em;
 }

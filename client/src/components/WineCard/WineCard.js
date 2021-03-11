@@ -20,48 +20,63 @@ export default function WineCard({
   ratingCount,
 }) {
   const shortDescription = truncateByWords(description, 20)
+  const averageRatingDecimal = averageRating.toFixed(2) * 10
 
   return (
-    <WineCardContent>
+    <CardContent>
       <h2>{title}</h2>
-      <WineImg>
+      <ImgWrapper>
         <img src={imageUrl} alt="" />
-      </WineImg>
-      <WineDescr>{shortDescription}</WineDescr>
-      <DescrList>
-        <ListTerm>Price (avg):</ListTerm>
-        <ListDescr>{price}</ListDescr>
-        <ListTerm>Rating:</ListTerm>
-        <ListDescr>{averageRating}</ListDescr>
-        <ListTerm>Rating Count:</ListTerm>
-        <ListDescr>{ratingCount}</ListDescr>
-      </DescrList>
-    </WineCardContent>
+        <DescrList>
+          <ListTerm>Price (avg):</ListTerm>
+          <ListDescr>{price}</ListDescr>
+          <ListTerm>Rating:</ListTerm>
+          <ListDescr>{averageRatingDecimal}</ListDescr>
+          <ListTerm>Rating Count:</ListTerm>
+          <ListDescr>{ratingCount}</ListDescr>
+        </DescrList>
+      </ImgWrapper>
+      <InfoWrapper>
+        <Descr>{shortDescription}</Descr>
+      </InfoWrapper>
+    </CardContent>
   )
 }
 
-const WineCardContent = styled.div`
-  background: #eae9ec;
-  box-shadow: 2px 2px 0px #00000050;
+const CardContent = styled.div`
+  background: #fff;
+  box-shadow: 0px 1px 4px #00000050;
   color: var(--color-space-cadet);
-  display: grid;
-  grid-gap: var(--space-small);
-  padding: var(--space-medium);
   border-radius: 5px;
-  place-content: center;
+  font-size: 0.8em;
+  padding: 0 var(--space-small);
+  display: grid;
+  gap: var(--space-xsmall);
+
+  h2 {
+    font-weight: 400;
+  }
 `
-const WineDescr = styled.p`
-  column-width: 50%;
+const InfoWrapper = styled.div``
+const Descr = styled.p`
+  margin: 0 0 0 var(--space-xsmall);
 `
-const WineImg = styled.figure`
-  column-width: 50%;
-  height: auto;
+const ImgWrapper = styled.figure`
+  width: 100%;
+  margin: 0;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
 `
 const DescrList = styled.dl`
   display: grid;
   grid-template-columns: 1fr 1fr;
 `
 const ListTerm = styled.dt`
-  font-weight: bold;
+  font-weight: 400;
 `
-const ListDescr = styled.dd``
+const ListDescr = styled.dd`
+  text-align: right;
+`
