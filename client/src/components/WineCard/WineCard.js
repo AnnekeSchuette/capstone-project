@@ -20,7 +20,7 @@ export default function WineCard({
   ratingCount,
 }) {
   const shortDescription = truncateByWords(description, 20)
-  const averageRatingDecimal = averageRating.toFixed(2) * 10
+  const averageRatingDecimal = (averageRating * 10).toFixed(1)
 
   return (
     <CardContent>
@@ -63,22 +63,21 @@ const Descr = styled.p`
 `
 const ImgWrapper = styled.figure`
   width: 100%;
-  height: 0;
-  padding-bottom: 56.25%; // aspect ratio 16:9
   margin: 0;
-  overflow: hidden;
+  overflow: wrap;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 100px auto;
 
   img {
     max-width: 100%;
     height: auto;
-    text-align: center;
+    place-self: center;
   }
 `
 const DescrList = styled.dl`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 40% 60%;
+  font-size: 0.9em;
 `
 const ListTerm = styled.dt`
   font-weight: 400;

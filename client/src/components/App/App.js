@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 import Header from 'components/Header/Header'
-import WineCard from 'components/WineCard/WineCard'
-import { recommendedWines } from 'data/wine_recommendations_malbec.json'
 
 export default function App() {
   return (
