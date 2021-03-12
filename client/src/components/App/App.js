@@ -16,7 +16,7 @@ export default function App() {
 
 const Grid = styled.div`
   display: grid;
-  grid-template-rows: 70px auto 48px;
+  grid-template-rows: 75px auto;
   height: 100vh;
   position: fixed;
   top: 0;
@@ -28,8 +28,9 @@ const Grid = styled.div`
     var(--color-secondary) 18%,
     var(--color-primary) 100%
   );
-  color: white;
+  background-position: fixed;
   background: var(--color-background);
+  color: white;
 `
 const Main = styled.main`
   padding: var(--space-medium);

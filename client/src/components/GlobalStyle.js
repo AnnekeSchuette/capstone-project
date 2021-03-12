@@ -5,10 +5,10 @@ export default createGlobalStyle`
     --color-text: var(--color-space-cadet);
     --color-background: var(--color-space-cadet);
     --color-primary: var(--color-indigo);
-    --color-secondary: var(--color-byzantine);
+    --color-secondary: var(--color-purple-munsell);
 
     --color-space-cadet: #171941ff;
-    --color-french-pink: #f46393ff;
+    --color-french-pink: #f46393;
     --color-pink-pantone: #dc469fff;
     --color-byzantine: #ba2faaff;
     --color-purple-munsell: #9918b6ff;
@@ -56,8 +56,9 @@ export default createGlobalStyle`
     background: #ddd;
     border: none;
   }
-h1,h2,h3,h4,h5,h6 {
+h2,h3,h4,h5,h6 {
   font-family: 'Lora', sans-serif;
+  font-weight:300;
 }
 h1 {
   font-size: 1.5em;
