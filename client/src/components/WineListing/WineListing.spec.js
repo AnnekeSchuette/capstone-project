@@ -1,7 +1,6 @@
 import { screen, render } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import WineListing from 'components/WineListing/WineListing'
-import WineCard from 'components/WineCard/WineCard'
 
 describe('WineListing', () => {
   it('takes in data and renders child component, which should include the title "Finca La Celia Elite Malbec"', () => {
