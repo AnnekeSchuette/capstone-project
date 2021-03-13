@@ -13,32 +13,39 @@ WineCard.propTypes = {
 }
 
 export default function WineCard({
+  id,
   title,
   description,
   imageUrl,
-  price,
+  price = 'n.a.',
   averageRating,
   score,
 }) {
-  const shortDescription = truncateByWords(description, 20)
+  const shortDescription = description && truncateByWords(description, 20)
   const averageRatingDecimal = averageRating
     ? (averageRating * 10).toFixed(1)
     : 'n.a.'
   const scoreDecimal = score ? (score * 10).toFixed(1) : 'n.a.'
-  const largeImageUrl = imageUrl.replace('312x231', '636x393')
-  console.log(score)
+  const largeImageUrl = imageUrl && imageUrl.replace('312x231', '636x393')
+
   return (
     <CardContent>
-      <h2>{title}</h2>
+      <h3>{title}</h3>
       <ImgWrapper>
         <img src={largeImageUrl} alt="" />
         <DescrList>
-          <ListTerm>Price (avg):</ListTerm>
-          <ListDescr>{price}</ListDescr>
-          <ListTerm>Rating:</ListTerm>
-          <ListDescr>{averageRatingDecimal}</ListDescr>
-          <ListTerm>Score:</ListTerm>
-          <ListDescr>{scoreDecimal}</ListDescr>
+          <ListTerm id={`${id}-price`}>Price (avg):</ListTerm>
+          <ListDescr role="definition" aria-labelledby={`${id}-price`}>
+            {price}
+          </ListDescr>
+          <ListTerm id={`${id}-rating`}>Rating:</ListTerm>
+          <ListDescr role="definition" aria-labelledby={`${id}-rating`}>
+            {averageRatingDecimal}
+          </ListDescr>
+          <ListTerm id={`${id}-score`}>Score:</ListTerm>
+          <ListDescr role="definition" aria-labelledby={`${id}-score`}>
+            {scoreDecimal}
+          </ListDescr>
         </DescrList>
       </ImgWrapper>
       <InfoWrapper>

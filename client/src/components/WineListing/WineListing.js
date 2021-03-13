@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid'
 export default function WineListing({ results }) {
   const wines = results.map(
     ({
+      id,
       title,
       description,
       imageUrl,
@@ -14,6 +15,7 @@ export default function WineListing({ results }) {
       score,
     }) => (
       <WineCard
+        id={id}
         key={uuidv4()}
         title={title}
         description={description}

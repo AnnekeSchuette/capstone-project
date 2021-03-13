@@ -1,6 +1,7 @@
 import { screen, render } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import WineListing from 'components/WineListing/WineListing'
+import { recommendedWines } from 'data/wine_recommendations_malbec.json'
 
 describe('WineListing', () => {
   it('renders a child component, with the title "Finca La Celia Elite Malbec"', () => {
@@ -23,5 +24,10 @@ describe('WineListing', () => {
     expect(
       screen.queryByText('Finca La Celia Elite Malbec')
     ).toBeInTheDocument()
+  })
+
+  it('renders a list of 15 WineCards', () => {
+    render(<WineListing results={recommendedWines} />)
+    expect(screen.queryAllByRole('heading', { level: 3 })).toHaveLength(15)
   })
 })
