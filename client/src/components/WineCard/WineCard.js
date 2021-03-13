@@ -9,6 +9,7 @@ WineCard.propTypes = {
   price: PropTypes.string,
   averageRating: PropTypes.number,
   ratingCount: PropTypes.number,
+  score: PropTypes.number,
 }
 
 export default function WineCard({
@@ -17,11 +18,15 @@ export default function WineCard({
   imageUrl,
   price,
   averageRating,
+  score,
 }) {
   const shortDescription = truncateByWords(description, 20)
-  const averageRatingDecimal = (averageRating * 10).toFixed(1)
+  const averageRatingDecimal = averageRating
+    ? (averageRating * 10).toFixed(1)
+    : 'n.a.'
+  const scoreDecimal = score ? (score * 10).toFixed(1) : 'n.a.'
   const largeImageUrl = imageUrl.replace('312x231', '636x393')
-
+  console.log(score)
   return (
     <CardContent>
       <h2>{title}</h2>
@@ -32,6 +37,8 @@ export default function WineCard({
           <ListDescr>{price}</ListDescr>
           <ListTerm>Rating:</ListTerm>
           <ListDescr>{averageRatingDecimal}</ListDescr>
+          <ListTerm>Score:</ListTerm>
+          <ListDescr>{scoreDecimal}</ListDescr>
         </DescrList>
       </ImgWrapper>
       <InfoWrapper>

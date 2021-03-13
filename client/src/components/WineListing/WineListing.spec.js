@@ -3,7 +3,7 @@ import '@testing-library/jest-dom/extend-expect'
 import WineListing from 'components/WineListing/WineListing'
 
 describe('WineListing', () => {
-  it('takes in data and renders child component, which should include the title "Finca La Celia Elite Malbec"', () => {
+  it('renders a child component, with the title "Finca La Celia Elite Malbec"', () => {
     const testdata = [
       {
         id: 493086,

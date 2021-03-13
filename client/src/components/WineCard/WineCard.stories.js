@@ -15,6 +15,5 @@ Default.args = {
   price: '$12.99',
   imageUrl: 'https://spoonacular.com/productImages/454160-312x231.jpg',
   averageRating: 0.8800000000000001,
-  ratingCount: 5.0,
   score: 0.8175000000000001,
 }
