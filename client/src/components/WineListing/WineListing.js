@@ -30,6 +30,7 @@ export default function WineListing({ results }) {
 
   return <WineList>{wines}</WineList>
 }
+
 const WineList = styled.div`
   display: grid;
   gap: var(--space-medium);

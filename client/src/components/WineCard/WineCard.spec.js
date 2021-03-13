@@ -16,7 +16,6 @@ const testdata = {
 describe('WineCard', () => {
   it('renders a card with the title "Gascon Malbec Riserva"', () => {
     render(<WineCard {...testdata} />)
-    /* expect(screen.queryByText('Gascon Malbec Riserva')).toBeInTheDocument() */
     expect(screen.getByRole('heading', { level: 3 })).toHaveTextContent(
       'Gascon Malbec Riserva'
     )

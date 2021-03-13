@@ -22,10 +22,8 @@ const HeaderStyled = styled.header`
   align-items: center;
   justify-content: center;
   font-size: 1em;
-  background: var(--color-space-cadet);
-  color: white;
   color: var(--color-space-cadet);
-  background-color: white;
+  background-color: var(--color-french-pink);
   border-radius: 0 0 25px 25px;
   box-shadow: 0px 5px 5px #00000010;
   position: relative;
@@ -34,8 +32,8 @@ const HeaderStyled = styled.header`
 const Title = styled.h1`
   font-family: 'Lora', sans-serif;
   font-size: 1.3em;
-  margin: 0;
   font-weight: 300;
+  margin: 0;
 `
 const Subtitle = styled.h2`
   font-family: 'Josefin', sans-serif;

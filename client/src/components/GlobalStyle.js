@@ -56,10 +56,12 @@ export default createGlobalStyle`
     background: #ddd;
     border: none;
   }
+
 h2,h3,h4,h5,h6 {
   font-family: 'Lora', sans-serif;
   font-weight:300;
 }
+
 h1 {
   font-size: 1.5em;
 }
