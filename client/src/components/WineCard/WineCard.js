@@ -55,7 +55,7 @@ export default function WineCard({
 
 const CardContent = styled.div`
   background: #fff;
-  box-shadow: 0px 1px 4px #00000050;
+  box-shadow: 0px 1px 4px #00000010;
   color: var(--color-space-cadet);
   border-radius: var(--space-small);
   font-size: 0.8em;

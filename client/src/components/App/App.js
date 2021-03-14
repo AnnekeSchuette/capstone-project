@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import Header from 'components/Header/Header'
 import { recommendedWines } from 'data/wine_recommendations_malbec.json'
 import WineListing from 'components/WineListing/WineListing'
+import quarterCircle from 'assets/quarterCircle.svg'
 
 export default function App() {
   return (
@@ -29,7 +30,9 @@ const Grid = styled.div`
     var(--color-primary) 100%
   );
   background-position: fixed;
-  background: var(--color-background);
+  background: no-repeat var(--color-background) right bottom
+    url(${quarterCircle});
+  background-size: contain;
   color: white;
 `
 const Main = styled.main`

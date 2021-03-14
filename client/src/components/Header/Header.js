@@ -23,9 +23,6 @@ const HeaderStyled = styled.header`
   justify-content: center;
   font-size: 1em;
   color: var(--color-space-cadet);
-  background-color: #fff;
-  border-radius: 0 0 25px 25px;
-  box-shadow: 0px 5px 5px #00000010;
   position: relative;
   z-index: 1;
 `
