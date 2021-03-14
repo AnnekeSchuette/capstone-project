@@ -21,7 +21,7 @@ export default function WineCard({
   averageRating,
   score,
 }) {
-  const shortDescription = description && truncateByWords(description, 20)
+  const shortDescription = description && truncateByWords(description, 12)
   const averageRatingDecimal = averageRating
     ? (averageRating * 10).toFixed(1)
     : 'n.a.'
@@ -60,7 +60,7 @@ const CardContent = styled.div`
   box-shadow: 0px 1px 4px #00000010;
   color: var(--color-space-cadet);
   border-radius: var(--space-small);
-  font-size: 0.8em;
+  font-size: 0.75em;
   overflow: hidden;
   /* display: grid;
   gap: var(--space-xsmall); */
@@ -71,12 +71,13 @@ const CardContent = styled.div`
 
   h3 {
     font-weight: 400;
-    font-size: 1em;
+    font-size: 1.1em;
+    margin: 0;
   }
 `
 const CardInfo = styled.div`
   background: var(--color-lime-green-light);
-  padding: var(--space-medium);
+  padding: var(--space-small);
 `
 const Descr = styled.p`
   /* margin: 0 0 0 var(--space-xsmall); */
