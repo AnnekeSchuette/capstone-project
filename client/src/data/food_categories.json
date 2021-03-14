@@ -1,0 +1,111 @@
+[
+  {
+    "name": "Meats",
+    "subcategories": [
+      {
+        "name": "Chicken and Turkey",
+        "parent": "Meats"
+      },
+      {
+        "name": "Duck, Goose and Game Birds",
+        "parent": "Meats"
+      },
+      {
+        "name": "Pork",
+        "parent": "Meats"
+      },
+      {
+        "name": "Lamb",
+        "parent": "Meats"
+      },
+      {
+        "name": "Beef and Venison",
+        "parent": "Meats"
+      }
+    ]
+  },
+  {
+    "name": "Vegetables",
+    "subcategories": [
+      {
+        "name": "Salads and Green Vegetables",
+        "parent": "Vegetables"
+      },
+      {
+        "name": "Root Vegetables and Squashes",
+        "parent": "Vegetables"
+      },
+      {
+        "name": "Mushrooms",
+        "parent": "Vegetables"
+      },
+      {
+        "name": "Tomato-based Dishes",
+        "parent": "Vegetables"
+      },
+      {
+        "name": "Chilis and Hot Spicy Foods",
+        "parent": "Vegetables"
+      }
+    ]
+  },
+  {
+    "name": "Seafood",
+    "subcategories": [
+      {
+        "name": "White Fish",
+        "parent": "Seafood"
+      },
+      {
+        "name": "Meaty and Oily Fish",
+        "parent": "Seafood"
+      },
+      {
+        "name": "Shellfish, Crab and Lobster",
+        "parent": "Seafood"
+      }
+    ]
+  },
+  {
+    "name": "Cheese",
+    "subcategories": [
+      {
+        "name": "Goats' Cheese and Feta",
+        "parent": "Cheese"
+      },
+      {
+        "name": "Manchego and Parmesan",
+        "parent": "Cheese"
+      },
+      {
+        "name": "Cheddar and Gruyere",
+        "parent": "Cheese"
+      },
+      {
+        "name": "Blue Cheeses",
+        "parent": "Cheese"
+      },
+      {
+        "name": "Brie and Camembert",
+        "parent": "Cheese"
+      }
+    ]
+  },
+  {
+    "name": "Dessert",
+    "subcategories": [
+      {
+        "name": "Fruit-based Desserts",
+        "parent": "Dessert"
+      },
+      {
+        "name": "Chocolate and Caramel",
+        "parent": "Dessert"
+      },
+      {
+        "name": "Cakes and Cream",
+        "parent": "Dessert"
+      }
+    ]
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "pairedWines": ["merlot", "cabernet sauvignon", "pinot noir"],
+  "pairingText": "Merlot, Cabernet Sauvignon, and Pinot Noir are great choices for Steak. After all, beef and red wine are a classic combination. Generally, leaner steaks go well with light or medium-bodied reds, such as pinot noir or merlot, while fattier steaks can handle a bold red, such as cabernet sauvingnon. You could try Nickel & Nickel Harris Vineyard Merlot. Reviewers quite like it with a 4 out of 5 star rating and a price of about 40 dollars per bottle.",
+  "productMatches": [
+    {
+      "id": 442492,
+      "title": "Nickel & Nickel Harris Vineyard Merlot",
+      "description": "Harris Vineyard is located in western Oakville, just east of the Branding Iron Vineyard. Nickel & Nickel's five acres are comprised of two blocks that offer a southern exposure and soil of gravelly clay loam. Thinning passes allow each cluster to hang freely, optimizing the trellis system, and taking advantage of the warm climate to reach full maturity.\n\nThe Harris Merlot is very consistent from vintage to vintage, and this wine is no exception. Beautiful berry and plum fruit integrate with flavors of sage, cigar, earth and dried herb. This vintage has an appealing dusty element and the oak adds a hint of char. The silky texture and round tannins carry these flavors through to a long, balanced finish.",
+      "price": "$39.99",
+      "imageUrl": "https://spoonacular.com/productImages/442492-312x231.jpg",
+      "averageRating": 0.8,
+      "ratingCount": 5.0,
+      "score": 0.7375,
+      "link": "https://click.linksynergy.com/deeplink?id=*QCiIS6t4gA&mid=2025&murl=https%3A%2F%2Fwww.wine.com%2Fproduct%2Fnickel-and-nickel-harris-vineyard-merlot-2010%2F124551"
+    }
+  ]
+}

@@ -16,37 +16,38 @@ export default function Header({ title, subtitle }) {
 }
 
 const HeaderStyled = styled.header`
-  height: 70px;
+  height: 75px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: 1em;
-  color: white;
-  background: var(--color-space-cadet);
-  background-color: white;
+  color: #fff;
+  position: relative;
+  z-index: 1;
 `
 const Title = styled.h1`
-  font-family: 'Merriweather', sans-serif;
-  background-image: linear-gradient(
-    145deg,
-    var(--color-secondary) 18%,
-    var(--color-primary) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-family: 'Josefin', sans-serif;
+  font-size: 1.7em;
+  font-weight: 300;
+  line-height: 1;
   margin: 0;
+  padding: 0;
+  position: relative;
+  letter-spacing: -1px;
+
+  ::after {
+    content: '';
+    width: 3px;
+    height: 3px;
+    right: -5px;
+    bottom: 7px;
+    background: var(--color-pink-pantone);
+    position: absolute;
+  }
 `
 const Subtitle = styled.h2`
-  font-family: 'Lora', sans-serif;
-  background-image: linear-gradient(
-    145deg,
-    var(--color-secondary) 18%,
-    var(--color-primary) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-family: 'Josefin', sans-serif;
+  font-size: 0.9em;
   margin: 0;
 `

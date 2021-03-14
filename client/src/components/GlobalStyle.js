@@ -3,17 +3,14 @@ import { createGlobalStyle } from 'styled-components'
 export default createGlobalStyle`
   :root {
     --color-text: var(--color-space-cadet);
-    --color-background: var(--color-space-cadet);
+    --color-background:var(--color-midnight);
     --color-primary: var(--color-indigo);
-    --color-secondary: var(--color-byzantine);
+    --color-secondary: var(--color-purple-munsell);
 
+    --color-midnight: #010b3d;
+    --color-midnight-punch: #04135e;
     --color-space-cadet: #171941ff;
-    --color-french-pink: #f46393ff;
     --color-pink-pantone: #dc469fff;
-    --color-byzantine: #ba2faaff;
-    --color-purple-munsell: #9918b6ff;
-    --color-french-violet: #7700c1ff;
-    --color-indigo: #470D81ff;
 
     --space-xsmall: 5px;
     --space-small: 15px;
@@ -32,12 +29,6 @@ export default createGlobalStyle`
     font-size: 112.5%;
     line-height: 1.5;
     padding:0;
-    background: linear-gradient(145deg,
-    var(--color-secondary) 18%,
-    var(--color-primary) 100%);
-    color: white;
-    background: var(--color-background);
-    height:100vh;
   }
 
   input, button, textarea {
@@ -52,7 +43,7 @@ export default createGlobalStyle`
   }
 
   input, textarea {
-    border: 2px solid #ddd;
+    border: 1px solid #ddd;
     padding: 4px;
     width: 100%;
   }
@@ -62,6 +53,11 @@ export default createGlobalStyle`
     background: #ddd;
     border: none;
   }
+
+h2,h3,h4,h5,h6 {
+  font-family: 'Josefin', sans-serif;
+  font-weight:300;
+}
 
 h1 {
   font-size: 1.5em;

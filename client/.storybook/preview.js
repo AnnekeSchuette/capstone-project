@@ -1,5 +1,5 @@
-import GlobalStyle from '../src/components/GlobalStyle'
-import GlobalFonts from '../src/fonts/Fonts'
+import GlobalStyle from 'components/GlobalStyle'
+import GlobalFonts from 'fonts/Fonts'
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
 
 export const parameters = {
@@ -12,11 +12,14 @@ export const parameters = {
 }
 
 export const decorators =[
+
   Story => (
     <>
       <GlobalFonts/>
       <GlobalStyle/>
-      <Story />
+      <div style={{ padding: '25px' }}>
+        <Story />
+      </div>
     </>
   ),
 ]
