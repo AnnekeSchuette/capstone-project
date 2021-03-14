@@ -23,30 +23,32 @@ const HeaderStyled = styled.header`
   justify-content: center;
   font-size: 1em;
   color: var(--color-space-cadet);
+  color: #fff;
   position: relative;
   z-index: 1;
 `
 const Title = styled.h1`
-  font-family: 'Lora', sans-serif;
-  font-size: 1.5em;
+  font-family: 'Josefin', sans-serif;
+  font-size: 1.7em;
   font-weight: 300;
   line-height: 1;
   margin: 0;
   padding: 0;
   position: relative;
+  letter-spacing: -1px;
 
   ::after {
     content: '';
     width: 3px;
     height: 3px;
     right: -5px;
-    bottom: 3px;
-    background: var(--color-byzantine);
+    bottom: 7px;
+    background: var(--color-pink-pantone);
     position: absolute;
   }
 `
 const Subtitle = styled.h2`
   font-family: 'Josefin', sans-serif;
   font-size: 0.9em;
-  margin: 5px 0 0 0;
+  margin: 0;
 `

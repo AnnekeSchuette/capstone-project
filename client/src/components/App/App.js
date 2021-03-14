@@ -7,7 +7,7 @@ import quarterCircle from 'assets/quarterCircle.svg'
 export default function App() {
   return (
     <Grid>
-      <Header title="Vinz" subtitle="Wine, Dine and Journal" />
+      <Header title="Vinz" subtitle="Wine Assistant and Taste Journal" />
       <Main>
         <WineListing results={recommendedWines} />
       </Main>
@@ -24,11 +24,6 @@ const Grid = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(
-    145deg,
-    var(--color-secondary) 18%,
-    var(--color-primary) 100%
-  );
   background-position: fixed;
   background: no-repeat var(--color-background) right bottom
     url(${quarterCircle});

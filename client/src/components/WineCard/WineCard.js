@@ -57,15 +57,12 @@ export default function WineCard({
 
 const CardContent = styled.div`
   background: #fff;
-  box-shadow: 0px 1px 4px #00000010;
-  color: var(--color-space-cadet);
+  box-shadow: 0px 1px 4px #00000030;
+  color: var(--color-midnight);
   border-radius: var(--space-small);
   font-size: 0.75em;
   overflow: hidden;
-  /* display: grid;
-  gap: var(--space-xsmall); */
   display: grid;
-  gap: var(--space-small);
   grid-template-columns: 90px auto;
   place-items: center;
 
@@ -76,8 +73,8 @@ const CardContent = styled.div`
   }
 `
 const CardInfo = styled.div`
-  background: var(--color-lime-green-light);
-  padding: var(--space-small);
+  background: #04135e08;
+  padding: var(--space-medium) var(--space-medium) var(--space-small);
 `
 const Descr = styled.p`
   /* margin: 0 0 0 var(--space-xsmall); */
@@ -85,7 +82,6 @@ const Descr = styled.p`
 const ImgWrapper = styled.figure`
   width: 100%;
   margin: 0;
-  overflow: wrap;
   justify-self: center;
   text-align: center;
 

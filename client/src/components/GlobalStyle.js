@@ -3,19 +3,14 @@ import { createGlobalStyle } from 'styled-components'
 export default createGlobalStyle`
   :root {
     --color-text: var(--color-space-cadet);
-    --color-background: var(--color-lime-green-light);
+    --color-background:var(--color-midnight);
     --color-primary: var(--color-indigo);
     --color-secondary: var(--color-purple-munsell);
 
+    --color-midnight: #010b3d;
+    --color-midnight-punch: #04135e;
     --color-space-cadet: #171941ff;
-    --color-french-pink: #f46393;
     --color-pink-pantone: #dc469fff;
-    --color-byzantine: #ba2faaff;
-    --color-purple-munsell: #9918b6ff;
-    --color-french-violet: #7700c1ff;
-    --color-indigo: #470D81ff;
-    --color-lime-green: #afd61f;
-    --color-lime-green-light: #f5fae2;
 
     --space-xsmall: 5px;
     --space-small: 15px;
@@ -60,7 +55,7 @@ export default createGlobalStyle`
   }
 
 h2,h3,h4,h5,h6 {
-  font-family: 'Lora', sans-serif;
+  font-family: 'Josefin', sans-serif;
   font-weight:300;
 }
 
