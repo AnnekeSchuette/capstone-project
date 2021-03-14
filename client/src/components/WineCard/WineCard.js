@@ -48,9 +48,7 @@ export default function WineCard({
           </ListDescr>
         </DescrList>
       </ImgWrapper>
-      <InfoWrapper>
-        <Descr>{shortDescription}</Descr>
-      </InfoWrapper>
+      <Descr>{shortDescription}</Descr>
     </CardContent>
   )
 }
@@ -69,7 +67,6 @@ const CardContent = styled.div`
     font-weight: 400;
   }
 `
-const InfoWrapper = styled.div``
 const Descr = styled.p`
   margin: 0 0 0 var(--space-xsmall);
 `

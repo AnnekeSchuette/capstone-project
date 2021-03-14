@@ -90,6 +90,4 @@ describe('WineCard', () => {
         .split(' ').length
     ).toBe(20)
   })
-
-  screen.debug()
 })
