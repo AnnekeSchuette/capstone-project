@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import truncateByWords from 'lib/truncateByWords'
-import { BookmarkOutline } from 'heroicons-react'
+import { Bookmark } from 'heroicons-react'
 import { useState } from 'react'
 
 WineCard.propTypes = {
@@ -35,16 +35,15 @@ export default function WineCard({
 
   return (
     <CardContent>
-      <BookmarkIcon
+      <BookmarkButton
         onClick={() => {
           /* onBookmark({ id, title }) */
           setIsBookmarked(!isBookmarked)
         }}
         isActive={isBookmarked}
       >
-        <BookmarkOutline size={30} />
-      </BookmarkIcon>
-      <h3>{title}</h3>
+        <Bookmark size={34} />
+      </BookmarkButton>
       <ImgWrapper>
         <img src={largeImageUrl} alt="" />
       </ImgWrapper>
@@ -76,7 +75,6 @@ const CardContent = styled.div`
   color: var(--color-midnight);
   border-radius: var(--space-small);
   font-size: 0.75em;
-  overflow: hidden;
   display: grid;
   gap: var(--space-xsmall);
   position: relative;
@@ -89,15 +87,18 @@ const CardContent = styled.div`
     margin: 0;
   }
 `
-const BookmarkIcon = styled.button`
+const BookmarkButton = styled.button`
   background: none;
   border: none;
   position: absolute;
-  right: 10px;
-  top: -10px;
+  right: 5px;
+  top: -8px;
   svg {
-    fill: ${props => (props.isActive ? 'hotpink' : '#fff')};
-    stroke: var(--color-space-cadet);
+    fill: ${props =>
+      props.isActive ? 'var(--color-pink-pantone)' : 'var(--color-midnight)'};
+    stroke: 1px
+      ${props =>
+        props.isActive ? 'var(--color-midnight)' : 'var(--color-pink-pantone)'};
   }
 `
 const CardInfo = styled.div`

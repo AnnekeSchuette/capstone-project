@@ -36,14 +36,7 @@ const Btn = styled.button`
   background: ${props =>
     props.isActive ? 'var(--color-secondary)' : 'var(--color-primary)'};
   background: ${props =>
-    props.isActive
-      ? `
-      linear-gradient(145deg,
-        var(--color-secondary) 18%,
-        var(--color-primary) 100%)`
-      : `linear-gradient(145deg,
-        var(--color-primary) 18%,
-        var(--color-secondary) 100%)`};
+    props.isActive ? 'var(--color-pink-pantone)' : 'var(--color-pink-pantone)'};
   color: #fff;
   padding: 8px;
   line-height: 1.3em;
