@@ -30,9 +30,12 @@ export default function WineCard({
 
   return (
     <CardContent>
-      <h3>{title}</h3>
       <ImgWrapper>
         <img src={largeImageUrl} alt="" />
+      </ImgWrapper>
+      <CardInfo>
+        <h3>{title}</h3>
+        <Descr>{shortDescription}</Descr>
         <DescrList>
           <ListTerm id={`${id}-price`}>Price (avg):</ListTerm>
           <ListDescr role="definition" aria-labelledby={`${id}-price`}>
@@ -47,8 +50,7 @@ export default function WineCard({
             {scoreDecimal}
           </ListDescr>
         </DescrList>
-      </ImgWrapper>
-      <Descr>{shortDescription}</Descr>
+      </CardInfo>
     </CardContent>
   )
 }
@@ -59,30 +61,37 @@ const CardContent = styled.div`
   color: var(--color-space-cadet);
   border-radius: var(--space-small);
   font-size: 0.8em;
-  padding: 0 var(--space-small) var(--space-small);
+  overflow: hidden;
+  /* display: grid;
+  gap: var(--space-xsmall); */
   display: grid;
-  gap: var(--space-xsmall);
+  gap: var(--space-small);
+  grid-template-columns: 90px auto;
+  place-items: center;
 
-  h2 {
+  h3 {
     font-weight: 400;
+    font-size: 1em;
   }
 `
+const CardInfo = styled.div`
+  background: var(--color-lime-green-light);
+  padding: var(--space-medium);
+`
 const Descr = styled.p`
-  margin: 0 0 0 var(--space-xsmall);
+  /* margin: 0 0 0 var(--space-xsmall); */
 `
 const ImgWrapper = styled.figure`
   width: 100%;
   margin: 0;
   overflow: wrap;
-  display: grid;
-  gap: var(--space-small);
-  grid-template-columns: 100px auto;
+  justify-self: center;
+  text-align: center;
 
   img {
     max-width: 100%;
     max-height: 180px;
     height: auto;
-    justify-self: center;
   }
 `
 const DescrList = styled.dl`
