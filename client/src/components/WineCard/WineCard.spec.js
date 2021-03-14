@@ -71,16 +71,16 @@ describe('WineCard', () => {
     ).toHaveTextContent('n.a.')
   })
 
-  it('renders a card with a truncated description text of 20 words, which is 125 characters including (...)', () => {
+  it('renders a card with a truncated description text of 20 words, which is 77 characters including (...)', () => {
     render(<WineCard {...testdata} />)
     expect(screen.queryByText(/Dark, rich and complex/i)).toBeInTheDocument()
     screen.debug()
     expect(
       screen.getByText(/Dark, rich and complex/i).textContent
-    ).toHaveLength(125)
+    ).toHaveLength(77)
   })
 
-  it('renders a card with a truncated text of 20 words', () => {
+  it('renders a card with a truncated text of 12 words', () => {
     render(<WineCard {...testdata} />)
     expect(screen.queryByText(/Dark, rich and complex/i)).toBeInTheDocument()
     expect(
@@ -88,8 +88,6 @@ describe('WineCard', () => {
         .getByText(/Dark, rich and complex/i)
         .textContent.replace(' (...)', '')
         .split(' ').length
-    ).toBe(20)
+    ).toBe(12)
   })
-
-  screen.debug()
 })

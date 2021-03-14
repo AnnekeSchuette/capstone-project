@@ -22,21 +22,32 @@ const HeaderStyled = styled.header`
   align-items: center;
   justify-content: center;
   font-size: 1em;
-  color: var(--color-space-cadet);
-  background-color: var(--color-french-pink);
-  border-radius: 0 0 25px 25px;
-  box-shadow: 0px 5px 5px #00000010;
+  color: #fff;
   position: relative;
   z-index: 1;
 `
 const Title = styled.h1`
-  font-family: 'Lora', sans-serif;
-  font-size: 1.3em;
+  font-family: 'Josefin', sans-serif;
+  font-size: 1.7em;
   font-weight: 300;
+  line-height: 1;
   margin: 0;
+  padding: 0;
+  position: relative;
+  letter-spacing: -1px;
+
+  ::after {
+    content: '';
+    width: 3px;
+    height: 3px;
+    right: -5px;
+    bottom: 7px;
+    background: var(--color-pink-pantone);
+    position: absolute;
+  }
 `
 const Subtitle = styled.h2`
   font-family: 'Josefin', sans-serif;
-  font-size: 1em;
+  font-size: 0.9em;
   margin: 0;
 `

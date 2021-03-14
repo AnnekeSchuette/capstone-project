@@ -3,13 +3,14 @@ import Header from 'components/Header/Header'
 import { recommendedWines } from 'data/wine_recommendations_malbec.json'
 import WineListing from 'components/WineListing/WineListing'
 import { useState } from 'react'
+import quarterCircle from 'assets/quarterCircle.svg'
 
 export default function App() {
   const [savedWines, setSavedWines] = useState([])
   //console.log(savedWines)
   return (
     <Grid>
-      <Header title="Pop &amp; Pour" subtitle="Wine, Dine and Journal" />
+      <Header title="Vinz" subtitle="Wine Assistant and Taste Journal" />
       <Main>
         <WineListing
           results={recommendedWines}
@@ -38,13 +39,10 @@ const Grid = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(
-    145deg,
-    var(--color-secondary) 18%,
-    var(--color-primary) 100%
-  );
   background-position: fixed;
-  background: var(--color-background);
+  background: no-repeat var(--color-background) right bottom
+    url(${quarterCircle});
+  background-size: contain;
   color: white;
 `
 const Main = styled.main`

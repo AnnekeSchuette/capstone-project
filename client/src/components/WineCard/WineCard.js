@@ -26,7 +26,7 @@ export default function WineCard({
 }) {
   const [isBookmarked, setIsBookmarked] = useState(false)
 
-  const shortDescription = description && truncateByWords(description, 20)
+  const shortDescription = description && truncateByWords(description, 12)
   const averageRatingDecimal = averageRating
     ? (averageRating * 10).toFixed(1)
     : 'n.a.'
@@ -47,6 +47,10 @@ export default function WineCard({
       <h3>{title}</h3>
       <ImgWrapper>
         <img src={largeImageUrl} alt="" />
+      </ImgWrapper>
+      <CardInfo>
+        <h3>{title}</h3>
+        <Descr>{shortDescription}</Descr>
         <DescrList>
           <ListTerm id={`${id}-price`}>Price (avg):</ListTerm>
           <ListDescr role="definition" aria-labelledby={`${id}-price`}>
@@ -61,27 +65,28 @@ export default function WineCard({
             {scoreDecimal}
           </ListDescr>
         </DescrList>
-      </ImgWrapper>
-      <InfoWrapper>
-        <Descr>{shortDescription}</Descr>
-      </InfoWrapper>
+      </CardInfo>
     </CardContent>
   )
 }
 
 const CardContent = styled.div`
   background: #fff;
-  box-shadow: 0px 1px 4px #00000050;
-  color: var(--color-space-cadet);
-  border-radius: 5px;
-  font-size: 0.8em;
-  padding: 0 var(--space-small) var(--space-small);
+  box-shadow: 0px 1px 4px #00000030;
+  color: var(--color-midnight);
+  border-radius: var(--space-small);
+  font-size: 0.75em;
+  overflow: hidden;
   display: grid;
   gap: var(--space-xsmall);
   position: relative;
+  grid-template-columns: 90px auto;
+  place-items: center;
 
-  h2 {
+  h3 {
     font-weight: 400;
+    font-size: 1.1em;
+    margin: 0;
   }
 `
 const BookmarkIcon = styled.button`
@@ -95,23 +100,23 @@ const BookmarkIcon = styled.button`
     stroke: var(--color-space-cadet);
   }
 `
-const InfoWrapper = styled.div``
+const CardInfo = styled.div`
+  background: #04135e08;
+  padding: var(--space-medium) var(--space-medium) var(--space-small);
+`
 const Descr = styled.p`
-  margin: 0 0 0 var(--space-xsmall);
+  /* margin: 0 0 0 var(--space-xsmall); */
 `
 const ImgWrapper = styled.figure`
   width: 100%;
   margin: 0;
-  overflow: wrap;
-  display: grid;
-  gap: var(--space-small);
-  grid-template-columns: 100px auto;
+  justify-self: center;
+  text-align: center;
 
   img {
     max-width: 100%;
     max-height: 180px;
     height: auto;
-    justify-self: center;
   }
 `
 const DescrList = styled.dl`
