@@ -2,16 +2,31 @@ import styled from 'styled-components'
 import Header from 'components/Header/Header'
 import { recommendedWines } from 'data/wine_recommendations_malbec.json'
 import WineListing from 'components/WineListing/WineListing'
+import { useState } from 'react'
 
 export default function App() {
+  const [savedWines, setSavedWines] = useState([])
+  //console.log(savedWines)
   return (
     <Grid>
       <Header title="Pop &amp; Pour" subtitle="Wine, Dine and Journal" />
       <Main>
-        <WineListing results={recommendedWines} />
+        <WineListing
+          results={recommendedWines}
+          onBookmark={handleSaveWine}
+          bookmarkedWines={savedWines}
+        />
       </Main>
     </Grid>
   )
+
+  function handleSaveWine(wine) {
+    if (savedWines.some(savedWine => savedWine.id === wine.id)) {
+      setSavedWines(savedWines.filter(savedWine => savedWine.id !== wine.id))
+    } else {
+      setSavedWines([...savedWines, wine])
+    }
+  }
 }
 
 const Grid = styled.div`

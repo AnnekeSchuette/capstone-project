@@ -1,6 +1,8 @@
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import truncateByWords from 'lib/truncateByWords'
+import { BookmarkOutline } from 'heroicons-react'
+import { useState } from 'react'
 
 WineCard.propTypes = {
   title: PropTypes.string,
@@ -20,7 +22,10 @@ export default function WineCard({
   price = 'n.a.',
   averageRating,
   score,
+  onBookmark,
 }) {
+  const [isBookmarked, setIsBookmarked] = useState(false)
+
   const shortDescription = description && truncateByWords(description, 20)
   const averageRatingDecimal = averageRating
     ? (averageRating * 10).toFixed(1)
@@ -30,6 +35,15 @@ export default function WineCard({
 
   return (
     <CardContent>
+      <BookmarkIcon
+        onClick={() => {
+          /* onBookmark({ id, title }) */
+          setIsBookmarked(!isBookmarked)
+        }}
+        isActive={isBookmarked}
+      >
+        <BookmarkOutline size={30} />
+      </BookmarkIcon>
       <h3>{title}</h3>
       <ImgWrapper>
         <img src={largeImageUrl} alt="" />
@@ -64,9 +78,21 @@ const CardContent = styled.div`
   padding: 0 var(--space-small) var(--space-small);
   display: grid;
   gap: var(--space-xsmall);
+  position: relative;
 
   h2 {
     font-weight: 400;
+  }
+`
+const BookmarkIcon = styled.button`
+  background: none;
+  border: none;
+  position: absolute;
+  right: 10px;
+  top: -10px;
+  svg {
+    fill: ${props => (props.isActive ? 'hotpink' : '#fff')};
+    stroke: var(--color-space-cadet);
   }
 `
 const InfoWrapper = styled.div``
