@@ -22,7 +22,6 @@ const HeaderStyled = styled.header`
   align-items: center;
   justify-content: center;
   font-size: 1em;
-  color: var(--color-space-cadet);
   color: #fff;
   position: relative;
   z-index: 1;
