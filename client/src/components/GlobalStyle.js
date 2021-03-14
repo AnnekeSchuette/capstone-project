@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components'
 export default createGlobalStyle`
   :root {
     --color-text: var(--color-space-cadet);
-    --color-background: var(--color-space-cadet);
+    --color-background: var(--color-byzantine);
     --color-primary: var(--color-indigo);
     --color-secondary: var(--color-purple-munsell);
 

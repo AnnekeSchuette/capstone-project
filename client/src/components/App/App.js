@@ -6,7 +6,7 @@ import WineListing from 'components/WineListing/WineListing'
 export default function App() {
   return (
     <Grid>
-      <Header title="Pop &amp; Pour" subtitle="Wine, Dine and Journal" />
+      <Header title="Vinz" subtitle="Wine, Dine and Journal" />
       <Main>
         <WineListing results={recommendedWines} />
       </Main>

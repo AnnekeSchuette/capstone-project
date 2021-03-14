@@ -57,7 +57,7 @@ const CardContent = styled.div`
   background: #fff;
   box-shadow: 0px 1px 4px #00000050;
   color: var(--color-space-cadet);
-  border-radius: 5px;
+  border-radius: var(--space-small);
   font-size: 0.8em;
   padding: 0 var(--space-small) var(--space-small);
   display: grid;
