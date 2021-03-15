@@ -9,6 +9,9 @@ const options = {
   pathRewrite: {
     '^/app/client/src': '/src', // remove base path
   },
+  router: {
+    'dev.localhost:4000': 'http://localhost:8000',
+  },
 }
 const appProxy = createProxyMiddleware(options)
 
