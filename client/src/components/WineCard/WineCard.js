@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import truncateByWords from 'lib/truncateByWords'
-import { Bookmark } from 'heroicons-react'
+import { Heart } from 'heroicons-react'
 import { useBookmark } from 'lib/customHooks'
 
 WineCard.propTypes = {
@@ -35,18 +35,18 @@ export default function WineCard({
 
   return (
     <CardContent>
+      <h3>{title}</h3>
       <BookmarkButton
         onClick={() => handleBookmarkClick({ id, title })}
         isActive={toggleState}
         aria-label="Bookmark"
       >
-        <Bookmark size={34} />
+        <Heart size={34} />
       </BookmarkButton>
       <ImgWrapper>
         <img src={largeImageUrl} alt="" />
       </ImgWrapper>
       <CardInfo>
-        <h3>{title}</h3>
         <p>{shortDescription}</p>
         <DescrList>
           <ListTerm id={`${id}-price`}>Price (avg):</ListTerm>
@@ -82,13 +82,21 @@ const CardContent = styled.div`
   gap: var(--space-xsmall);
   position: relative;
   grid-template-columns: 90px auto;
+  grid-template-rows: auto auto;
   grid-auto-flow: column;
   place-items: center;
+  overflow: hidden;
 
   h3 {
     font-weight: 400;
     font-size: 1.1em;
     margin: 0;
+    grid-column-end: span 2;
+    width: 100%;
+    align-content: center;
+    padding: var(--space-small) var(--space-xlarge) var(--space-small)
+      var(--space-small);
+    background: #04135e08;
   }
 `
 const BookmarkButton = styled.button`
@@ -96,18 +104,20 @@ const BookmarkButton = styled.button`
   border: none;
   position: absolute;
   right: 5px;
-  top: -8px;
+  top: 7px;
+
   svg {
     fill: ${props =>
-      props.isActive ? 'var(--color-pink-pantone)' : 'var(--color-midnight)'};
-    stroke: 1px
+      props.isActive ? 'var(--color-pink-pantone)' : 'inherit'};
+    stroke: 2px
       ${props =>
         props.isActive ? 'var(--color-midnight)' : 'var(--color-pink-pantone)'};
   }
 `
 const CardInfo = styled.div`
-  background: #04135e08;
-  padding: var(--space-medium) var(--space-medium) var(--space-small);
+  background: #fff;
+  padding: var(--space-small) var(--space-medium) var(--space-small)
+    var(--space-small);
   height: 100%;
   width: 100%;
 `
@@ -116,6 +126,7 @@ const ImgWrapper = styled.figure`
   margin: 0;
   justify-self: center;
   text-align: center;
+  padding: var(--space-xsmall) 0;
 
   img {
     max-width: 100%;
