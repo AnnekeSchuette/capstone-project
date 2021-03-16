@@ -1,4 +1,4 @@
-import { screen, render } from '@testing-library/react'
+import { screen, render, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import WineCard from 'components/WineCard/WineCard'
 
@@ -89,5 +89,10 @@ describe('WineCard', () => {
         .textContent.replace(' (...)', '')
         .split(' ').length
     ).toBe(12)
+  })
+
+  it('renders a bookmark icon on card', () => {
+    render(<WineCard {...testdata} />)
+    expect(screen.getByRole('button', { name: 'Bookmark' })).toBeInTheDocument()
   })
 })

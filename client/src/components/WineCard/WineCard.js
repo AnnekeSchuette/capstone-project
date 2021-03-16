@@ -38,6 +38,7 @@ export default function WineCard({
       <BookmarkButton
         onClick={() => handleBookmarkClick({ id, title })}
         isActive={toggleState}
+        aria-label="Bookmark"
       >
         <Bookmark size={34} />
       </BookmarkButton>
