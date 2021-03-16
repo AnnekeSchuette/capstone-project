@@ -2,7 +2,7 @@ import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import truncateByWords from 'lib/truncateByWords'
 import { Bookmark } from 'heroicons-react'
-import { useState } from 'react'
+import { useBookmark } from 'lib/customHooks'
 
 WineCard.propTypes = {
   title: PropTypes.string,
@@ -24,7 +24,7 @@ export default function WineCard({
   score,
   onBookmark,
 }) {
-  const [isBookmarked, setIsBookmarked] = useState(false)
+  const [toggleState, { toggle }] = useBookmark()
 
   const shortDescription = description && truncateByWords(description, 12)
   const averageRatingDecimal = averageRating
@@ -36,11 +36,8 @@ export default function WineCard({
   return (
     <CardContent>
       <BookmarkButton
-        onClick={() => {
-          /* onBookmark({ id, title }) */
-          setIsBookmarked(!isBookmarked)
-        }}
-        isActive={isBookmarked}
+        onClick={() => handleBookmarkClick({ id, title })}
+        isActive={toggleState}
       >
         <Bookmark size={34} />
       </BookmarkButton>
@@ -49,7 +46,7 @@ export default function WineCard({
       </ImgWrapper>
       <CardInfo>
         <h3>{title}</h3>
-        <Descr>{shortDescription}</Descr>
+        <p>{shortDescription}</p>
         <DescrList>
           <ListTerm id={`${id}-price`}>Price (avg):</ListTerm>
           <ListDescr role="definition" aria-labelledby={`${id}-price`}>
@@ -67,6 +64,11 @@ export default function WineCard({
       </CardInfo>
     </CardContent>
   )
+
+  function handleBookmarkClick(currentWine) {
+    toggle()
+    onBookmark(currentWine)
+  }
 }
 
 const CardContent = styled.div`
@@ -79,6 +81,7 @@ const CardContent = styled.div`
   gap: var(--space-xsmall);
   position: relative;
   grid-template-columns: 90px auto;
+  grid-auto-flow: column;
   place-items: center;
 
   h3 {
@@ -104,9 +107,8 @@ const BookmarkButton = styled.button`
 const CardInfo = styled.div`
   background: #04135e08;
   padding: var(--space-medium) var(--space-medium) var(--space-small);
-`
-const Descr = styled.p`
-  /* margin: 0 0 0 var(--space-xsmall); */
+  height: 100%;
+  width: 100%;
 `
 const ImgWrapper = styled.figure`
   width: 100%;
