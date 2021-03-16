@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import Header from 'components/Header/Header'
-import { recommendedWines } from 'data/wine_recommendations_malbec.json'
+import { recommendedWines } from 'data/wine_recs_mixed_small.json'
 import WineListing from 'components/WineListing/WineListing'
 import { useState } from 'react'
 import quarterCircle from 'assets/quarterCircle.svg'

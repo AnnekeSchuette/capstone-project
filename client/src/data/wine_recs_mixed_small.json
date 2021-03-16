@@ -1,0 +1,160 @@
+{
+  "recommendedWines": [
+    {
+      "id": 428445,
+      "title": "Director's Merlot",
+      "description": "Our 2014 Director's Merlot offers lushness and a round, full palate. Its fragrance demonstrates red and black fruit with hints of anise and spiced wood. Juicy upon entry, the wine broadens and becomes velvety on the palate with flavors of plum, loganberry and black cherry accentuated by subtle spice notes of espresso bean and toasted vanilla. Medium tannins support the body of this wine, offering sophistication in its finish. Pairs nicely with brisket, grilled pork chops and linguine with pesto.",
+      "price": "$21.0",
+      "imageUrl": "https://spoonacular.com/productImages/428445-312x231.jpg",
+      "averageRating": 1,
+      "ratingCount": 1,
+      "score": 0.75,
+      "link": "https://www.amazon.com/2014-Directors-Merlot-750-mL/dp/B073XVS4MB?tag=spoonacular-20"
+    },{
+    "id": 428219,
+    "title": "Vampire Pinot Grigio Wine",
+    "description": "This dry, zestful combination is reminiscent of ripe pears and roses",
+    "price": "$17.95",
+    "imageUrl": "https://spoonacular.com/productImages/428219-312x231.jpg",
+    "averageRating": 0.9,
+    "ratingCount": 3,
+    "score": 0.8,
+    "link": "https://www.amazon.com/2015-Vampire-Pinot-Grigio-Wine/dp/B00PSQ589E?tag=spoonacular-20"
+  },
+{
+  "id": 450729,
+  "title": "Shingleback Black Bubbles Sparkling Shiraz",
+  "description": "Deep garnet in color with vibrant magenta bubbles. Aromas of concentrated blackcurrant with hints of licorice, spice and dark cherries. Creamy bubbles and luscious sweetness envelop the plump blackberry mid-palate, which is enhanced with hints of savory development. The long sweet fruit finish is balanced with fine tannin and acidity.\nThis is a non-vintage wine blended from a number of years of Shiraz to create complexity and consistency in the style.",
+  "price": "$18.99",
+  "imageUrl": "https://spoonacular.com/productImages/450729-312x231.jpg",
+  "averageRating": 0.9,
+  "ratingCount": 5,
+  "score": 0.8375,
+  "link": "https://click.linksynergy.com/deeplink?id=*QCiIS6t4gA&mid=2025&murl=https%3A%2F%2Fwww.wine.com%2Fproduct%2Fshingleback-black-bubbles-sparkling-shiraz%2F128396"
+},{
+  "id": 463191,
+  "title": "Amalaya Malbec",
+  "description": "Brilliant ruby color with violet edges. Strawberries, raspberries and ripe fruit with touch of pepper and spices aromas and elegant floral notes. In mouth, flavors of red fruit, spice and hints of vanilla from aging in French oak. Very nice freshness. Round, soft tannins lead to a delicate, lingering finish.",
+  "price": "$14.99",
+  "imageUrl": "https://spoonacular.com/productImages/463191-312x231.jpg",
+  "averageRating": 0.74,
+  "ratingCount": 93,
+  "score": 0.7364285714285714,
+  "link": "https://click.linksynergy.com/deeplink?id=*QCiIS6t4gA&mid=2025&murl=https%3A%2F%2Fwww.wine.com%2Fproduct%2Famalaya-malbec-2012%2F129239"
+},{
+  "id": 428399,
+  "title": "Ghost Pines Napa County Sonoma County Merlot",
+  "description": "Working without sourcing constraints, our winemakers selected Merlot clusters contributing layered flavors of dark berries, licorice and espresso alongside lots of richness, full-bodied structure, and desirable length. In addition to these flavors, you'll taste hints of cigar paper, cocoa, caramel and nutmeg wrapped around a remarkably smooth mid-palate full of velvety texture and depth. On the long finish, you'll find suggestions of toasty oak, mouth-filling black fruit, and cola framed by plush tannins.",
+  "price": "$26.65",
+  "imageUrl": "https://spoonacular.com/productImages/428399-312x231.jpg",
+  "averageRating": 1,
+  "ratingCount": 1,
+  "score": 0.75,
+  "link": "https://www.amazon.com/Ghost-Pines-County-Sonoma-Merlot/dp/B01A8WOVRW?tag=spoonacular-20"
+},{
+  "id": 431299,
+  "title": "Proverb Pinot Grigio Wine",
+  "description": "Luminous pear and apple notes animated with aromas of lime and lemon.",
+  "price": "$12.75",
+  "imageUrl": "https://spoonacular.com/productImages/431299-312x231.jpg",
+  "averageRating": 1,
+  "ratingCount": 1,
+  "score": 0.75,
+  "link": "https://www.amazon.com/2016-Proverb-Pinot-Grigio-750mL/dp/B074G3D221?tag=spoonacular-20"
+},{
+  "id": 455090,
+  "title": "Tokara Shiraz",
+  "description": "The wine has a brilliant deep garnet color. The nose of this wine is an interesting mix of bright pure fruit; mulberries and blackberries; and heady spicy notes with notes of five spice. There is also a floral undertone. The wine enters the palate with power, bursting with bright red and black fruit notes. There is a broad textured mid palate and a long finish of black pepper spice. The tannins are firm and the wine leaves with a sense of freshness.",
+  "price": "$15.39",
+  "imageUrl": "https://spoonacular.com/productImages/455090-312x231.jpg",
+  "averageRating": 0.76,
+  "ratingCount": 6,
+  "score": 0.7073684210526316,
+  "link": "https://click.linksynergy.com/deeplink?id=*QCiIS6t4gA&mid=2025&murl=https%3A%2F%2Fwww.wine.com%2Fproduct%2Ftokara-shiraz-2010%2F126087"
+},
+{
+  "id": 469320,
+  "title": "Sagebrush Annie's Ventura County Cabernet Sauvignon & Merlot Ventura County",
+  "description": "2011 - Gold Medal Long Beach Grand Cru Int'l Wine Competition",
+  "price": "$32.0",
+  "imageUrl": "https://spoonacular.com/productImages/469320-312x231.jpg",
+  "averageRating": 1,
+  "ratingCount": 1,
+  "score": 0.75,
+  "link": "https://www.amazon.com/Sagebrush-Annies-Ventura-Cabernet-Sauvignon/dp/B00BI8KTSG?tag=spoonacular-20"
+},
+{
+  "id": 430352,
+  "title": "Black River Winery Merlot",
+  "description": null,
+  "price": "$10.0",
+  "imageUrl": "https://spoonacular.com/productImages/430352-312x231.jpg",
+  "averageRating": 0.86,
+  "ratingCount": 2,
+  "score": 0.7171428571428571,
+  "link": "https://www.amazon.com/2009-Black-River-Winery-Merlot/dp/B00ED59310?tag=spoonacular-20"
+},
+{
+  "id": 428324,
+  "title": "Miranda Lambert Kerosene Pinot Grigio Wine",
+  "description": "Light yet pleasingly soft with hints of pear and ripe apple. This fruit forward wine comes across as slightly sweet with a finish that is crisp and clean. This versatile white can pair with most any dish or be enjoyed by itself in the shade of your favorite tree.",
+  "price": "$26.0",
+  "imageUrl": "https://spoonacular.com/productImages/428324-312x231.jpg",
+  "averageRating": 1,
+  "ratingCount": 5,
+  "score": 0.9375,
+  "link": "https://www.amazon.com/Miranda-Lambert-Kerosene-Pinot-Grigio/dp/B0184UHJRO?tag=spoonacular-20"
+},{
+  "id": 428980,
+  "title": "Wild Meadows Merlot",
+  "description": "Wonderfully developed cherry, smoke and leather aromas swirl in the glass. Juicy, bright cherries welcome you to the well-rounded palate. Layered notes of rich fruit, cocoa powder and leather lead to balanced tannins and lingering oak on the finish.",
+  "price": "$14.99",
+  "imageUrl": "https://spoonacular.com/productImages/428980-312x231.jpg",
+  "averageRating": 0.72,
+  "ratingCount": 3,
+  "score": 0.62,
+  "link": "https://www.amazon.com/2014-Wild-Meadows-Merlot-750/dp/B01HIY3I9U?tag=spoonacular-20"
+},{
+  "id": 469781,
+  "title": "Shannon Reserve Malbec",
+  "description": "Aromas of boysenberry, blackberry, nutmeg spices, and toffee fill the glass. This full body Malbec has intense flavors of cherry and blackberry along with hints of underbrush and cedar. This finish is long and complex.",
+  "price": "$30.0",
+  "imageUrl": "https://spoonacular.com/productImages/469781-312x231.jpg",
+  "averageRating": 0.96,
+  "ratingCount": 13,
+  "score": 0.9349999999999999,
+  "link": "https://www.amazon.com/2014-Shannon-Reserve-Malbec-750/dp/B075SGLL75?tag=spoonacular-20"
+},
+{
+  "id": 431374,
+  "title": "Finca La Malena Malbec",
+  "description": "100% Malbec from eastern Mendoza. Limestone and clay soils, cool winters and warm summers provide great fruit concentration, and smooth tannins. Dark ruby in color reflecting light in an array of orange/purple hues. Pleasant nose filled with hints of red forest fruits and herbs. Young round tannins give it a silky sensuous texture that leads to a rich mouthfeel. Mouthwatering layers of red berries, plum, vanilla and spice open as it warms up, delivering a rich varietal character. A delicate finish that bridges the gap between drinks and lingers well after the last sip.",
+  "price": "$13.99",
+  "imageUrl": "https://spoonacular.com/productImages/431374-312x231.jpg",
+  "averageRating": 1,
+  "ratingCount": 4,
+  "score": 0.9230769230769231,
+  "link": "https://www.amazon.com/2015-Finca-Malena-Malbec-750mL/dp/B01N9QTXGO?tag=spoonacular-20"
+},{
+  "id": 468287,
+  "title": "Red Diamond Malbec",
+  "description": "Our Red Diamond Malbec is a classic example of Argentina's most popular wine. In the glass this vibrant red Malbec is accented by violet hues; the nose presents aromas of ripe berries and pomegranate combined with hints of vanilla, which lead to a balanced palate accented by soft tannins and a persistent, harmonious finish.",
+  "price": "$8.99",
+  "imageUrl": "https://spoonacular.com/productImages/468287-312x231.jpg",
+  "averageRating": 0.78,
+  "ratingCount": 5,
+  "score": 0.7175,
+  "link": "https://click.linksynergy.com/deeplink?id=*QCiIS6t4gA&mid=2025&murl=https%3A%2F%2Fwww.wine.com%2Fproduct%2Fred-diamond-malbec-2012%2F144964"
+},{
+  "id": 430749,
+  "title": "Dumas Station Minnick Hills Reserve Cabernet Sauvignon",
+  "description": "This wine features fruit aromas of cassis and blackberry. Additional aromas include classic Walla Walla dusty spice box, plus pencil lead and leather. This is a rich and meaty wine, with layers of complexity. Our Minnick Hills Reserve will benefit from decanting while young, and maintain its solid structure for years to come. \"The scent of this wine reminds me of my first leather jacket-a Navy pilot's vintage aviator jacket, purchased at our local surplus store. I loved that jacket.\" -- Pete Thorson, Hospitality",
+  "price": "$69.0",
+  "imageUrl": "https://spoonacular.com/productImages/430749-312x231.jpg",
+  "averageRating": 1,
+  "ratingCount": 3,
+  "score": 0.9,
+  "link": "https://www.amazon.com/Dumas-Station-Minnick-Cabernet-Sauvignon/dp/B0169391BA?tag=spoonacular-20"
+}
+  ]
+}
