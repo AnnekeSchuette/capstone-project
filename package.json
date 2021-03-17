@@ -15,7 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "mongoose": "^5.11.18",
+    "mongoose": "^5.11.15",
     "nodemon": "^2.0.7",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.2.1",
