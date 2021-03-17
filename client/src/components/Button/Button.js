@@ -34,9 +34,9 @@ export default function Button({
 
 const Btn = styled.button`
   background: ${props =>
-    props.isActive ? 'var(--color-secondary)' : 'var(--color-primary)'};
-  background: ${props =>
-    props.isActive ? 'var(--color-pink-pantone)' : 'var(--color-pink-pantone)'};
+    props.isActive
+      ? 'var(--color-pink-pantone)'
+      : 'var(--color-midnight-punch)'};
   color: #fff;
   padding: 8px;
   line-height: 1.3em;
