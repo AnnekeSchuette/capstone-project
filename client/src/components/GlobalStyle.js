@@ -9,6 +9,7 @@ export default createGlobalStyle`
 
     --color-midnight: #010b3d;
     --color-midnight-punch: #04135e;
+    --color-midnight-punch-light: #04135e10;
     --color-space-cadet: #171941ff;
     --color-pink-pantone: #dc469fff;
 

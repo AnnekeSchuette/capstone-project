@@ -100,7 +100,7 @@ const CardContent = styled.div`
     align-content: center;
     padding: var(--space-small) var(--space-xlarge) var(--space-small)
       var(--space-small);
-    background: #04135e08;
+    background: var(--color-midnight-punch-light);
   }
 `
 const BookmarkButton = styled.button`
