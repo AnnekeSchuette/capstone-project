@@ -1,4 +1,4 @@
-import { screen, render } from '@testing-library/react'
+import { screen, render, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import WineCard from 'components/WineCard/WineCard'
 
@@ -93,6 +93,24 @@ describe('WineCard', () => {
 
   it('renders a bookmark icon on card', () => {
     render(<WineCard {...testdata} />)
-    expect(screen.getByRole('button', { name: 'Bookmark' })).toBeInTheDocument()
+    expect(
+      screen.getByRole('switch', { name: 'Put in wine storage' })
+    ).toBeInTheDocument()
+  })
+
+  it('toggles aria-label and aria-checked on click', () => {
+    const handleClick = jest.fn()
+    render(<WineCard {...testdata} onBookmark={handleClick} />)
+    expect(
+      screen.getByRole('switch', { name: 'Put in wine storage' })
+    ).toBeInTheDocument()
+    expect(screen.getByRole('switch', { checked: false })).toBeInTheDocument()
+
+    fireEvent.click(screen.getByRole('switch'))
+
+    expect(
+      screen.getByRole('switch', { name: 'Remove from wine storage' })
+    ).toBeInTheDocument()
+    expect(screen.getByRole('switch', { checked: true })).toBeInTheDocument()
   })
 })
