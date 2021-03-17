@@ -1,11 +1,13 @@
 import WineCard from 'components/WineCard/WineCard'
+import { actions } from '@storybook/addon-actions'
 
 export default {
   title: 'Capstone Project/WineCard',
   component: WineCard,
 }
 
-const Template = args => <WineCard {...args} />
+const Template = args => <WineCard {...args} {...events} />
+const events = actions({ onBookmark: 'is bookmarked' })
 
 export const Default = Template.bind({})
 Default.args = {

@@ -1,6 +1,8 @@
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import truncateByWords from 'lib/truncateByWords'
+import { Heart } from 'heroicons-react'
+import { useBookmark } from 'lib/customHooks'
 
 WineCard.propTypes = {
   title: PropTypes.string,
@@ -20,7 +22,10 @@ export default function WineCard({
   price = 'n.a.',
   averageRating,
   score,
+  onBookmark,
 }) {
+  const [toggleState, { toggle }] = useBookmark()
+
   const shortDescription = description && truncateByWords(description, 12)
   const averageRatingDecimal = averageRating
     ? (averageRating * 10).toFixed(1)
@@ -30,12 +35,23 @@ export default function WineCard({
 
   return (
     <CardContent>
+      <h3>{title}</h3>
+      <BookmarkButton
+        onClick={() => handleBookmarkClick({ id, title })}
+        role="switch"
+        isActive={toggleState}
+        aria-checked={toggleState}
+        aria-label={
+          toggleState ? 'Remove from wine storage' : 'Put in wine storage'
+        }
+      >
+        <Heart size={34} />
+      </BookmarkButton>
       <ImgWrapper>
         <img src={largeImageUrl} alt="" />
       </ImgWrapper>
       <CardInfo>
-        <h3>{title}</h3>
-        <Descr>{shortDescription}</Descr>
+        <p>{shortDescription}</p>
         <DescrList>
           <ListTerm id={`${id}-price`}>Price (avg):</ListTerm>
           <ListDescr role="definition" aria-labelledby={`${id}-price`}>
@@ -53,6 +69,11 @@ export default function WineCard({
       </CardInfo>
     </CardContent>
   )
+
+  function handleBookmarkClick(currentWine) {
+    toggle()
+    onBookmark(currentWine)
+  }
 }
 
 const CardContent = styled.div`
@@ -61,29 +82,55 @@ const CardContent = styled.div`
   color: var(--color-midnight);
   border-radius: var(--space-small);
   font-size: 0.75em;
-  overflow: hidden;
   display: grid;
+  gap: var(--space-xsmall);
+  position: relative;
   grid-template-columns: 90px auto;
+  grid-template-rows: auto auto;
+  grid-auto-flow: column;
   place-items: center;
+  overflow: hidden;
 
   h3 {
     font-weight: 400;
     font-size: 1.1em;
     margin: 0;
+    grid-column-end: span 2;
+    width: 100%;
+    align-content: center;
+    padding: var(--space-small) var(--space-xlarge) var(--space-small)
+      var(--space-small);
+    background: var(--color-midnight-punch-light);
+  }
+`
+const BookmarkButton = styled.button`
+  background: none;
+  border: none;
+  position: absolute;
+  right: 5px;
+  top: 7px;
+
+  svg {
+    fill: ${props =>
+      props.isActive ? 'var(--color-pink-pantone)' : 'inherit'};
+    stroke: 2px
+      ${props =>
+        props.isActive ? 'var(--color-midnight)' : 'var(--color-pink-pantone)'};
   }
 `
 const CardInfo = styled.div`
-  background: #04135e08;
-  padding: var(--space-medium) var(--space-medium) var(--space-small);
-`
-const Descr = styled.p`
-  /* margin: 0 0 0 var(--space-xsmall); */
+  background: #fff;
+  padding: var(--space-small) var(--space-medium) var(--space-small)
+    var(--space-small);
+  height: 100%;
+  width: 100%;
 `
 const ImgWrapper = styled.figure`
   width: 100%;
   margin: 0;
   justify-self: center;
   text-align: center;
+  padding: var(--space-xsmall) 0;
 
   img {
     max-width: 100%;
