@@ -13,6 +13,7 @@ WineCard.propTypes = {
   averageRating: PropTypes.number,
   ratingCount: PropTypes.number,
   score: PropTypes.number,
+  link: PropTypes.string,
 }
 
 export default function WineCard({

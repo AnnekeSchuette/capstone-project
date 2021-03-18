@@ -1,17 +1,9 @@
 import WineCard from 'components/WineCard/WineCard'
 import styled from 'styled-components/macro'
-import useLocalStorage from 'hooks/useLocalStorage'
-import { useMemo } from 'react'
 
-export default function WineStorage() {
-  const [savedWines, setSavedWines] = useLocalStorage('wines')
-
-  useMemo(() => {
-    savedWines === null && setSavedWines([])
-  }, [savedWines, setSavedWines])
-
+export default function WineStorage({ savedWines }) {
   const wines =
-    savedWines != null
+    savedWines.length > 0
       ? savedWines.map(
           ({
             id,

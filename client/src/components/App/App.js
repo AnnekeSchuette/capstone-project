@@ -6,9 +6,14 @@ import WineListing from 'components/WineListing/WineListing'
 import WineStorage from 'components/WineStorage/WineStorage'
 import { Route, Switch } from 'react-router-dom'
 import useLocalStorage from 'hooks/useLocalStorage'
+import { useEffect } from 'react'
 
 export default function App() {
-  //const [savedWines] = useLocalStorage('wines')
+  const [savedWines, setSavedWines] = useLocalStorage('wines')
+
+  useEffect(() => {
+    savedWines === null && setSavedWines([])
+  }, [savedWines, setSavedWines])
 
   return (
     <Grid>
@@ -16,7 +21,7 @@ export default function App() {
       <Main>
         <Switch>
           <Route path="/wine-storage">
-            <WineStorage />
+            <WineStorage savedWines={savedWines} />
           </Route>
           <Route path="/">
             <WineListing results={recommendedWines} />
