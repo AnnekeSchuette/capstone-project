@@ -1,7 +1,7 @@
 import WineCard from 'components/WineCard/WineCard'
 import styled from 'styled-components/macro'
 
-export default function WineListing({ results, onBookmark }) {
+export default function WineListing({ results, savedWines }) {
   const wines =
     results.length > 0
       ? results.map(
@@ -14,6 +14,7 @@ export default function WineListing({ results, onBookmark }) {
             averageRating,
             ratingCount,
             score,
+            link,
           }) => (
             <WineCard
               id={id}
@@ -25,7 +26,8 @@ export default function WineListing({ results, onBookmark }) {
               averageRating={averageRating}
               ratingCount={ratingCount}
               score={score}
-              onBookmark={onBookmark}
+              link={link}
+              savedWines={savedWines}
             />
           )
         )

@@ -2,7 +2,8 @@ import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import truncateByWords from 'lib/truncateByWords'
 import { Heart } from 'heroicons-react'
-import { useBookmark } from 'lib/customHooks'
+import { useEffect } from 'react'
+import useLocalStorage from 'hooks/useLocalStorage'
 
 WineCard.propTypes = {
   title: PropTypes.string,
@@ -22,9 +23,25 @@ export default function WineCard({
   price = 'n.a.',
   averageRating,
   score,
-  onBookmark,
+  link,
 }) {
-  const [toggleState, { toggle }] = useBookmark()
+  const [savedWines, setSavedWines] = useLocalStorage('wines')
+
+  useEffect(() => {
+    savedWines === null && setSavedWines([])
+  }, [savedWines, setSavedWines])
+
+  const isSaved = savedWines?.some(savedWine => savedWine.id === id)
+
+  function handleClick(currentWine) {
+    if (isSaved) {
+      const removeWineArray = savedWines.filter(s => s.id !== id)
+      setSavedWines(removeWineArray)
+    } else {
+      const addWineArray = [...savedWines, currentWine]
+      setSavedWines(addWineArray)
+    }
+  }
 
   const shortDescription = description && truncateByWords(description, 12)
   const averageRatingDecimal = averageRating
@@ -38,7 +55,7 @@ export default function WineCard({
       <h3>{title}</h3>
       <BookmarkButton
         onClick={() =>
-          handleBookmarkClick({
+          handleClick({
             id,
             title,
             description,
@@ -46,13 +63,14 @@ export default function WineCard({
             price,
             averageRating,
             score,
+            link,
           })
         }
         role="switch"
-        isActive={toggleState}
-        aria-checked={toggleState}
+        isActive={isSaved}
+        aria-checked={isSaved}
         aria-label={
-          toggleState ? 'Remove from wine storage' : 'Put in wine storage'
+          isSaved ? 'Remove from wine storage' : 'Put in wine storage'
         }
       >
         <Heart size={34} />
@@ -79,11 +97,6 @@ export default function WineCard({
       </CardInfo>
     </CardContent>
   )
-
-  function handleBookmarkClick(currentWine) {
-    toggle()
-    onBookmark(currentWine)
-  }
 }
 
 const CardContent = styled.div`

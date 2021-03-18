@@ -1,13 +1,18 @@
 import WineCard from 'components/WineCard/WineCard'
-import loadFromLocal from 'lib/loadFromLocal'
 import styled from 'styled-components/macro'
+import useLocalStorage from 'hooks/useLocalStorage'
+import { useMemo } from 'react'
 
-export default function WineStorage({ savedWines, onBookmark }) {
-  const savedWinesData = loadFromLocal(savedWines)
+export default function WineStorage() {
+  const [savedWines, setSavedWines] = useLocalStorage('wines')
+
+  useMemo(() => {
+    savedWines === null && setSavedWines([])
+  }, [savedWines, setSavedWines])
 
   const wines =
-    savedWinesData != null
-      ? savedWinesData.map(
+    savedWines != null
+      ? savedWines.map(
           ({
             id,
             title,
@@ -17,6 +22,7 @@ export default function WineStorage({ savedWines, onBookmark }) {
             averageRating,
             ratingCount,
             score,
+            link,
           }) => (
             <WineCard
               id={id}
@@ -28,15 +34,12 @@ export default function WineStorage({ savedWines, onBookmark }) {
               averageRating={averageRating}
               ratingCount={ratingCount}
               score={score}
-              onBookmark={onBookmark}
+              link={link}
             />
           )
         )
       : 'No wines stored, yet'
 
-  /* function getWinesById(savedWines) {
-    savedWines.map(({ id }) => wineDatabase.filter(wine => wine.id === id))
-  } */
   return <WineStorageList>{wines}</WineStorageList>
 }
 
