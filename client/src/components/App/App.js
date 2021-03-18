@@ -4,16 +4,27 @@ import { recommendedWines } from 'data/wine_recs_mixed_small.json'
 import WineListing from 'components/WineListing/WineListing'
 import quarterCircle from 'assets/quarterCircle.svg'
 import { useSaveWine } from 'lib/customHooks'
+import { Route, Switch } from 'react-router-dom'
+import WineStorage from 'components/WineStorage/WineStorage'
 
 export default function App() {
   const [savedWines, { handleSaveWine }] = useSaveWine()
-  console.log(savedWines)
 
   return (
     <Grid>
       <Header title="Vinz" subtitle="Wine Assistant and Taste Journal" />
       <Main>
-        <WineListing results={recommendedWines} onBookmark={handleSaveWine} />
+        <Switch>
+          <Route path="/wine-storage">
+            <WineStorage savedWines={savedWines} onBookmark={handleSaveWine} />
+          </Route>
+          <Route path="/">
+            <WineListing
+              results={recommendedWines}
+              onBookmark={handleSaveWine}
+            />
+          </Route>
+        </Switch>
       </Main>
     </Grid>
   )
