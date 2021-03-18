@@ -2,31 +2,34 @@ import WineCard from 'components/WineCard/WineCard'
 import styled from 'styled-components/macro'
 
 export default function WineListing({ results, onBookmark }) {
-  const wines = results.map(
-    ({
-      id,
-      title,
-      description,
-      imageUrl,
-      price,
-      averageRating,
-      ratingCount,
-      score,
-    }) => (
-      <WineCard
-        id={id}
-        key={id}
-        title={title}
-        description={description}
-        imageUrl={imageUrl}
-        price={price}
-        averageRating={averageRating}
-        ratingCount={ratingCount}
-        score={score}
-        onBookmark={onBookmark}
-      />
-    )
-  )
+  const wines =
+    results.length > 0
+      ? results.map(
+          ({
+            id,
+            title,
+            description,
+            imageUrl,
+            price,
+            averageRating,
+            ratingCount,
+            score,
+          }) => (
+            <WineCard
+              id={id}
+              key={id}
+              title={title}
+              description={description}
+              imageUrl={imageUrl}
+              price={price}
+              averageRating={averageRating}
+              ratingCount={ratingCount}
+              score={score}
+              onBookmark={onBookmark}
+            />
+          )
+        )
+      : 'No results'
 
   return <WineList>{wines}</WineList>
 }

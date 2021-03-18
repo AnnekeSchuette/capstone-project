@@ -37,7 +37,17 @@ export default function WineCard({
     <CardContent>
       <h3>{title}</h3>
       <BookmarkButton
-        onClick={() => handleBookmarkClick({ id, title })}
+        onClick={() =>
+          handleBookmarkClick({
+            id,
+            title,
+            description,
+            imageUrl,
+            price,
+            averageRating,
+            score,
+          })
+        }
         role="switch"
         isActive={toggleState}
         aria-checked={toggleState}

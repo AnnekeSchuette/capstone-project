@@ -1,12 +1,13 @@
 import WineCard from 'components/WineCard/WineCard'
+import loadFromLocal from 'lib/loadFromLocal'
 import styled from 'styled-components/macro'
 
 export default function WineStorage({ savedWines, onBookmark }) {
-  /* const savedWinesData = getWinesById(savedWines) */
+  const savedWinesData = loadFromLocal(savedWines)
 
   const wines =
-    savedWines.length > 0
-      ? savedWines.map(
+    savedWinesData != null
+      ? savedWinesData.map(
           ({
             id,
             title,
