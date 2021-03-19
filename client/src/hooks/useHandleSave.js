@@ -17,7 +17,6 @@ export default function useHandleSave() {
       savedWines !== undefined
         ? savedWines.some(item => item.id === target.id)
         : false
-    console.log(includesTarget)
     if (includesTarget) {
       removeWine(target)
     } else {
