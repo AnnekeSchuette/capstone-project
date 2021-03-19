@@ -6,6 +6,7 @@ import WineListing from 'components/WineListing/WineListing'
 import WineStorage from 'components/WineStorage/WineStorage'
 import { Route, Switch } from 'react-router-dom'
 import useHandleSave from 'hooks/useHandleSave'
+import Navigation from 'components/Navigation/Navigation'
 
 export default function App() {
   const [savedWines, toggleSave] = useHandleSave()
@@ -26,6 +27,7 @@ export default function App() {
             />
           </Route>
         </Switch>
+        <Navigation />
       </Main>
     </Grid>
   )
