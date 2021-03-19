@@ -2,9 +2,6 @@ import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import truncateByWords from 'lib/truncateByWords'
 import { Heart } from 'heroicons-react'
-import { useState, useEffect } from 'react'
-import useHandleSave from 'hooks/useHandleSave'
-import useToggle from 'hooks/useToggle'
 
 WineCard.propTypes = {
   title: PropTypes.string,
@@ -26,6 +23,8 @@ export default function WineCard({
   averageRating,
   score,
   link,
+  savedWines,
+  onSaveToggle,
 }) {
   const currentWine = {
     id,
@@ -37,7 +36,7 @@ export default function WineCard({
     score,
     link,
   }
-  const [isSaved, handleSave] = useHandleSave(currentWine)
+  const isSaved = savedWines.some(savedWine => savedWine.id === id)
 
   const shortDescription = description && truncateByWords(description, 12)
   const averageRatingDecimal = averageRating
@@ -50,7 +49,7 @@ export default function WineCard({
     <CardContent>
       <h3>{title}</h3>
       <BookmarkButton
-        onClick={() => handleSave(currentWine)}
+        onClick={() => onSaveToggle(currentWine)}
         role="switch"
         isActive={isSaved}
         aria-checked={isSaved}

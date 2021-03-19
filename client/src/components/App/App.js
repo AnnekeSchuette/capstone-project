@@ -6,10 +6,31 @@ import WineListing from 'components/WineListing/WineListing'
 import WineStorage from 'components/WineStorage/WineStorage'
 import { Route, Switch } from 'react-router-dom'
 import useLocalStorage from 'hooks/useLocalStorage'
-import { useEffect } from 'react'
 
 export default function App() {
   const [savedWines, setSavedWines] = useLocalStorage('wines', [])
+
+  function saveWine(target) {
+    const newSavedWine = target
+    setSavedWines([newSavedWine, ...savedWines])
+  }
+  function removeWine(target) {
+    const updatedSavedWines = savedWines.filter(wine => wine.id !== target.id)
+    setSavedWines([...updatedSavedWines])
+  }
+
+  function toggleSave(target) {
+    const includesTarget =
+      savedWines !== undefined
+        ? savedWines.some(item => item.id === target.id)
+        : false
+    console.log(includesTarget)
+    if (includesTarget) {
+      removeWine(target)
+    } else {
+      saveWine(target)
+    }
+  }
 
   return (
     <Grid>
@@ -17,10 +38,18 @@ export default function App() {
       <Main>
         <Switch>
           <Route path="/wine-storage">
-            <WineStorage savedWines={savedWines} />
+            <WineStorage
+              savedWines={savedWines}
+              onSaveToggle={toggleSave}
+              setSavedWines={setSavedWines}
+            />
           </Route>
           <Route path="/">
-            <WineListing results={recommendedWines} />
+            <WineListing
+              results={recommendedWines}
+              onSaveToggle={toggleSave}
+              savedWines={savedWines}
+            />
           </Route>
         </Switch>
       </Main>
