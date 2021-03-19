@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import truncateByWords from 'lib/truncateByWords'
 import { Heart } from 'heroicons-react'
 import { useState, useEffect } from 'react'
-import useLocalStorage from 'hooks/useLocalStorage'
+import useHandleSave from 'hooks/useHandleSave'
+import useToggle from 'hooks/useToggle'
 
 WineCard.propTypes = {
   title: PropTypes.string,
@@ -26,31 +27,17 @@ export default function WineCard({
   score,
   link,
 }) {
-  const [savedWines, setSavedWines] = useLocalStorage('wines', [])
-  const [isSaved, setIsSaved] = useState(false)
-
-  useEffect(() => {
-    toggleIsSaved(id)
-  }, [savedWines, id])
-
-  useEffect(() => {
-    console.log(savedWines, isSaved)
-  }, [savedWines, isSaved])
-
-  function toggleIsSaved(currentWine) {
-    if (savedWines.some(savedWine => savedWine.id === currentWine.id)) {
-      setIsSaved(true)
-    } else {
-      setIsSaved(false)
-    }
+  const currentWine = {
+    id,
+    title,
+    description,
+    imageUrl,
+    price,
+    averageRating,
+    score,
+    link,
   }
-
-  function handleClick(currentWine) {
-    let newWineArray = isSaved
-      ? savedWines.filter(s => s.id !== currentWine.id)
-      : [...savedWines, currentWine]
-    setSavedWines(newWineArray)
-  }
+  const [isSaved, handleSave] = useHandleSave(currentWine)
 
   const shortDescription = description && truncateByWords(description, 12)
   const averageRatingDecimal = averageRating
@@ -63,18 +50,7 @@ export default function WineCard({
     <CardContent>
       <h3>{title}</h3>
       <BookmarkButton
-        onClick={() =>
-          handleClick({
-            id,
-            title,
-            description,
-            imageUrl,
-            price,
-            averageRating,
-            score,
-            link,
-          })
-        }
+        onClick={() => handleSave(currentWine)}
         role="switch"
         isActive={isSaved}
         aria-checked={isSaved}
