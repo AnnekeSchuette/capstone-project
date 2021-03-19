@@ -2,7 +2,7 @@ import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import truncateByWords from 'lib/truncateByWords'
 import { Heart } from 'heroicons-react'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import useLocalStorage from 'hooks/useLocalStorage'
 
 WineCard.propTypes = {
@@ -26,22 +26,30 @@ export default function WineCard({
   score,
   link,
 }) {
-  const [savedWines, setSavedWines] = useLocalStorage('wines')
+  const [savedWines, setSavedWines] = useLocalStorage('wines', [])
+  const [isSaved, setIsSaved] = useState(false)
 
   useEffect(() => {
-    savedWines === null && setSavedWines([])
-  }, [savedWines, setSavedWines])
+    toggleIsSaved(id)
+  }, [savedWines, id])
 
-  const isSaved = savedWines?.some(savedWine => savedWine.id === id)
+  useEffect(() => {
+    console.log(savedWines, isSaved)
+  }, [savedWines, isSaved])
+
+  function toggleIsSaved(currentWine) {
+    if (savedWines.some(savedWine => savedWine.id === currentWine.id)) {
+      setIsSaved(true)
+    } else {
+      setIsSaved(false)
+    }
+  }
 
   function handleClick(currentWine) {
-    if (isSaved) {
-      const removeWineArray = savedWines.filter(s => s.id !== id)
-      setSavedWines(removeWineArray)
-    } else {
-      const addWineArray = [...savedWines, currentWine]
-      setSavedWines(addWineArray)
-    }
+    let newWineArray = isSaved
+      ? savedWines.filter(s => s.id !== currentWine.id)
+      : [...savedWines, currentWine]
+    setSavedWines(newWineArray)
   }
 
   const shortDescription = description && truncateByWords(description, 12)

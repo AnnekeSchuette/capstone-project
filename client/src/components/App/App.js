@@ -9,11 +9,7 @@ import useLocalStorage from 'hooks/useLocalStorage'
 import { useEffect } from 'react'
 
 export default function App() {
-  const [savedWines, setSavedWines] = useLocalStorage('wines')
-
-  useEffect(() => {
-    savedWines === null && setSavedWines([])
-  }, [savedWines, setSavedWines])
+  const [savedWines, setSavedWines] = useLocalStorage('wines', [])
 
   return (
     <Grid>
