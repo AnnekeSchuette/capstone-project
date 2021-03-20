@@ -24,7 +24,7 @@ export default function WineCard({
   score,
   link,
   savedWines,
-  onSaveToggle,
+  onFavToggle,
 }) {
   const currentWine = {
     id,
@@ -49,7 +49,7 @@ export default function WineCard({
     <CardContent>
       <h3>{title}</h3>
       <BookmarkButton
-        onClick={() => onSaveToggle(currentWine)}
+        onClick={() => onFavToggle(currentWine)}
         role="switch"
         isActive={isSaved}
         aria-checked={isSaved}
