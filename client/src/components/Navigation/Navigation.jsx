@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 export default function Navigation({ pages, onNavigate }) {
   return (
     <NavWrapper pages={pages}>
-      {pages.map(({ title, path }, index) => (
+      {pages.map(({ title, path, icon }, index) => (
         <NavItem
           as={NavLink}
           key={title}
@@ -12,6 +12,7 @@ export default function Navigation({ pages, onNavigate }) {
           to={path}
           onClick={() => onNavigate(index)}
         >
+          {icon}
           {title}
         </NavItem>
       ))}
