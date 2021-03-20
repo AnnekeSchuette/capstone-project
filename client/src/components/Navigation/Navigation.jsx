@@ -12,7 +12,7 @@ export default function Navigation({ pages, onNavigate }) {
           to={path}
           onClick={() => onNavigate(index)}
         >
-          {icon}
+          <img src={icon} width="34" height="34" alt="" />
           {title}
         </NavItem>
       ))}
