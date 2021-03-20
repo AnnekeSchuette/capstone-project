@@ -8,27 +8,11 @@ import WineListing from 'components/WineListing/WineListing'
 import WineStorage from 'components/WineStorage/WineStorage'
 import Navigation from 'components/Navigation/Navigation'
 import useToggleFavorite from 'hooks/useToggleFavorite'
-import FoodAndWine from 'assets/icons/foodAndWine.svg'
-import AlcoholicBeverageLicensing from 'assets/icons/alcoholicBeverageLicensing.svg'
+import usePageInfo from 'hooks/usePageInfo'
 
 export default function App() {
   const [savedWines, toggleFavStatus] = useToggleFavorite('wines', [])
-  const [currentPage, setCurrentPage] = useState(0)
-
-  const pages = [
-    {
-      title: 'Explore',
-      subtitle: 'Wine Assistant and Taste Journal',
-      path: '/',
-      icon: FoodAndWine,
-    },
-    {
-      title: 'Wine Storage',
-      subtitle: 'Wine Storage',
-      path: 'wine-storage',
-      icon: AlcoholicBeverageLicensing,
-    },
-  ]
+  const [currentPage, setCurrentPage, pages] = usePageInfo(0)
 
   return (
     <Grid>
