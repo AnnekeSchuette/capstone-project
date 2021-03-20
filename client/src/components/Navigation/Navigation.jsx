@@ -1,11 +1,17 @@
 import styled from 'styled-components/macro'
 import { NavLink } from 'react-router-dom'
 
-export default function Navigation({ pages }) {
+export default function Navigation({ pages, onNavigate }) {
   return (
     <NavWrapper pages={pages}>
-      {pages.map(({ title, path }) => (
-        <NavItem as={NavLink} key={title} exact to={path}>
+      {pages.map(({ title, path }, index) => (
+        <NavItem
+          as={NavLink}
+          key={title}
+          exact
+          to={path}
+          onClick={() => onNavigate(index)}
+        >
           {title}
         </NavItem>
       ))}

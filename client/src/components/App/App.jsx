@@ -1,4 +1,5 @@
 import { Route, Switch } from 'react-router-dom'
+import { useState } from 'react'
 import styled from 'styled-components'
 import { recommendedWines } from 'data/wine_recs_mixed_small.json'
 import quarterCircle from 'assets/quarterCircle.svg'
@@ -7,17 +8,23 @@ import WineListing from 'components/WineListing/WineListing'
 import WineStorage from 'components/WineStorage/WineStorage'
 import Navigation from 'components/Navigation/Navigation'
 import useToggleFavorite from 'hooks/useToggleFavorite'
-const pages = [
-  { title: 'Explore', path: '/' },
-  { title: 'Wine Storage', path: 'wine-storage' },
-]
 
 export default function App() {
   const [savedWines, toggleFavStatus] = useToggleFavorite('wines', [])
+  const [currentPage, setCurrentPage] = useState(0)
+
+  const pages = [
+    {
+      title: 'Explore',
+      subtitle: 'Wine Assistant and Taste Journal',
+      path: '/',
+    },
+    { title: 'Wine Storage', subtitle: 'Wine Storage', path: 'wine-storage' },
+  ]
 
   return (
     <Grid>
-      <Header title="Vinz" subtitle="Wine Assistant and Taste Journal" />
+      <Header title="Vinz" subtitle={pages[currentPage].subtitle} />
       <Main>
         <Switch>
           <Route path="/wine-storage">
@@ -35,7 +42,11 @@ export default function App() {
           </Route>
         </Switch>
       </Main>
-      <Navigation pages={pages} />
+      <Navigation
+        pages={pages}
+        currentPage={currentPage}
+        onNavigate={setCurrentPage}
+      />
     </Grid>
   )
 }
