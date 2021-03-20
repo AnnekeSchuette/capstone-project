@@ -5,10 +5,10 @@ import Header from 'components/Header/Header'
 import WineListing from 'components/WineListing/WineListing'
 import WineStorage from 'components/WineStorage/WineStorage'
 import { Route, Switch } from 'react-router-dom'
-import useHandleSave from 'hooks/useToggleFavorite'
+import useToggleFavorite from 'hooks/useToggleFavorite'
 
 export default function App() {
-  const [savedWines, toggleFavStatus] = useHandleSave('wines', [])
+  const [savedWines, toggleFavStatus] = useToggleFavorite('wines', [])
 
   return (
     <Grid>

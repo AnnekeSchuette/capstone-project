@@ -23,7 +23,7 @@ export default function WineCard({
   averageRating,
   score,
   link,
-  savedWines,
+  savedWines = [],
   onFavToggle,
 }) {
   const currentWine = {
