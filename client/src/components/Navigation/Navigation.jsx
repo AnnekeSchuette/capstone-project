@@ -12,8 +12,8 @@ export default function Navigation({ pages, onNavigate }) {
           to={path}
           onClick={() => onNavigate(index)}
         >
-          <img src={icon} width="34" height="34" alt="" />
-          {title}
+          <img src={icon} width="40" height="40" alt="" />
+          <span>{title}</span>
         </NavItem>
       ))}
     </NavWrapper>
@@ -23,16 +23,33 @@ const NavWrapper = styled.nav`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1px;
-  background: #fff;
+  padding: var(--space-xsmall) 0 0;
+  background: var(--color-midnight-punch);
 `
 const NavItem = styled.button`
-  flex: 1 1 auto;
+  display: grid;
   border-radius: 0;
   margin: 0;
   text-align: center;
   text-decoration: none;
+  justify-items: center;
+  padding: 0;
+  color: #fff;
 
   &.active {
-    background: pink;
+    color: #fff;
+    background: var(--color-midnight);
+
+    span {
+      text-decoration: underline;
+    }
+  }
+
+  img {
+    filter: invert(1);
+    padding: var(--space-xsmall) 0 0;
+  }
+  span {
+    font-size: 0.7em;
   }
 `

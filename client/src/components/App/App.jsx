@@ -8,7 +8,8 @@ import WineListing from 'components/WineListing/WineListing'
 import WineStorage from 'components/WineStorage/WineStorage'
 import Navigation from 'components/Navigation/Navigation'
 import useToggleFavorite from 'hooks/useToggleFavorite'
-import wineBottle from 'assets/icons/wineBottle.svg'
+import FoodAndWine from 'assets/icons/foodAndWine.svg'
+import AlcoholicBeverageLicensing from 'assets/icons/alcoholicBeverageLicensing.svg'
 
 export default function App() {
   const [savedWines, toggleFavStatus] = useToggleFavorite('wines', [])
@@ -19,13 +20,13 @@ export default function App() {
       title: 'Explore',
       subtitle: 'Wine Assistant and Taste Journal',
       path: '/',
-      icon: wineBottle,
+      icon: FoodAndWine,
     },
     {
       title: 'Wine Storage',
       subtitle: 'Wine Storage',
       path: 'wine-storage',
-      icon: wineBottle,
+      icon: AlcoholicBeverageLicensing,
     },
   ]
 
