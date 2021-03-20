@@ -1,9 +1,7 @@
 import WineCard from 'components/WineCard/WineCard'
 import styled from 'styled-components/macro'
-import useLocalStorage from 'hooks/useLocalStorage'
-import { useState } from 'react'
 
-export default function WineListing({ results, savedWines, onSaveToggle }) {
+export default function WineListing({ results, savedWines, onFavToggle }) {
   const wines =
     results.length > 0
       ? results.map(
@@ -30,7 +28,7 @@ export default function WineListing({ results, savedWines, onSaveToggle }) {
               score={score}
               link={link}
               savedWines={savedWines}
-              onSaveToggle={onSaveToggle}
+              onFavToggle={onFavToggle}
             />
           )
         )

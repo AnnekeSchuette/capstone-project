@@ -1,7 +1,7 @@
 import WineCard from 'components/WineCard/WineCard'
 import styled from 'styled-components/macro'
 
-export default function WineStorage({ savedWines, onSaveToggle }) {
+export default function WineStorage({ savedWines, onFavToggle }) {
   const wines =
     savedWines.length > 0
       ? savedWines.map(
@@ -28,7 +28,7 @@ export default function WineStorage({ savedWines, onSaveToggle }) {
               score={score}
               link={link}
               savedWines={savedWines}
-              onSaveToggle={onSaveToggle}
+              onFavToggle={onFavToggle}
             />
           )
         )

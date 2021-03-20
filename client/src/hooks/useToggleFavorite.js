@@ -1,6 +1,6 @@
 import useLocalStorage from 'hooks/useLocalStorage'
 
-export default function useHandleSave() {
+export default function useToggleFavorite() {
   const [savedWines, setSavedWines] = useLocalStorage('wines', [])
 
   function saveWine(target) {
@@ -12,7 +12,7 @@ export default function useHandleSave() {
     setSavedWines([...updatedSavedWines])
   }
 
-  function toggleSave(target) {
+  function toggleFavStatus(target) {
     const includesTarget =
       savedWines !== undefined
         ? savedWines.some(item => item.id === target.id)
@@ -23,5 +23,5 @@ export default function useHandleSave() {
       saveWine(target)
     }
   }
-  return [savedWines, toggleSave]
+  return [savedWines, toggleFavStatus]
 }
