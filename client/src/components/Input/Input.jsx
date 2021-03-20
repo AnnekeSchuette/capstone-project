@@ -11,12 +11,15 @@ export default function Input({ label, name, className, placeholder, id }) {
 
 const InputWrapper = styled.div`
   display: grid;
+  place-items: center;
 `
 const InputField = styled.input`
-  border: 1px solid #222;
-  padding: 5px 10px;
-  font-size: 1em;
+  border: 1px solid var(--color-midnight-punch);
+  padding: var(--space-small);
+  font-size: 0.9em;
+  font-weight: 300;
+  border-radius: var(--space-large);
 `
 const InputLabel = styled.label`
-  color: #222;
+  color: #fff;
 `

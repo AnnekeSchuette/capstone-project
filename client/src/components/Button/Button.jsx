@@ -35,16 +35,17 @@ export default function Button({
 const Btn = styled.button`
   background: ${props =>
     props.isActive
-      ? 'var(--color-pink-pantone)'
-      : 'var(--color-midnight-punch)'};
-  color: #fff;
+      ? 'var(--color-complementary-light)'
+      : 'var(--color-complementary)'};
+  color: var(--color-midnight);
+  font-weight: 300;
   padding: 8px;
   line-height: 1.3em;
   border: none;
-  border-radius: 5px;
-  box-shadow: 0px 2px 0px #00000020;
-
+  box-shadow: 0px 2px 0px #00000050;
   display: flex;
+  border-radius: var(--space-large);
+
   &.active {
     background: rgb(215, 51, 163);
     background: linear-gradient(
@@ -53,7 +54,10 @@ const Btn = styled.button`
       rgba(53, 22, 178, 1) 100%
     );
   }
-
+  :disabled {
+    background: var(--color-disabled);
+    color: #00000050;
+  }
   span {
     margin: 0 8px;
   }

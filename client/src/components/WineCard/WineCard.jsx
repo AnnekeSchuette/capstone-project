@@ -48,7 +48,7 @@ export default function WineCard({
   return (
     <CardContent>
       <h3>{title}</h3>
-      <BookmarkButton
+      <ToggleFavButton
         onClick={() => onFavToggle(currentWine)}
         role="switch"
         isActive={isSaved}
@@ -58,7 +58,7 @@ export default function WineCard({
         }
       >
         <Heart size={34} />
-      </BookmarkButton>
+      </ToggleFavButton>
       <ImgWrapper>
         <img src={largeImageUrl} alt="" />
       </ImgWrapper>
@@ -110,7 +110,7 @@ const CardContent = styled.div`
     background: var(--color-midnight-punch-light);
   }
 `
-const BookmarkButton = styled.button`
+const ToggleFavButton = styled.button`
   background: none;
   border: none;
   position: absolute;

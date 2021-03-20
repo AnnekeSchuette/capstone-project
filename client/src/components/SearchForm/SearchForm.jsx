@@ -32,4 +32,9 @@ export default function SearchForm({ search, setSearch }) {
 const SearchFormWrapper = styled.form`
   display: grid;
   gap: 20px;
+
+  button {
+    text-align: center;
+    place-content: center;
+  }
 `

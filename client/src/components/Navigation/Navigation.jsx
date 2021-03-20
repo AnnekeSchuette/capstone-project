@@ -23,7 +23,7 @@ const NavWrapper = styled.nav`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1px;
-  padding: var(--space-xsmall) 0 0;
+  padding: 0;
   background: var(--color-midnight-punch);
 `
 const NavItem = styled.button`
@@ -35,6 +35,7 @@ const NavItem = styled.button`
   justify-items: center;
   padding: 0;
   color: #fff;
+  height: 100%;
 
   &.active {
     color: #fff;

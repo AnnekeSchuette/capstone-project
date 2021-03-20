@@ -12,8 +12,14 @@ export default createGlobalStyle`
     --color-midnight-punch-light: #04135e10;
     --color-space-cadet: #171941ff;
     --color-pink-pantone: #dc469fff;
+    --color-complementary: #b6d40d;
+    --color-complementary-light: #ccdd6d;
+    --color-complementary: #f0cc00;
+    --color-complementary-light: #f5e277;
+    --color-disabled: #c7c8ce;
 
-    --space-xsmall: 5px;
+    --space-xxsmall: 5px;
+    --space-xsmall: 10px;
     --space-small: 15px;
     --space-medium: 25px;
     --space-large: 35px;
@@ -30,6 +36,7 @@ export default createGlobalStyle`
     font-size: 112.5%;
     line-height: 1.5;
     padding:0;
+    background:var(--color-midnight);
   }
 
   input, button, textarea {
