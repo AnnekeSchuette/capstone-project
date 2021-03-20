@@ -7,6 +7,10 @@ import WineListing from 'components/WineListing/WineListing'
 import WineStorage from 'components/WineStorage/WineStorage'
 import Navigation from 'components/Navigation/Navigation'
 import useToggleFavorite from 'hooks/useToggleFavorite'
+const pages = [
+  { title: 'Explore', path: '/' },
+  { title: 'Wine Storage', path: 'wine-storage' },
+]
 
 export default function App() {
   const [savedWines, toggleFavStatus] = useToggleFavorite('wines', [])
@@ -30,15 +34,15 @@ export default function App() {
             />
           </Route>
         </Switch>
-        <Navigation />
       </Main>
+      <Navigation pages={pages} />
     </Grid>
   )
 }
 
 const Grid = styled.div`
   display: grid;
-  grid-template-rows: 75px auto;
+  grid-template-rows: 75px auto 75px;
   height: 100vh;
   position: fixed;
   top: 0;
