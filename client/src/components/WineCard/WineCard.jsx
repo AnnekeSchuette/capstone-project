@@ -2,7 +2,6 @@ import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import truncateByWords from 'lib/truncateByWords'
 import { Heart } from 'heroicons-react'
-import { useBookmark } from 'lib/customHooks'
 
 WineCard.propTypes = {
   title: PropTypes.string,
@@ -12,6 +11,7 @@ WineCard.propTypes = {
   averageRating: PropTypes.number,
   ratingCount: PropTypes.number,
   score: PropTypes.number,
+  link: PropTypes.string,
 }
 
 export default function WineCard({
@@ -22,9 +22,21 @@ export default function WineCard({
   price = 'n.a.',
   averageRating,
   score,
-  onBookmark,
+  link,
+  savedWines = [],
+  onFavToggle,
 }) {
-  const [toggleState, { toggle }] = useBookmark()
+  const currentWine = {
+    id,
+    title,
+    description,
+    imageUrl,
+    price,
+    averageRating,
+    score,
+    link,
+  }
+  const isSaved = savedWines.some(savedWine => savedWine.id === id)
 
   const shortDescription = description && truncateByWords(description, 12)
   const averageRatingDecimal = averageRating
@@ -37,12 +49,12 @@ export default function WineCard({
     <CardContent>
       <h3>{title}</h3>
       <BookmarkButton
-        onClick={() => handleBookmarkClick({ id, title })}
+        onClick={() => onFavToggle(currentWine)}
         role="switch"
-        isActive={toggleState}
-        aria-checked={toggleState}
+        isActive={isSaved}
+        aria-checked={isSaved}
         aria-label={
-          toggleState ? 'Remove from wine storage' : 'Put in wine storage'
+          isSaved ? 'Remove from wine storage' : 'Put in wine storage'
         }
       >
         <Heart size={34} />
@@ -69,11 +81,6 @@ export default function WineCard({
       </CardInfo>
     </CardContent>
   )
-
-  function handleBookmarkClick(currentWine) {
-    toggle()
-    onBookmark(currentWine)
-  }
 }
 
 const CardContent = styled.div`

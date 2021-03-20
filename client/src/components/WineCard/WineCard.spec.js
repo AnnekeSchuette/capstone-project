@@ -1,9 +1,10 @@
-import { screen, render, fireEvent } from '@testing-library/react'
+import { screen, render } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import WineCard from 'components/WineCard/WineCard'
+import userEvent from '@testing-library/user-event'
 
 const testdata = {
-  key: 454160,
+  id: 454160,
   title: 'Gascon Malbec Riserva',
   description:
     'Dark, rich and complex, Don Miguel Gascon Reserva Malbec is a powerful, yet fresh, wine. An elegant nose features hints of violet, blackberry and blackcurrants, with subtle aromas of chocolate mint. The wine is robust and strong on the palate, with smooth tannins and distinctive layers of dried plum, dates and cherry flavors that integrate seamlessly with notes of almond and hazelnut, backed up by a long and velvety-smooth finish.',
@@ -11,6 +12,8 @@ const testdata = {
   imageUrl: 'https://spoonacular.com/productImages/454160-312x231.jpg',
   averageRating: 0.8800000000000001,
   score: 0.8175000000000001,
+  link:
+    'https://click.linksynergy.com/deeplink?id=*QCiIS6t4gA&mid=2025&murl=https%3A%2F%2Fwww.wine.com%2Fproduct%2Fgascon-malbec-riserva-2014%2F162603',
 }
 
 describe('WineCard', () => {
@@ -99,15 +102,17 @@ describe('WineCard', () => {
   })
 
   it('toggles aria-label and aria-checked on click', () => {
-    const handleClick = jest.fn()
-    render(<WineCard {...testdata} onBookmark={handleClick} />)
+    const callback = jest.fn()
+    render(<WineCard {...testdata} onFavToggle={callback} />)
+
+    // initial state
     expect(
       screen.getByRole('switch', { name: 'Put in wine storage' })
     ).toBeInTheDocument()
     expect(screen.getByRole('switch', { checked: false })).toBeInTheDocument()
 
-    fireEvent.click(screen.getByRole('switch'))
-
+    userEvent.click(screen.getByRole('switch', { checked: false }))
+    expect(callback).toHaveBeenCalledTimes(1)
     expect(
       screen.getByRole('switch', { name: 'Remove from wine storage' })
     ).toBeInTheDocument()
