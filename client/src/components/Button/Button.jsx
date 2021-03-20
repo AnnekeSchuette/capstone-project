@@ -44,6 +44,7 @@ const Btn = styled.button`
   border-radius: 5px;
   box-shadow: 0px 2px 0px #00000020;
 
+  display: flex;
   &.active {
     background: rgb(215, 51, 163);
     background: linear-gradient(
