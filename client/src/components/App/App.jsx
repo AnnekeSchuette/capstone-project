@@ -1,8 +1,10 @@
 import { Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
+import { useState } from 'react'
 import { recommendedWines } from 'data/wine_recs_mixed_small.json'
 import quarterCircle from 'assets/quarterCircle.svg'
 import Header from 'components/Header/Header'
+import SearchForm from 'components/SearchForm/SearchForm'
 import WineListing from 'components/WineListing/WineListing'
 import WineStorage from 'components/WineStorage/WineStorage'
 import Navigation from 'components/Navigation/Navigation'
@@ -12,6 +14,7 @@ import usePageInfo from 'hooks/usePageInfo'
 export default function App() {
   const [savedWines, toggleFavStatus] = useToggleFavorite('wines', [])
   const [currentPage, setCurrentPage, pages] = usePageInfo(0)
+  const [search, setSearch] = useState('')
 
   return (
     <Grid>
@@ -24,12 +27,15 @@ export default function App() {
               onFavToggle={toggleFavStatus}
             />
           </Route>
-          <Route exact path="/">
+          <Route path="/results">
             <WineListing
               results={recommendedWines}
               onFavToggle={toggleFavStatus}
               savedWines={savedWines}
             />
+          </Route>
+          <Route exact path="/">
+            <SearchForm search={search} setSearch={setSearch} />
           </Route>
         </Switch>
       </Main>

@@ -12,6 +12,7 @@ export default function Input({ label, name, className, placeholder, id }) {
 const InputWrapper = styled.div`
   display: grid;
   place-items: center;
+  gap: 10px;
 `
 const InputField = styled.input`
   border: 1px solid var(--color-midnight-punch);
