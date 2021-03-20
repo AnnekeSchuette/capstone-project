@@ -18,7 +18,7 @@ export default function App() {
           <Route path="/wine-storage">
             <WineStorage savedWines={savedWines} onSaveToggle={toggleSave} />
           </Route>
-          <Route path="/">
+          <Route exact path="/">
             <WineListing
               results={recommendedWines}
               onSaveToggle={toggleSave}
