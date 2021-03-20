@@ -1,5 +1,4 @@
 import { Route, Switch } from 'react-router-dom'
-import { useState } from 'react'
 import styled from 'styled-components'
 import { recommendedWines } from 'data/wine_recs_mixed_small.json'
 import quarterCircle from 'assets/quarterCircle.svg'
