@@ -1,7 +1,6 @@
 import { Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 import { useState } from 'react'
-import { productMatches } from 'data/wineRecs_testobject.json'
 import quarterCircle from 'assets/quarterCircle.svg'
 import Header from 'components/Header/Header'
 import SearchForm from 'components/SearchForm/SearchForm'
@@ -48,6 +47,7 @@ export default function App() {
               setSearch={setSearch}
               setWineRecs={setWineRecs}
               getWinePairing={getWinePairing}
+              getWineRecommendations={getWineRecommendations}
             />
           </Route>
         </Switch>
@@ -79,4 +79,10 @@ const Grid = styled.div`
 const Main = styled.main`
   padding: var(--space-medium);
   overflow-y: scroll;
+
+  &::after {
+    content: '';
+    display: block;
+    height: var(--space-large);
+  }
 `

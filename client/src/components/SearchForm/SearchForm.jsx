@@ -7,7 +7,9 @@ export default function SearchForm({
   setSearch,
   setWineRecs,
   getWinePairing,
+  getWineRecommendations,
 }) {
+  //const history = useHistory()
   return (
     <SearchFormWrapper onSubmit={handleSubmit}>
       <Input
@@ -25,10 +27,7 @@ export default function SearchForm({
     event.preventDefault()
     const form = event.target
     const { searchInput } = form.elements
-
     return setWineRecs(getWinePairing(searchInput.value))
-    //form.reset()
-    //searchInput.focus()
   }
 }
 const SearchFormWrapper = styled.form`
