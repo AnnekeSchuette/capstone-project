@@ -1,8 +1,10 @@
 import useLocalStorage from 'hooks/useLocalStorage'
+import { useHistory } from 'react-router-dom'
 
 export default function useApi() {
   const [wineRecs, setWineRecs] = useLocalStorage('wineRecs', [])
   require('dotenv').config()
+  const history = useHistory()
 
   const { REACT_APP_API_KEY_SPOONACULAR } = process.env
   const SPOONACULAR_API_BASEURL = 'https://api.spoonacular.com'
@@ -15,7 +17,7 @@ export default function useApi() {
       .then(data => {
         setWineRecs(data)
       })
-      .then(console.log(wineRecs))
+      .then(() => history.push('/results'))
       .catch(error => console.error(error))
   }
   const getWineRecommendations = (
@@ -29,6 +31,7 @@ export default function useApi() {
     fetch(WINE_RECS_URL)
       .then(res => res.json())
       .then(data => console.log(data))
+      .then(() => history.push('/results'))
       .catch(error => console.error(error))
   }
 
