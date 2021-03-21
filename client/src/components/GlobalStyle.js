@@ -2,21 +2,25 @@ import { createGlobalStyle } from 'styled-components'
 
 export default createGlobalStyle`
   :root {
-    --color-text: var(--color-space-cadet);
+    --color-text: var(--color-midnight);
     --color-background:var(--color-midnight);
-    --color-primary: var(--color-indigo);
-    --color-secondary: var(--color-purple-munsell);
+    --color-complementary: #f0cc00;
+    --color-complementary-light: #f5e277;
+    --color-disabled: var(--color-cadet-grey);
 
     --color-midnight: #010b3d;
     --color-midnight-punch: #04135e;
     --color-midnight-punch-light: #04135e10;
     --color-space-cadet: #171941ff;
     --color-pink-pantone: #dc469fff;
-    --color-complementary: #b6d40d;
-    --color-complementary-light: #ccdd6d;
-    --color-complementary: #f0cc00;
-    --color-complementary-light: #f5e277;
-    --color-disabled: #c7c8ce;
+
+    --color-ghost-white: #f4f4f9;
+    --color-cadet-grey: #9eb3c2;
+    --color-midnight-blue: #04135e;
+    --color-oxford-blue: #010b3d;
+    --color-popstar: #b84a62;
+    --color-candy-pink: #e26e7d;
+
 
     --space-xxsmall: 5px;
     --space-xsmall: 10px;

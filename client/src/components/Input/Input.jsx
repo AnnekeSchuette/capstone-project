@@ -20,7 +20,8 @@ const InputField = styled.input`
   font-size: 0.9em;
   font-weight: 300;
   border-radius: var(--space-large);
+  background: var(--color-ghost-white);
 `
 const InputLabel = styled.label`
-  color: #fff;
+  color: var(--color-ghost-white);
 `

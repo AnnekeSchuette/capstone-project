@@ -22,7 +22,7 @@ const HeaderStyled = styled.header`
   align-items: center;
   justify-content: center;
   font-size: 1em;
-  color: #fff;
+  color: var(--color-ghost-white);
   position: relative;
   z-index: 1;
 `
@@ -42,7 +42,7 @@ const Title = styled.h1`
     height: 3px;
     right: -5px;
     bottom: 7px;
-    background: var(--color-pink-pantone);
+    background: var(--color-popstar);
     position: absolute;
   }
 `

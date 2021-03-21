@@ -84,7 +84,7 @@ export default function WineCard({
 }
 
 const CardContent = styled.div`
-  background: #fff;
+  background: var(--color-ghost-white);
   box-shadow: 0px 1px 4px #00000030;
   color: var(--color-midnight);
   border-radius: var(--space-small);
@@ -119,14 +119,14 @@ const ToggleFavButton = styled.button`
 
   svg {
     fill: ${props =>
-      props.isActive ? 'var(--color-pink-pantone)' : 'inherit'};
+      props.isActive ? 'var(--color-candy-pink)' : 'var(--color-cadet-grey)'};
     stroke: 2px
       ${props =>
-        props.isActive ? 'var(--color-midnight)' : 'var(--color-pink-pantone)'};
+        props.isActive ? 'var(--color-cadet-grey)' : 'var(--color-candy-pink)'};
   }
 `
 const CardInfo = styled.div`
-  background: #fff;
+  background: var(--color-ghost-white);
   padding: var(--space-small) var(--space-medium) var(--space-small)
     var(--space-small);
   height: 100%;
@@ -141,8 +141,9 @@ const ImgWrapper = styled.figure`
 
   img {
     max-width: 100%;
-    max-height: 180px;
+    max-height: 190px;
     height: auto;
+    mix-blend-mode: multiply;
   }
 `
 const DescrList = styled.dl`

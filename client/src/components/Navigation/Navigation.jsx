@@ -28,11 +28,11 @@ const NavItem = styled(NavLink)`
   text-decoration: none;
   justify-items: center;
   padding: 0;
-  color: #fff;
+  color: var(--color-ghost-white);
   height: 100%;
 
   &.active {
-    color: #fff;
+    color: var(--color-ghost-white);
     background: var(--color-midnight);
 
     span {

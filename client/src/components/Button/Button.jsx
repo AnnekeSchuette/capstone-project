@@ -34,25 +34,18 @@ export default function Button({
 
 const Btn = styled.button`
   background: ${props =>
-    props.isActive
-      ? 'var(--color-complementary-light)'
-      : 'var(--color-complementary)'};
-  color: var(--color-midnight);
+    props.isActive ? 'var(--color-candy-pink)' : 'var(--color-popstar)'};
+  color: var(--color-ghost-white);
   font-weight: 300;
-  padding: 8px;
+  padding: 10px;
   line-height: 1.3em;
-  border: none;
   box-shadow: 0px 2px 0px #00000050;
   display: flex;
   border-radius: var(--space-large);
 
-  &.active {
-    background: rgb(215, 51, 163);
-    background: linear-gradient(
-      145deg,
-      rgba(215, 51, 163, 1) 18%,
-      rgba(53, 22, 178, 1) 100%
-    );
+  &.active,
+  :focus {
+    background: var(--color-candy-pink);
   }
   :disabled {
     background: var(--color-disabled);
