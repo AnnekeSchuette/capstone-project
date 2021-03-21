@@ -5,13 +5,7 @@ export default function Navigation({ pages, onNavigate }) {
   return (
     <NavWrapper pages={pages}>
       {pages.map(({ title, path, icon }, index) => (
-        <NavItem
-          as={NavLink}
-          key={title}
-          exact
-          to={path}
-          onClick={() => onNavigate(index)}
-        >
+        <NavItem key={title} exact to={path} onClick={() => onNavigate(index)}>
           <img src={icon} width="40" height="40" alt="" />
           <span>{title}</span>
         </NavItem>
@@ -26,7 +20,7 @@ const NavWrapper = styled.nav`
   padding: 0;
   background: var(--color-midnight-punch);
 `
-const NavItem = styled.button`
+const NavItem = styled(NavLink)`
   display: grid;
   border-radius: 0;
   margin: 0;
