@@ -37,10 +37,21 @@ export default function WineListing({ results, savedWines, onFavToggle }) {
     )
 
   return (
-    <WineList>
-      {wines}
-      {results.pairingText}
-    </WineList>
+    <>
+      <WineList>
+        {wines}
+        <p>{results.pairingText}</p>
+
+        <MoreInfoWrap>
+          Matching types of wine:
+          <BadgeList>
+            {results.pairedWines.map(wine => (
+              <Badge>{wine}</Badge>
+            ))}
+          </BadgeList>
+        </MoreInfoWrap>
+      </WineList>
+    </>
   )
 }
 
@@ -50,4 +61,25 @@ const WineList = styled.div`
 `
 const ListEmptyMessage = styled.p`
   text-align: center;
+`
+const MoreInfoWrap = styled.div`
+  padding-bottom: var(space--large);
+`
+const BadgeList = styled.ul`
+  display: flex;
+  margin: 0;
+  padding: 0;
+  gap: 2px;
+  text-align: center;
+  flex-wrap: wrap;
+`
+const Badge = styled.li`
+  flex: 0 1 auto;
+  list-style: none;
+  padding: 2px 5px;
+  margin: 0;
+  background: var(--color-complementary);
+  border-radius: 5px;
+  color: var(--color-midnight);
+  font-size: 0.8em;
 `

@@ -24,6 +24,7 @@ export default createGlobalStyle`
     --space-medium: 25px;
     --space-large: 35px;
     --space-xlarge: 50px;
+
   }
   * {
     box-sizing: border-box
