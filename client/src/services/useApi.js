@@ -1,29 +1,36 @@
-const SpoonacularApi = require('spoonacular_api')
+import useLocalStorage from 'hooks/useLocalStorage'
 
-const defaultClient = SpoonacularApi.ApiClient.instance
-// Configure API key authorization: apiKeyScheme
-require('dotenv').config()
-let apiKeyScheme = defaultClient.authentications['apiKeyScheme']
-apiKeyScheme.apiKey = process.env.SPOONACULAR_API_KEY
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiKeyScheme.apiKeyPrefix['apiKey'] = "Token"
+export default function useApi() {
+  const [wineRecs, setWineRecs] = useLocalStorage('wineRecs', [])
+  require('dotenv').config()
 
-/* const SPOONACULAR_API_BASEURL = 'https://api.spoonacular.com/'
-const WINE_PAIRING_URL = `${SPOONACULAR_API_BASEURL}/food/wine/pairing&api_key=${process.env.REACT_APP_TMDB_API_KEY}`
+  const { REACT_APP_API_KEY_SPOONACULAR } = process.env
+  const SPOONACULAR_API_BASEURL = 'https://api.spoonacular.com'
 
-const WINE_RECS_URL = `${SPOONACULAR_API_BASEURL}/food/wine/recommendation?api_key=${process.env.REACT_APP_TMDB_API_KEY}&wine=${wineName}&maxPrice=${maxPrice}&minRating=${minRating}&number=${numberResults}` */
+  const getWinePairing = (food, opts) => {
+    const WINE_PAIRING_URL = `${SPOONACULAR_API_BASEURL}/food/wine/pairing?apiKey=${REACT_APP_API_KEY_SPOONACULAR}&food=${food}`
 
-const api = new SpoonacularApi.DefaultApi()
-
-let food = 'steak'
-let opts = {
-  maxPrice: 50, // Number | The maximum price for the specific wine recommendation in USD.
-  number: 10,
-}
-api.getWinePairing(food, opts, (error, data, response) => {
-  if (error) {
-    console.error(error)
-  } else {
-    console.log('API called successfully. Returned data: ' + data)
+    fetch(WINE_PAIRING_URL)
+      .then(res => res.json())
+      .then(data => {
+        setWineRecs(data)
+      })
+      .then(console.log(wineRecs))
+      .catch(error => console.error(error))
   }
-})
+  const getWineRecommendations = (
+    wineName,
+    maxPrice = 50,
+    minRating = 0.7,
+    numberResults = 10
+  ) => {
+    const WINE_RECS_URL = `${SPOONACULAR_API_BASEURL}/food/wine/recommendation?apiKey=${REACT_APP_API_KEY_SPOONACULAR}&wine=${wineName}&maxPrice=${maxPrice}&minRating=${minRating}&number=${numberResults}`
+
+    fetch(WINE_RECS_URL)
+      .then(res => res.json())
+      .then(data => console.log(data))
+      .catch(error => console.error(error))
+  }
+
+  return [getWinePairing, getWineRecommendations, wineRecs, setWineRecs]
+}
