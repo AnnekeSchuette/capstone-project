@@ -3,8 +3,8 @@ import styled from 'styled-components/macro'
 
 export default function WineListing({ results, savedWines, onFavToggle }) {
   const wines =
-    results.length > 0 ? (
-      results.map(
+    results.productMatches.length > 0 ? (
+      results.productMatches.map(
         ({
           id,
           title,
@@ -36,7 +36,12 @@ export default function WineListing({ results, savedWines, onFavToggle }) {
       <ListEmptyMessage>No results. 😢</ListEmptyMessage>
     )
 
-  return <WineList>{wines}</WineList>
+  return (
+    <WineList>
+      {wines}
+      {results.pairingText}
+    </WineList>
+  )
 }
 
 const WineList = styled.div`

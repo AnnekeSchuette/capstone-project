@@ -2,7 +2,12 @@ import styled from 'styled-components/macro'
 import Button from 'components/Button/Button'
 import Input from 'components/Input/Input'
 
-export default function SearchForm({ search, setSearch }) {
+export default function SearchForm({
+  search,
+  setSearch,
+  setWineRecs,
+  getWinePairing,
+}) {
   return (
     <SearchFormWrapper onSubmit={handleSubmit}>
       <Input
@@ -21,10 +26,7 @@ export default function SearchForm({ search, setSearch }) {
     const form = event.target
     const { searchInput } = form.elements
 
-    setSearch({
-      searchInput: searchInput.value.split(',').map(query => query.trim()),
-    })
-
+    return setWineRecs(getWinePairing(searchInput.value))
     //form.reset()
     //searchInput.focus()
   }

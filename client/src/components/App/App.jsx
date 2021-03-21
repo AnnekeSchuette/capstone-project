@@ -1,7 +1,7 @@
 import { Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 import { useState } from 'react'
-import { recommendedWines } from 'data/wine_recs_mixed_small.json'
+import { productMatches } from 'data/wineRecs_testobject.json'
 import quarterCircle from 'assets/quarterCircle.svg'
 import Header from 'components/Header/Header'
 import SearchForm from 'components/SearchForm/SearchForm'
@@ -10,10 +10,18 @@ import WineStorage from 'components/WineStorage/WineStorage'
 import Navigation from 'components/Navigation/Navigation'
 import useToggleFavorite from 'hooks/useToggleFavorite'
 import usePageInfo from 'hooks/usePageInfo'
+import useApi from 'services/useApi'
 
 export default function App() {
   const [savedWines, toggleFavStatus] = useToggleFavorite('wines', [])
   const [currentPage, setCurrentPage, pages] = usePageInfo(0)
+  const [
+    getWinePairing,
+    getWineRecommendations,
+    wineRecs,
+    setWineRecs,
+  ] = useApi('wineRecs', [])
+
   const [search, setSearch] = useState('')
 
   return (
@@ -29,13 +37,18 @@ export default function App() {
           </Route>
           <Route path="/results">
             <WineListing
-              results={recommendedWines}
+              results={wineRecs}
               onFavToggle={toggleFavStatus}
               savedWines={savedWines}
             />
           </Route>
           <Route exact path="/">
-            <SearchForm search={search} setSearch={setSearch} />
+            <SearchForm
+              search={search}
+              setSearch={setSearch}
+              setWineRecs={setWineRecs}
+              getWinePairing={getWinePairing}
+            />
           </Route>
         </Switch>
       </Main>
