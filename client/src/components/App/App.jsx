@@ -1,18 +1,21 @@
+import { Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
-import quarterCircle from 'assets/quarterCircle.svg'
 import { recommendedWines } from 'data/wine_recs_mixed_small.json'
+import quarterCircle from 'assets/quarterCircle.svg'
 import Header from 'components/Header/Header'
 import WineListing from 'components/WineListing/WineListing'
 import WineStorage from 'components/WineStorage/WineStorage'
-import { Route, Switch } from 'react-router-dom'
+import Navigation from 'components/Navigation/Navigation'
 import useToggleFavorite from 'hooks/useToggleFavorite'
+import usePageInfo from 'hooks/usePageInfo'
 
 export default function App() {
   const [savedWines, toggleFavStatus] = useToggleFavorite('wines', [])
+  const [currentPage, setCurrentPage, pages] = usePageInfo(0)
 
   return (
     <Grid>
-      <Header title="Vinz" subtitle="Wine Assistant and Taste Journal" />
+      <Header title="Vinz" subtitle={pages[currentPage].subtitle} />
       <Main>
         <Switch>
           <Route path="/wine-storage">
@@ -30,13 +33,18 @@ export default function App() {
           </Route>
         </Switch>
       </Main>
+      <Navigation
+        pages={pages}
+        currentPage={currentPage}
+        onNavigate={setCurrentPage}
+      />
     </Grid>
   )
 }
 
 const Grid = styled.div`
   display: grid;
-  grid-template-rows: 75px auto;
+  grid-template-rows: 75px auto 75px;
   height: 100vh;
   position: fixed;
   top: 0;
