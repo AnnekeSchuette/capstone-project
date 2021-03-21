@@ -1,6 +1,5 @@
 import { Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
-import { useState } from 'react'
 import quarterCircle from 'assets/quarterCircle.svg'
 import Header from 'components/Header/Header'
 import SearchForm from 'components/SearchForm/SearchForm'
@@ -10,6 +9,7 @@ import Navigation from 'components/Navigation/Navigation'
 import useToggleFavorite from 'hooks/useToggleFavorite'
 import usePageInfo from 'hooks/usePageInfo'
 import useApi from 'services/useApi'
+import { useState } from 'react'
 
 export default function App() {
   const [savedWines, toggleFavStatus] = useToggleFavorite('wines', [])
@@ -21,7 +21,7 @@ export default function App() {
     setWineRecs,
   ] = useApi('wineRecs', [])
 
-  const [search, setSearch] = useState('')
+  const [isDisabled, setIsDisabled] = useState(false)
 
   return (
     <Grid>
@@ -43,11 +43,9 @@ export default function App() {
           </Route>
           <Route exact path="/">
             <SearchForm
-              search={search}
-              setSearch={setSearch}
-              setWineRecs={setWineRecs}
-              getWinePairing={getWinePairing}
-              getWineRecommendations={getWineRecommendations}
+              isDisabled={isDisabled}
+              onChange={handleChange}
+              onSubmit={handleSubmit}
             />
           </Route>
         </Switch>
@@ -59,6 +57,16 @@ export default function App() {
       />
     </Grid>
   )
+  function handleSubmit(event) {
+    event.preventDefault()
+    const form = event.target
+    const { searchInput } = form.elements
+    return setWineRecs(getWinePairing(searchInput.value))
+  }
+  function handleChange(value) {
+    console.log(value)
+    value.length >= 3 ? setIsDisabled(false) : setIsDisabled(true)
+  }
 }
 
 const Grid = styled.div`
