@@ -51,6 +51,10 @@ const Btn = styled.button`
     background: var(--color-disabled);
     color: #00000050;
   }
+  :focus {
+    outline: none;
+  }
+
   span {
     margin: 0 8px;
   }

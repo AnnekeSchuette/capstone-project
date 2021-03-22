@@ -116,6 +116,7 @@ const ToggleFavButton = styled.button`
   position: absolute;
   right: 5px;
   top: 7px;
+  box-shadow: none !important;
 
   svg {
     fill: ${props =>
