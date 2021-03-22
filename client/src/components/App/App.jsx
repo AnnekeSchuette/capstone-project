@@ -23,7 +23,6 @@ export default function App() {
 
   const [isDisabled, setIsDisabled] = useState(true)
   const [search, setSearch] = useState('')
-
   return (
     <Grid>
       <Header title="Vinz" subtitle={pages[currentPage].subtitle} />
@@ -60,6 +59,7 @@ export default function App() {
       />
     </Grid>
   )
+
   function handleSubmit(event) {
     event.preventDefault()
     const form = event.target
