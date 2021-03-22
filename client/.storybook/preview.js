@@ -1,5 +1,5 @@
 import GlobalStyle from 'components/GlobalStyle'
-import GlobalFonts from '../.fonts/Fonts'
+import GlobalFonts from './src/.fonts/Fonts'
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
 import { MemoryRouter } from "react-router";
 
