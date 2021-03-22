@@ -52,6 +52,9 @@ const Btn = styled.button`
       rgba(53, 22, 178, 1) 100%
     );
   }
+  :focus {
+    outline: none;
+  }
 
   span {
     margin: 0 8px;
