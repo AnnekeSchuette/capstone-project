@@ -2,8 +2,6 @@ import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import truncateByWords from 'lib/truncateByWords'
 import { Heart } from 'heroicons-react'
-import { useEffect } from 'react'
-import useLocalStorage from 'hooks/useLocalStorage'
 
 WineCard.propTypes = {
   title: PropTypes.string,
@@ -25,24 +23,20 @@ export default function WineCard({
   averageRating,
   score,
   link,
+  savedWines = [],
+  onFavToggle,
 }) {
-  const [savedWines, setSavedWines] = useLocalStorage('wines')
-
-  useEffect(() => {
-    savedWines === null && setSavedWines([])
-  }, [savedWines, setSavedWines])
-
-  const isSaved = savedWines?.some(savedWine => savedWine.id === id)
-
-  function handleClick(currentWine) {
-    if (isSaved) {
-      const removeWineArray = savedWines.filter(s => s.id !== id)
-      setSavedWines(removeWineArray)
-    } else {
-      const addWineArray = [...savedWines, currentWine]
-      setSavedWines(addWineArray)
-    }
+  const currentWine = {
+    id,
+    title,
+    description,
+    imageUrl,
+    price,
+    averageRating,
+    score,
+    link,
   }
+  const isSaved = savedWines.some(savedWine => savedWine.id === id)
 
   const shortDescription = description && truncateByWords(description, 12)
   const averageRatingDecimal = averageRating
@@ -55,18 +49,7 @@ export default function WineCard({
     <CardContent>
       <h3>{title}</h3>
       <BookmarkButton
-        onClick={() =>
-          handleClick({
-            id,
-            title,
-            description,
-            imageUrl,
-            price,
-            averageRating,
-            score,
-            link,
-          })
-        }
+        onClick={() => onFavToggle(currentWine)}
         role="switch"
         isActive={isSaved}
         aria-checked={isSaved}
@@ -133,6 +116,7 @@ const BookmarkButton = styled.button`
   position: absolute;
   right: 5px;
   top: 7px;
+  box-shadow: none !important;
 
   svg {
     fill: ${props =>
