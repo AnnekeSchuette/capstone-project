@@ -1,4 +1,4 @@
-import { render, fireEvent } from '@testing-library/react'
+import { render, screen, userEvent } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import SearchForm from 'components/SearchForm/SearchForm'
 
@@ -9,6 +9,12 @@ describe('SearchForm', () => {
       render(<SearchForm />)
     }
   )
+  it('calls function onSubmit on form submit', () => {
+    const callback = jest.fn()
+    render(<SearchForm onSubmit={callback} />)
+    userEvent.click(screen.getByRole('button'))
+    expect(callback).toHaveBeenCalled()
+  })
   it('updates on change', () => {
     const setSearch = jest.fn(value => {})
 
@@ -20,7 +26,7 @@ describe('SearchForm', () => {
       'Type in a dish, ingredient or cuisine ...'
     )
 
-    fireEvent.change(searchInput, { target: { value: 'test' } })
+    userEvent.change(searchInput, { target: { value: 'test' } })
 
     expect(searchInput.value).toBe('test')
   })

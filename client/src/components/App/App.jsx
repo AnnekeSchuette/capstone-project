@@ -21,7 +21,8 @@ export default function App() {
     setWineRecs,
   ] = useApi('wineRecs', [])
 
-  const [isDisabled, setIsDisabled] = useState(false)
+  const [isDisabled, setIsDisabled] = useState(true)
+  const [search, setSearch] = useState('')
 
   return (
     <Grid>
@@ -46,6 +47,8 @@ export default function App() {
               isDisabled={isDisabled}
               onChange={handleChange}
               onSubmit={handleSubmit}
+              search={search}
+              setSearch={setSearch}
             />
           </Route>
         </Switch>
@@ -61,11 +64,13 @@ export default function App() {
     event.preventDefault()
     const form = event.target
     const { searchInput } = form.elements
+    setSearch(searchInput.value)
     return setWineRecs(getWinePairing(searchInput.value))
   }
   function handleChange(value) {
-    console.log(value)
-    value.length >= 3 ? setIsDisabled(false) : setIsDisabled(true)
+    setSearch(value)
+    console.log(search)
+    search.length >= 3 ? setIsDisabled(false) : setIsDisabled(true)
   }
 }
 
