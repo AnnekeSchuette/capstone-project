@@ -21,7 +21,7 @@ export default function App() {
     setWineRecs,
   ] = useApi('wineRecs', [])
 
-  const [isDisabled, setIsDisabled] = useState(true)
+  const [isDisabled, setIsDisabled] = useState(false)
   const [search, setSearch] = useState('')
   return (
     <Grid>

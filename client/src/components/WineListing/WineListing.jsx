@@ -41,7 +41,7 @@ export default function WineListing({ results, savedWines, onFavToggle }) {
         {wines}
         {results.pairingText !== '' && <p>{results.pairingText}</p>}
 
-        {results.pairedWines.length > 0 && (
+        {results.pairedWines && (
           <MoreInfoWrap>
             Matching types of wine:
             <BadgeList>
