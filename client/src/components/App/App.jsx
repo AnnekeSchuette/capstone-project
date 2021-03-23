@@ -14,7 +14,7 @@ import useSearchForm from 'hooks/useSearchForm'
 export default function App() {
   const [savedWines, toggleFavStatus] = useToggleFavorite('wines', [])
   const [currentPage, setCurrentPage, pages] = usePageInfo(0)
-  const [getWinePairing, , wineRecs, setWineRecs] = useApi('wineRecs', [])
+  const [wineRecs, setWineRecs, getWinePairing] = useApi('wineRecs', [])
   const [search, setSearch, isDisabled] = useSearchForm()
 
   return (

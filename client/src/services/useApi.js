@@ -35,5 +35,5 @@ export default function useApi() {
       .catch(error => console.error(error))
   }
 
-  return [getWinePairing, getWineRecommendations, wineRecs, setWineRecs]
+  return [wineRecs, setWineRecs, getWinePairing, getWineRecommendations]
 }
