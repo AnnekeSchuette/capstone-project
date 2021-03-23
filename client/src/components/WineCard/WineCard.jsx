@@ -65,10 +65,6 @@ export default function WineCard({
       <CardInfo>
         <p>{shortDescription}</p>
         <DescrList>
-          <ListTerm id={`${id}-price`}>Price (avg):</ListTerm>
-          <ListDescr role="definition" aria-labelledby={`${id}-price`}>
-            {price}
-          </ListDescr>
           <ListTerm id={`${id}-rating`}>Rating:</ListTerm>
           <ListDescr role="definition" aria-labelledby={`${id}-rating`}>
             {averageRatingDecimal}
@@ -76,6 +72,10 @@ export default function WineCard({
           <ListTerm id={`${id}-score`}>Score:</ListTerm>
           <ListDescr role="definition" aria-labelledby={`${id}-score`}>
             {scoreDecimal}
+          </ListDescr>
+          <ListTerm id={`${id}-price`}>Price (avg):</ListTerm>
+          <ListDescr role="definition" aria-labelledby={`${id}-price`}>
+            {price}
           </ListDescr>
         </DescrList>
       </CardInfo>
