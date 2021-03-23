@@ -1,7 +1,6 @@
-import Button from 'components/Button/Button'
 import WineCard from 'components/WineCard/WineCard'
-import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
+import { v4 as uuidv4 } from 'uuid'
 
 export default function WineListing({
   results,
@@ -9,64 +8,56 @@ export default function WineListing({
   onFavToggle,
   recentSearch,
 }) {
-  const { push } = useHistory()
+  const isValidResult =
+    !results.status && 'productMatches' in results && results.pairingText !== ''
+
   const noResultsMessage =
-    results.status &&
+    !isValidResult &&
     recentSearch !== '' &&
     `Sorry, we couldn't find any matches for "${recentSearch}".😢
-    You could try another term or similar dish.`
+    \n You could try another term or similar dish.`
 
-  const listContent =
-    !results.status && results.productMatches !== undefined ? (
-      results.productMatches.map(
-        ({
-          id,
-          title,
-          description,
-          imageUrl,
-          price,
-          averageRating,
-          ratingCount,
-          score,
-          link,
-        }) => (
-          <WineCard
-            id={id}
-            key={id}
-            title={title}
-            description={description}
-            imageUrl={imageUrl}
-            price={price}
-            averageRating={averageRating}
-            ratingCount={ratingCount}
-            score={score}
-            link={link}
-            savedWines={savedWines}
-            onFavToggle={onFavToggle}
-          />
-        )
-      )
-    ) : (
-      <ListEmptyMessage>
-        {noResultsMessage}
-        <Button
-          buttonText="Back to search"
-          iconPos="left"
-          onClick={() => push('/')}
+  const listContent = isValidResult ? (
+    results.productMatches.map(
+      ({
+        id,
+        title,
+        description,
+        imageUrl,
+        price,
+        averageRating,
+        ratingCount,
+        score,
+        link,
+      }) => (
+        <WineCard
+          id={id}
+          key={id}
+          title={title}
+          description={description}
+          imageUrl={imageUrl}
+          price={price}
+          averageRating={averageRating}
+          ratingCount={ratingCount}
+          score={score}
+          link={link}
+          savedWines={savedWines}
+          onFavToggle={onFavToggle}
         />
-      </ListEmptyMessage>
+      )
     )
-
-  const pairingText = !results.status && results.pairingText !== '' && (
-    <p>{results.pairingText}</p>
+  ) : (
+    <ListEmptyMessage>{noResultsMessage}</ListEmptyMessage>
   )
 
-  const pairedWines = !results.status && results.pairedWines.length > 0 && (
+  const pairingText = isValidResult && <p>{results.pairingText}</p>
+
+  const pairedWines = isValidResult && (
     <MoreInfoWrap>
       Matching types of wine:
       <BadgeList>
         {results.pairedWines.map(wine => (
-          <Badge>{wine}</Badge>
+          <Badge key={uuidv4()}>{wine}</Badge>
         ))}
       </BadgeList>
     </MoreInfoWrap>
@@ -84,9 +75,14 @@ export default function WineListing({
 const WineList = styled.div`
   display: grid;
   gap: var(--space-medium);
+  button {
+    justify-self: center;
+  }
 `
-const ListEmptyMessage = styled.p`
+const ListEmptyMessage = styled.div`
   text-align: center;
+  display: grid;
+  gap: var(--space-medium) 0;
 `
 const MoreInfoWrap = styled.div`
   padding-bottom: var(space--large);
