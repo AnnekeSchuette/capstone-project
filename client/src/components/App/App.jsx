@@ -9,27 +9,13 @@ import Navigation from 'components/Navigation/Navigation'
 import useToggleFavorite from 'hooks/useToggleFavorite'
 import usePageInfo from 'hooks/usePageInfo'
 import useApi from 'services/useApi'
-import { useState, useCallback, useEffect } from 'react'
+import useSearchForm from 'hooks/useSearchForm'
 
 export default function App() {
   const [savedWines, toggleFavStatus] = useToggleFavorite('wines', [])
   const [currentPage, setCurrentPage, pages] = usePageInfo(0)
   const [getWinePairing, , wineRecs, setWineRecs] = useApi('wineRecs', [])
-
-  const [isDisabled, setIsDisabled] = useState(false)
-  const [search, setSearch] = useState('')
-
-  const handleChange = useCallback(search => {
-    if (search && search.length >= 3) {
-      setIsDisabled(false)
-    } else {
-      setIsDisabled(true)
-    }
-  }, [])
-
-  useEffect(() => {
-    handleChange(search)
-  }, [search, handleChange])
+  const [search, setSearch, isDisabled] = useSearchForm()
 
   return (
     <Grid>
@@ -52,7 +38,6 @@ export default function App() {
           <Route exact path="/">
             <SearchForm
               isDisabled={isDisabled}
-              onChange={handleChange}
               onSubmit={handleSubmit}
               search={search}
               setSearch={setSearch}
@@ -68,12 +53,11 @@ export default function App() {
     </Grid>
   )
 
-  function handleSubmit(event, search) {
+  function handleSubmit(event) {
     event.preventDefault()
-    // const form = event.target
-    //const { searchInput } = form.elements
-    //setSearch(searchInput.value)
-    return setWineRecs(getWinePairing(search))
+    const form = event.target
+    const { searchInput } = form.elements
+    return setWineRecs(getWinePairing(searchInput.value))
   }
 }
 

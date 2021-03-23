@@ -3,6 +3,7 @@ import styled from 'styled-components/macro'
 export default function Input({
   label,
   name,
+  value,
   className,
   placeholder,
   id,
@@ -15,6 +16,7 @@ export default function Input({
         id={id}
         type="text"
         name={name}
+        value={value}
         placeholder={placeholder}
         onChange={onChange}
       />
