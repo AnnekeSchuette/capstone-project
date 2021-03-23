@@ -10,14 +10,15 @@ import useToggleFavorite from 'hooks/useToggleFavorite'
 import usePageInfo from 'hooks/usePageInfo'
 import useApi from 'services/useApi'
 import useSearchForm from 'hooks/useSearchForm'
-import { useState } from 'react'
+import useLocalStorage from 'hooks/useLocalStorage'
 
 export default function App() {
-  const [savedWines, toggleFavStatus] = useToggleFavorite('wines', [])
   const [currentPage, setCurrentPage, pages] = usePageInfo(0)
+  const [savedWines, toggleFavStatus] = useToggleFavorite('wines', [])
   const [wineRecs, setWineRecs, getWinePairing] = useApi('wineRecs', [])
+
   const [search, setSearch, isDisabled] = useSearchForm()
-  const [recentSearch, setRecentSearch] = useState('')
+  const [recentSearch, setRecentSearch] = useLocalStorage('recentSearch', [])
 
   return (
     <Grid>
@@ -39,6 +40,7 @@ export default function App() {
             />
           </Route>
           <Route path="/wine-recommendation">
+            <h2>{`Your wine recommendation for "${recentSearch}"`}</h2>
             <WineListing
               recentSearch={recentSearch}
               results={wineRecs}
@@ -69,6 +71,7 @@ export default function App() {
     const form = event.target
     const { searchInput } = form.elements
     setRecentSearch(searchInput.value)
+    setCurrentPage(2)
     return setWineRecs(getWinePairing(searchInput.value))
   }
 }
@@ -96,5 +99,8 @@ const Main = styled.main`
     content: '';
     display: block;
     height: var(--space-large);
+  }
+  h2 {
+    text-align: center;
   }
 `
