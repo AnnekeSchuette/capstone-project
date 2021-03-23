@@ -34,6 +34,10 @@ export default createGlobalStyle`
     box-sizing: border-box
   }
 
+  html{
+    height: -webkit-fill-available;
+  }
+
   body {
     margin: 0;
     font-family: 'Josefin', sans-serif;
@@ -42,6 +46,8 @@ export default createGlobalStyle`
     line-height: 1.5;
     padding:0;
     background:var(--color-midnight);
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
   }
 
   input, button, textarea {
