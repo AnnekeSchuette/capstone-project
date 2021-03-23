@@ -17,8 +17,11 @@ export default function useApi() {
       .then(data => {
         setWineRecs(data)
       })
-      .then(() => history.push('/results'))
-      .catch(error => console.error(error))
+      .then(() => history.push('/wine-recommendation'))
+      .catch(error => () => {
+        console.error(error)
+        history.push('/')
+      })
   }
   const getWineRecommendations = (
     wineName,
