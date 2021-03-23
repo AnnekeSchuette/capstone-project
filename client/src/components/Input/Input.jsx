@@ -1,10 +1,23 @@
 import styled from 'styled-components/macro'
 
-export default function Input({ label, name, className, placeholder, id }) {
+export default function Input({
+  label,
+  name,
+  className,
+  placeholder,
+  id,
+  onChange,
+}) {
   return (
     <InputWrapper className={'Input ' + className}>
       <InputLabel htmlFor={id}>{label}</InputLabel>
-      <InputField id={id} type="text" name={name} placeholder={placeholder} />
+      <InputField
+        id={id}
+        type="text"
+        name={name}
+        placeholder={placeholder}
+        onChange={onChange}
+      />
     </InputWrapper>
   )
 }

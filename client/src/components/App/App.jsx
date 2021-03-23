@@ -9,20 +9,28 @@ import Navigation from 'components/Navigation/Navigation'
 import useToggleFavorite from 'hooks/useToggleFavorite'
 import usePageInfo from 'hooks/usePageInfo'
 import useApi from 'services/useApi'
-import { useState } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 
 export default function App() {
   const [savedWines, toggleFavStatus] = useToggleFavorite('wines', [])
   const [currentPage, setCurrentPage, pages] = usePageInfo(0)
-  const [
-    getWinePairing,
-    getWineRecommendations,
-    wineRecs,
-    setWineRecs,
-  ] = useApi('wineRecs', [])
+  const [getWinePairing, , wineRecs, setWineRecs] = useApi('wineRecs', [])
 
   const [isDisabled, setIsDisabled] = useState(false)
   const [search, setSearch] = useState('')
+
+  const handleChange = useCallback(search => {
+    if (search && search.length >= 3) {
+      setIsDisabled(false)
+    } else {
+      setIsDisabled(true)
+    }
+  }, [])
+
+  useEffect(() => {
+    handleChange(search)
+  }, [search, handleChange])
+
   return (
     <Grid>
       <Header title="Vinz" subtitle={pages[currentPage].subtitle} />
@@ -60,17 +68,12 @@ export default function App() {
     </Grid>
   )
 
-  function handleSubmit(event) {
+  function handleSubmit(event, search) {
     event.preventDefault()
-    const form = event.target
-    const { searchInput } = form.elements
-    setSearch(searchInput.value)
-    return setWineRecs(getWinePairing(searchInput.value))
-  }
-  function handleChange(value) {
-    setSearch(value)
-    console.log(search)
-    search.length >= 3 ? setIsDisabled(false) : setIsDisabled(true)
+    // const form = event.target
+    //const { searchInput } = form.elements
+    //setSearch(searchInput.value)
+    return setWineRecs(getWinePairing(search))
   }
 }
 

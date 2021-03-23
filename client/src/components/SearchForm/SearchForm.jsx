@@ -14,7 +14,7 @@ export default function SearchForm({
       <Input
         label="Get recommendations for your meal"
         placeholder="Type in a dish, ingredient or cuisine ..."
-        onKeyDown={e => setSearch(e.target.value)}
+        onChange={e => setSearch(e.target.value)}
         type="text"
         name="searchInput"
         value={search}
