@@ -10,12 +10,14 @@ import useToggleFavorite from 'hooks/useToggleFavorite'
 import usePageInfo from 'hooks/usePageInfo'
 import useApi from 'services/useApi'
 import useSearchForm from 'hooks/useSearchForm'
+import { useState } from 'react'
 
 export default function App() {
   const [savedWines, toggleFavStatus] = useToggleFavorite('wines', [])
   const [currentPage, setCurrentPage, pages] = usePageInfo(0)
   const [wineRecs, setWineRecs, getWinePairing] = useApi('wineRecs', [])
   const [search, setSearch, isDisabled] = useSearchForm()
+  const [recentSearch, setRecentSearch] = useState('')
 
   return (
     <Grid>
@@ -30,6 +32,15 @@ export default function App() {
           </Route>
           <Route path="/results">
             <WineListing
+              recentSearch={recentSearch}
+              results={wineRecs}
+              onFavToggle={toggleFavStatus}
+              savedWines={savedWines}
+            />
+          </Route>
+          <Route path="/wine-recommendation">
+            <WineListing
+              recentSearch={recentSearch}
               results={wineRecs}
               onFavToggle={toggleFavStatus}
               savedWines={savedWines}
@@ -57,6 +68,7 @@ export default function App() {
     event.preventDefault()
     const form = event.target
     const { searchInput } = form.elements
+    setRecentSearch(searchInput.value)
     return setWineRecs(getWinePairing(searchInput.value))
   }
 }

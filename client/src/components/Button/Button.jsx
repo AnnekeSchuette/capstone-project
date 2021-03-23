@@ -25,7 +25,7 @@ export default function Button({
       className={[btnClass].join(' ')}
       {...props}
     >
-      {iconPos === 'left' && <Icons.Star size={20} />}
+      {iconPos === 'left' && <Icons.ChevronLeft size={20} />}
       <span>{buttonText}</span>
       {iconPos === 'right' && <Icons.ChevronRight size={20} />}
     </Btn>
