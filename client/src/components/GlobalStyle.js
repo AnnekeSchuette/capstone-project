@@ -14,7 +14,7 @@ export default createGlobalStyle`
     --color-space-cadet: #171941ff;
     --color-pink-pantone: #dc469fff;
 
-    --color-ghost-white: #f4f4f9;
+    --color-ghost-white: #fbfbff;
     --color-cadet-grey: #9eb3c2;
     --color-midnight-blue: #04135e;
     --color-oxford-blue: #010b3d;

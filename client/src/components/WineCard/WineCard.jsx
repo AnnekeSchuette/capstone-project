@@ -21,6 +21,7 @@ export default function WineCard({
   imageUrl,
   price = 'n.a.',
   averageRating,
+  ratingCount,
   score,
   link,
   savedWines = [],
@@ -33,6 +34,7 @@ export default function WineCard({
     imageUrl,
     price,
     averageRating,
+    ratingCount,
     score,
     link,
   }
@@ -63,11 +65,13 @@ export default function WineCard({
         <img src={largeImageUrl} alt="" />
       </ImgWrapper>
       <CardInfo>
-        <p>{shortDescription}</p>
+        {shortDescription}
         <DescrList>
           <ListTerm id={`${id}-rating`}>Rating:</ListTerm>
           <ListDescr role="definition" aria-labelledby={`${id}-rating`}>
             {averageRatingDecimal}
+            <br></br>
+            <small>{ratingCount} ratings</small>
           </ListDescr>
           <ListTerm id={`${id}-score`}>Score:</ListTerm>
           <ListDescr role="definition" aria-labelledby={`${id}-score`}>
@@ -87,10 +91,10 @@ const CardContent = styled.div`
   background: var(--color-ghost-white);
   box-shadow: 0px 1px 4px #00000030;
   color: var(--color-midnight);
-  border-radius: var(--space-small);
+  border-radius: var(--space-xxsmall);
   font-size: 0.75em;
   display: grid;
-  gap: var(--space-xsmall);
+  gap: 0 var(--space-medium);
   position: relative;
   grid-template-columns: 90px auto;
   grid-template-rows: auto auto;
@@ -128,8 +132,7 @@ const ToggleFavButton = styled.button`
 `
 const CardInfo = styled.div`
   background: var(--color-ghost-white);
-  padding: var(--space-small) var(--space-medium) var(--space-small)
-    var(--space-small);
+  padding: var(--space-small) var(--space-medium) var(--space-small) 0;
   height: 100%;
   width: 100%;
 `
@@ -138,7 +141,7 @@ const ImgWrapper = styled.figure`
   margin: 0;
   justify-self: center;
   text-align: center;
-  padding: var(--space-xsmall) 0;
+  padding: var(--space-xsmall) 0 var(--space-xsmall) var(--space-medium);
 
   img {
     max-width: 100%;
@@ -152,6 +155,9 @@ const DescrList = styled.dl`
   grid-template-columns: repeat(2, 1fr);
   place-content: start;
   font-size: 0.9em;
+  gap: 10px 0;
+  line-height: 1;
+  margin-top: var(--space-small);
 `
 const ListTerm = styled.dt`
   font-weight: 400;
