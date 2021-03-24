@@ -4,13 +4,12 @@ export default function Input({
   label,
   name,
   value,
-  className,
   placeholder,
   id,
   onChange,
 }) {
   return (
-    <InputWrapper className={'Input ' + className}>
+    <InputWrapper>
       <InputLabel htmlFor={id}>{label}</InputLabel>
       <InputField
         id={id}
