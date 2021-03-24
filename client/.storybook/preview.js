@@ -1,5 +1,5 @@
 import GlobalStyle from 'components/GlobalStyle'
-import GlobalFonts from './src/fonts/Fonts'
+import GlobalFonts from 'fonts/Fonts'
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
 import { MemoryRouter } from "react-router";
 
@@ -23,7 +23,7 @@ export const decorators =[
     <MemoryRouter initialEntries={['/']}>
       <GlobalFonts/>
       <GlobalStyle/>
-      <div style={{ padding: '25px' }}>
+      <div style={{ padding: '25px', color: 'white'}}>
         <Story />
       </div>
     </MemoryRouter>
