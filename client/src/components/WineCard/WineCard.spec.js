@@ -77,21 +77,20 @@ describe('WineCard', () => {
   it('renders a card with a truncated description text of 20 words, which is 77 characters including (...)', () => {
     render(<WineCard {...testdata} />)
     expect(screen.queryByText(/Dark, rich and complex/i)).toBeInTheDocument()
-    screen.debug()
     expect(
       screen.getByText(/Dark, rich and complex/i).textContent
     ).toHaveLength(77)
   })
 
-  it('renders a card with a truncated text of 12 words', () => {
+  it('renders a card with a truncated text of 14 words', () => {
     render(<WineCard {...testdata} />)
     expect(screen.queryByText(/Dark, rich and complex/i)).toBeInTheDocument()
     expect(
       screen
-        .getByText(/Dark, rich and complex/i)
+        .getByText(/Dark, rich and complex.+?(?=...)/i)
         .textContent.replace(' (...)', '')
         .split(' ').length
-    ).toBe(12)
+    ).toBe(14)
   })
 
   it('renders a bookmark icon on card', () => {
