@@ -1,6 +1,9 @@
 import WineCard from 'components/WineCard/WineCard'
+import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import { v4 as uuidv4 } from 'uuid'
+import Button from 'components/Button/Button'
+import { Search } from 'heroicons-react'
 
 export default function WineListing({
   results,
@@ -8,6 +11,7 @@ export default function WineListing({
   onFavToggle,
   recentSearch,
 }) {
+  const { push } = useHistory()
   const isValidResult =
     !results.status && 'productMatches' in results && results.pairingText !== ''
 
@@ -65,6 +69,11 @@ export default function WineListing({
 
   return (
     <WineList>
+      <Button
+        onClick={() => push('..')}
+        buttonText="back to search"
+        iconPos="left"
+      />
       {listContent}
       {pairingText}
       {pairedWines}
