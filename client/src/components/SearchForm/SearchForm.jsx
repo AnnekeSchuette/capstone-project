@@ -11,7 +11,7 @@ export default function SearchForm({
   return (
     <SearchFormWrapper onSubmit={onSubmit}>
       <Input
-        label="Get recommendations for your meal"
+        label="Get wine recommendations for your meal"
         placeholder="Type in a dish, ingredient or cuisine ..."
         onChange={e => setSearch(e.target.value)}
         type="text"
@@ -27,9 +27,10 @@ const SearchFormWrapper = styled.form`
   gap: 20px;
 
   label {
-    font-size: 1.5em;
-    text-align: center;
-    margin: var(--space-large) 0 var(--space-large);
+    div {
+      font-size: 1.3em;
+      margin: var(--space-large) 0 var(--space-large);
+    }
   }
 
   button {

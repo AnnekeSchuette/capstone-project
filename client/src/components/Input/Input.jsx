@@ -1,24 +1,18 @@
 import styled from 'styled-components/macro'
 
-export default function Input({
-  label,
-  name,
-  value,
-  placeholder,
-  id,
-  onChange,
-}) {
+export default function Input({ label, name, value, placeholder, onChange }) {
   return (
     <InputWrapper>
-      <InputLabel htmlFor={id}>{label}</InputLabel>
-      <InputField
-        id={id}
-        type="text"
-        name={name}
-        value={value}
-        placeholder={placeholder}
-        onChange={onChange}
-      />
+      <InputLabel>
+        <InputLabelText>{label}</InputLabelText>
+        <InputField
+          type="text"
+          name={name}
+          value={value}
+          placeholder={placeholder}
+          onChange={onChange}
+        />
+      </InputLabel>
     </InputWrapper>
   )
 }
@@ -38,4 +32,7 @@ const InputField = styled.input`
 `
 const InputLabel = styled.label`
   color: var(--color-ghost-white);
+`
+const InputLabelText = styled.div`
+  text-align: center;
 `
