@@ -90,7 +90,7 @@ describe('WineCard', () => {
         .getByText(/Dark, rich and complex.+?(?=...)/i)
         .textContent.replace(' (...)', '')
         .split(' ').length
-    ).toBe(14)
+    ).toBe(12)
   })
 
   it('renders a bookmark icon on card', () => {
@@ -104,7 +104,6 @@ describe('WineCard', () => {
     const callback = jest.fn()
     render(<WineCard {...testdata} onFavToggle={callback} />)
 
-    // initial state
     expect(
       screen.getByRole('switch', { name: 'Put in wine storage' })
     ).toBeInTheDocument()
@@ -112,9 +111,5 @@ describe('WineCard', () => {
 
     userEvent.click(screen.getByRole('switch', { checked: false }))
     expect(callback).toHaveBeenCalledTimes(1)
-    expect(
-      screen.getByRole('switch', { name: 'Remove from wine storage' })
-    ).toBeInTheDocument()
-    expect(screen.getByRole('switch', { checked: true })).toBeInTheDocument()
   })
 })

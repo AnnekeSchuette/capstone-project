@@ -34,4 +34,8 @@ describe('SearchForm', () => {
 
     expect(searchInput.value).toBe('test')
   })
+  it('renders a submit button, which is initially disabled', () => {
+    render(<SearchForm />)
+    expect(screen.getByRole('button')).toBeDisabled()
+  })
 })

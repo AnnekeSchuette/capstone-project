@@ -4,7 +4,7 @@ import Input from 'components/Input/Input'
 
 export default function SearchForm({
   onSubmit,
-  isDisabled,
+  isDisabled = true,
   search,
   setSearch,
 }) {
