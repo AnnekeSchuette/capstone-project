@@ -3,7 +3,6 @@ import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import { v4 as uuidv4 } from 'uuid'
 import Button from 'components/Button/Button'
-import { Search } from 'heroicons-react'
 
 export default function WineListing({
   results,
@@ -58,7 +57,7 @@ export default function WineListing({
 
   const pairedWines = isValidResult && (
     <MoreInfoWrap>
-      Matching types of wine:
+      <p>Matching types of wine:</p>
       <BadgeList>
         {results.pairedWines.map(wine => (
           <Badge key={uuidv4()}>{wine}</Badge>
@@ -74,6 +73,7 @@ export default function WineListing({
         buttonText="back to search"
         iconPos="left"
       />
+      <h2>{`Your wine recommendation for "${recentSearch}"`}</h2>
       {listContent}
       {pairingText}
       {pairedWines}
@@ -83,9 +83,10 @@ export default function WineListing({
 
 const WineList = styled.div`
   display: grid;
-  gap: var(--space-medium);
+  gap: var(--space-small);
+
   button {
-    justify-self: center;
+    justify-self: start;
   }
 `
 const ListEmptyMessage = styled.div`
@@ -98,7 +99,7 @@ const MoreInfoWrap = styled.div`
 `
 const BadgeList = styled.ul`
   display: flex;
-  margin: 0;
+  margin: 0 0 var(--space-medium);
   padding: 0;
   gap: 2px;
   text-align: center;

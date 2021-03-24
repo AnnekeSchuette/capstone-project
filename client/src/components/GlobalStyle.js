@@ -82,7 +82,13 @@ h1 {
   font-size: 1.5em;
 }
 
+
 h2 {
-  font-size: 1.1em;
+    font-size: 1.2em;
+}
+
+p {
+
+  font-size: 0.9em;
 }
 `

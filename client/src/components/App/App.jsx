@@ -8,7 +8,7 @@ import WineStorage from 'components/WineStorage/WineStorage'
 import Navigation from 'components/Navigation/Navigation'
 import useToggleFavorite from 'hooks/useToggleFavorite'
 import usePageInfo from 'hooks/usePageInfo'
-import useApi from 'services/useApi'
+import useApi from 'hooks/useApi'
 import useSearchForm from 'hooks/useSearchForm'
 import useLocalStorage from 'hooks/useLocalStorage'
 
@@ -40,7 +40,6 @@ export default function App() {
             />
           </Route>
           <Route path="/wine-recommendation">
-            <h2>{`Your wine recommendation for "${recentSearch}"`}</h2>
             <WineListing
               recentSearch={recentSearch}
               results={wineRecs}
