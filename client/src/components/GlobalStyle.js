@@ -2,10 +2,11 @@ import { createGlobalStyle } from 'styled-components'
 
 export default createGlobalStyle`
   :root {
-    --color-text: var(--color-space-cadet);
+    --color-text: var(--color-midnight);
     --color-background:var(--color-midnight);
-    --color-primary: var(--color-indigo);
-    --color-secondary: var(--color-purple-munsell);
+    --color-complementary: #f0cc00;
+    --color-complementary-light: #f5e277;
+    --color-disabled: var(--color-cadet-grey);
 
     --color-midnight: #010b3d;
     --color-midnight-punch: #04135e;
@@ -13,14 +14,28 @@ export default createGlobalStyle`
     --color-space-cadet: #171941ff;
     --color-pink-pantone: #dc469fff;
 
-    --space-xsmall: 5px;
+    --color-ghost-white: #fbfbff;
+    --color-cadet-grey: #9eb3c2;
+    --color-midnight-blue: #04135e;
+    --color-oxford-blue: #010b3d;
+    --color-popstar: #b84a62;
+    --color-candy-pink: #e26e7d;
+
+
+    --space-xxsmall: 5px;
+    --space-xsmall: 10px;
     --space-small: 15px;
     --space-medium: 25px;
     --space-large: 35px;
     --space-xlarge: 50px;
+
   }
   * {
     box-sizing: border-box
+  }
+
+  html{
+    height: -webkit-fill-available;
   }
 
   body {
@@ -30,6 +45,9 @@ export default createGlobalStyle`
     font-size: 112.5%;
     line-height: 1.5;
     padding:0;
+    background:var(--color-midnight);
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
   }
 
   input, button, textarea {
@@ -64,7 +82,13 @@ h1 {
   font-size: 1.5em;
 }
 
+
 h2 {
-  font-size: 1.1em;
+    font-size: 1.2em;
+}
+
+p {
+
+  font-size: 0.9em;
 }
 `

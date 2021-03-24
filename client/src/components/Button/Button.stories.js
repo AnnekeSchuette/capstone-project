@@ -13,10 +13,16 @@ Default.args = {
   isActive: false,
 }
 
-export const Active = Template.bind({})
-Active.args = {
-  buttonText: 'Active Button',
+export const Focused = Template.bind({})
+Focused.args = {
+  buttonText: 'Focused Button',
   isActive: true,
+}
+export const Disabled = Template.bind({})
+Disabled.args = {
+  buttonText: 'Disabled Button',
+  isActive: true,
+  disabled: true,
 }
 
 export const IconLeft = Template.bind({})

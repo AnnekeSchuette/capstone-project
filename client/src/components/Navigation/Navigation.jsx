@@ -4,12 +4,19 @@ import { NavLink } from 'react-router-dom'
 export default function Navigation({ pages, onNavigate }) {
   return (
     <NavWrapper pages={pages}>
-      {pages.map(({ title, path, icon }, index) => (
-        <NavItem key={title} exact to={path} onClick={() => onNavigate(index)}>
-          <img src={icon} width="40" height="40" alt="" />
-          <span>{title}</span>
-        </NavItem>
-      ))}
+      {pages
+        .filter(page => page.showInNav)
+        .map(({ title, path, icon }, index) => (
+          <NavItem
+            key={title}
+            exact
+            to={path}
+            onClick={() => onNavigate(index)}
+          >
+            <img src={icon} width="40" height="40" alt="" />
+            <span>{title}</span>
+          </NavItem>
+        ))}
     </NavWrapper>
   )
 }
@@ -28,11 +35,11 @@ const NavItem = styled(NavLink)`
   text-decoration: none;
   justify-items: center;
   padding: 0;
-  color: #fff;
+  color: var(--color-ghost-white);
   height: 100%;
 
   &.active {
-    color: #fff;
+    color: var(--color-ghost-white);
     background: var(--color-midnight);
 
     span {

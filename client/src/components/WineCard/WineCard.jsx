@@ -21,6 +21,7 @@ export default function WineCard({
   imageUrl,
   price = 'n.a.',
   averageRating,
+  ratingCount,
   score,
   link,
   savedWines = [],
@@ -33,6 +34,7 @@ export default function WineCard({
     imageUrl,
     price,
     averageRating,
+    ratingCount,
     score,
     link,
   }
@@ -48,7 +50,7 @@ export default function WineCard({
   return (
     <CardContent>
       <h3>{title}</h3>
-      <BookmarkButton
+      <ToggleFavButton
         onClick={() => onFavToggle(currentWine)}
         role="switch"
         isActive={isSaved}
@@ -58,24 +60,26 @@ export default function WineCard({
         }
       >
         <Heart size={34} />
-      </BookmarkButton>
+      </ToggleFavButton>
       <ImgWrapper>
         <img src={largeImageUrl} alt="" />
       </ImgWrapper>
       <CardInfo>
-        <p>{shortDescription}</p>
+        {shortDescription}
         <DescrList>
-          <ListTerm id={`${id}-price`}>Price (avg):</ListTerm>
-          <ListDescr role="definition" aria-labelledby={`${id}-price`}>
-            {price}
-          </ListDescr>
           <ListTerm id={`${id}-rating`}>Rating:</ListTerm>
           <ListDescr role="definition" aria-labelledby={`${id}-rating`}>
             {averageRatingDecimal}
+            <br></br>
+            <small>{ratingCount} ratings</small>
           </ListDescr>
           <ListTerm id={`${id}-score`}>Score:</ListTerm>
           <ListDescr role="definition" aria-labelledby={`${id}-score`}>
             {scoreDecimal}
+          </ListDescr>
+          <ListTerm id={`${id}-price`}>Price (avg):</ListTerm>
+          <ListDescr role="definition" aria-labelledby={`${id}-price`}>
+            {price}
           </ListDescr>
         </DescrList>
       </CardInfo>
@@ -84,13 +88,13 @@ export default function WineCard({
 }
 
 const CardContent = styled.div`
-  background: #fff;
+  background: var(--color-ghost-white);
   box-shadow: 0px 1px 4px #00000030;
   color: var(--color-midnight);
-  border-radius: var(--space-small);
+  border-radius: var(--space-xxsmall);
   font-size: 0.75em;
   display: grid;
-  gap: var(--space-xsmall);
+  gap: 0 var(--space-medium);
   position: relative;
   grid-template-columns: 90px auto;
   grid-template-rows: auto auto;
@@ -110,7 +114,7 @@ const CardContent = styled.div`
     background: var(--color-midnight-punch-light);
   }
 `
-const BookmarkButton = styled.button`
+const ToggleFavButton = styled.button`
   background: none;
   border: none;
   position: absolute;
@@ -120,16 +124,15 @@ const BookmarkButton = styled.button`
 
   svg {
     fill: ${props =>
-      props.isActive ? 'var(--color-pink-pantone)' : 'inherit'};
+      props.isActive ? 'var(--color-candy-pink)' : 'var(--color-cadet-grey)'};
     stroke: 2px
       ${props =>
-        props.isActive ? 'var(--color-midnight)' : 'var(--color-pink-pantone)'};
+        props.isActive ? 'var(--color-cadet-grey)' : 'var(--color-candy-pink)'};
   }
 `
 const CardInfo = styled.div`
-  background: #fff;
-  padding: var(--space-small) var(--space-medium) var(--space-small)
-    var(--space-small);
+  background: var(--color-ghost-white);
+  padding: var(--space-small) var(--space-medium) var(--space-small) 0;
   height: 100%;
   width: 100%;
 `
@@ -138,12 +141,13 @@ const ImgWrapper = styled.figure`
   margin: 0;
   justify-self: center;
   text-align: center;
-  padding: var(--space-xsmall) 0;
+  padding: var(--space-xsmall) 0 var(--space-xsmall) var(--space-medium);
 
   img {
     max-width: 100%;
-    max-height: 180px;
+    max-height: 190px;
     height: auto;
+    mix-blend-mode: multiply;
   }
 `
 const DescrList = styled.dl`
@@ -151,6 +155,9 @@ const DescrList = styled.dl`
   grid-template-columns: repeat(2, 1fr);
   place-content: start;
   font-size: 0.9em;
+  gap: 10px 0;
+  line-height: 1;
+  margin-top: var(--space-small);
 `
 const ListTerm = styled.dt`
   font-weight: 400;

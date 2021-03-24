@@ -1,17 +1,24 @@
 import { Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
-import { recommendedWines } from 'data/wine_recs_mixed_small.json'
 import quarterCircle from 'assets/quarterCircle.svg'
 import Header from 'components/Header/Header'
+import SearchForm from 'components/SearchForm/SearchForm'
 import WineListing from 'components/WineListing/WineListing'
 import WineStorage from 'components/WineStorage/WineStorage'
 import Navigation from 'components/Navigation/Navigation'
 import useToggleFavorite from 'hooks/useToggleFavorite'
 import usePageInfo from 'hooks/usePageInfo'
+import useApi from 'hooks/useApi'
+import useSearchForm from 'hooks/useSearchForm'
+import useLocalStorage from 'hooks/useLocalStorage'
 
 export default function App() {
-  const [savedWines, toggleFavStatus] = useToggleFavorite('wines', [])
   const [currentPage, setCurrentPage, pages] = usePageInfo(0)
+  const [savedWines, toggleFavStatus] = useToggleFavorite('wines', [])
+  const [wineRecs, setWineRecs, getWinePairing] = useApi('wineRecs', [])
+
+  const [search, setSearch, isDisabled] = useSearchForm()
+  const [recentSearch, setRecentSearch] = useLocalStorage('recentSearch', [])
 
   return (
     <Grid>
@@ -24,11 +31,28 @@ export default function App() {
               onFavToggle={toggleFavStatus}
             />
           </Route>
-          <Route exact path="/">
+          <Route path="/results">
             <WineListing
-              results={recommendedWines}
+              recentSearch={recentSearch}
+              results={wineRecs}
               onFavToggle={toggleFavStatus}
               savedWines={savedWines}
+            />
+          </Route>
+          <Route path="/wine-recommendation">
+            <WineListing
+              recentSearch={recentSearch}
+              results={wineRecs}
+              onFavToggle={toggleFavStatus}
+              savedWines={savedWines}
+            />
+          </Route>
+          <Route exact path="/">
+            <SearchForm
+              isDisabled={isDisabled}
+              onSubmit={handleSubmit}
+              search={search}
+              setSearch={setSearch}
             />
           </Route>
         </Switch>
@@ -40,6 +64,15 @@ export default function App() {
       />
     </Grid>
   )
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    const form = event.target
+    const { searchInput } = form.elements
+    setRecentSearch(searchInput.value)
+    setCurrentPage(2)
+    return setWineRecs(getWinePairing(searchInput.value))
+  }
 }
 
 const Grid = styled.div`
@@ -60,4 +93,13 @@ const Grid = styled.div`
 const Main = styled.main`
   padding: var(--space-medium);
   overflow-y: scroll;
+
+  &::after {
+    content: '';
+    display: block;
+    height: var(--space-large);
+  }
+  h2 {
+    text-align: center;
+  }
 `

@@ -11,12 +11,21 @@ export default function usePageInfo() {
       subtitle: 'Wine Assistant and Taste Journal',
       path: '/',
       icon: FoodAndWine,
+      showInNav: true,
     },
     {
       title: 'Wine Storage',
       subtitle: 'Wine Storage',
-      path: 'wine-storage',
+      path: '/wine-storage',
       icon: AlcoholicBeverageLicensing,
+      showInNav: true,
+    },
+    {
+      title: 'Wine Recommendation',
+      subtitle: 'Wine Recommendation',
+      path: '/wine-recommendation',
+      icon: AlcoholicBeverageLicensing,
+      showInNav: false,
     },
   ]
   return [currentPage, setCurrentPage, pages]
