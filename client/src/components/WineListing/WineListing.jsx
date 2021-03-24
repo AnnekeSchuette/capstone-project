@@ -10,7 +10,7 @@ export default function WineListing({
   onFavToggle,
   recentSearch,
 }) {
-  const { push } = useHistory()
+  const history = useHistory()
   const isValidResult =
     !results.status && 'productMatches' in results && results.pairingText !== ''
 
@@ -69,7 +69,7 @@ export default function WineListing({
   return (
     <WineList>
       <Button
-        onClick={() => push('..')}
+        onClick={() => history.push('..')}
         buttonText="back to search"
         iconPos="left"
       />

@@ -2,6 +2,13 @@ import { screen, render } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import WineListing from 'components/WineListing/WineListing'
 import { recommendedWines } from 'data/wine_recommendations_malbec.json'
+import { createMemoryHistory } from 'history'
+import { Router } from 'react-router'
+
+const history = createMemoryHistory()
+history.push = jest.fn()
+
+const wrapper = ({ children }) => <Router history={history}>{children}</Router>
 
 const testdata = {
   pairedWines: ['bordeaux', 'champagne', 'white burgundy'],
@@ -26,17 +33,7 @@ const testdata = {
 
 describe('WineListing', () => {
   it('renders a child component, with the title "Chateau Pindefleurs St-Emilion Bordeaux"', () => {
-    jest.mock('next/router', () => ({
-      useRouter() {
-        return {
-          route: '/',
-          pathname: '',
-          query: '',
-          asPath: '',
-        }
-      },
-    }))
-    render(<WineListing results={testdata} />)
+    render(<WineListing results={testdata} />, { wrapper })
     expect(
       screen.queryByText('Chateau Pindefleurs St-Emilion Bordeaux')
     ).toBeInTheDocument()
