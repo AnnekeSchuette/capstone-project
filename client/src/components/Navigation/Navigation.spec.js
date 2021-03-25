@@ -11,12 +11,14 @@ const pages = [
     subtitle: 'Wine Assistant and Taste Journal',
     path: '/',
     icon: FoodAndWine,
+    showInNav: true,
   },
   {
     title: 'Wine Storage',
     subtitle: 'Wine Storage',
     path: 'wine-storage',
     icon: AlcoholicBeverageLicensing,
+    showInNav: true,
   },
 ]
 describe('Navigation', () => {

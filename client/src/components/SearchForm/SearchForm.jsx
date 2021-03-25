@@ -4,7 +4,7 @@ import Input from 'components/Input/Input'
 
 export default function SearchForm({
   onSubmit,
-  isDisabled,
+  isDisabled = true,
   search,
   setSearch,
 }) {
@@ -25,10 +25,11 @@ export default function SearchForm({
 const SearchFormWrapper = styled.form`
   display: grid;
   gap: 20px;
+  place-content: center;
 
   label {
     div {
-      font-size: 1.3em;
+      font-size: 1.4em;
       margin: var(--space-large) 0 var(--space-large);
     }
   }
@@ -36,5 +37,6 @@ const SearchFormWrapper = styled.form`
   button {
     text-align: center;
     place-content: center;
+    margin: 0 var(--space-large);
   }
 `

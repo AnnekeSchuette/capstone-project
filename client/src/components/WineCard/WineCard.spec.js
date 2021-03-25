@@ -77,18 +77,17 @@ describe('WineCard', () => {
   it('renders a card with a truncated description text of 20 words, which is 77 characters including (...)', () => {
     render(<WineCard {...testdata} />)
     expect(screen.queryByText(/Dark, rich and complex/i)).toBeInTheDocument()
-    screen.debug()
     expect(
       screen.getByText(/Dark, rich and complex/i).textContent
     ).toHaveLength(77)
   })
 
-  it('renders a card with a truncated text of 12 words', () => {
+  it('renders a card with a truncated text of 14 words', () => {
     render(<WineCard {...testdata} />)
     expect(screen.queryByText(/Dark, rich and complex/i)).toBeInTheDocument()
     expect(
       screen
-        .getByText(/Dark, rich and complex/i)
+        .getByText(/Dark, rich and complex.+?(?=...)/i)
         .textContent.replace(' (...)', '')
         .split(' ').length
     ).toBe(12)
@@ -105,7 +104,6 @@ describe('WineCard', () => {
     const callback = jest.fn()
     render(<WineCard {...testdata} onFavToggle={callback} />)
 
-    // initial state
     expect(
       screen.getByRole('switch', { name: 'Put in wine storage' })
     ).toBeInTheDocument()
@@ -113,9 +111,5 @@ describe('WineCard', () => {
 
     userEvent.click(screen.getByRole('switch', { checked: false }))
     expect(callback).toHaveBeenCalledTimes(1)
-    expect(
-      screen.getByRole('switch', { name: 'Remove from wine storage' })
-    ).toBeInTheDocument()
-    expect(screen.getByRole('switch', { checked: true })).toBeInTheDocument()
   })
 })

@@ -11,5 +11,11 @@ const events = actions({ setSearch: 'submitted!' })
 
 export const Default = Template.bind({})
 Default.args = {
-  search: 'Test',
+  isDisabled: true,
+}
+
+export const Active = Template.bind({})
+Active.args = {
+  search: 'Steak',
+  isDisabled: false,
 }

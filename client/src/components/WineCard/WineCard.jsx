@@ -65,7 +65,7 @@ export default function WineCard({
         <img src={largeImageUrl} alt="" />
       </ImgWrapper>
       <CardInfo>
-        {shortDescription}
+        <p>{shortDescription}</p>
         <DescrList>
           <ListTerm id={`${id}-rating`}>Rating:</ListTerm>
           <ListDescr role="definition" aria-labelledby={`${id}-rating`}>

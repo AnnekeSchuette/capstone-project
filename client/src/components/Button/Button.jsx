@@ -26,7 +26,8 @@ export default function Button({
       {...props}
     >
       {iconPos === 'left' && <Icons.ChevronLeft size={20} />}
-      <span>{buttonText}</span>
+      {buttonText && <span>{buttonText}</span>}
+      {props.children}
       {iconPos === 'right' && <Icons.ChevronRight size={20} />}
     </Btn>
   )
