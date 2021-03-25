@@ -13,7 +13,7 @@ import useSearchForm from 'hooks/useSearchForm'
 import useLocalStorage from 'hooks/useLocalStorage'
 
 export default function App() {
-  const [currentPage, setCurrentPage, pages] = usePageInfo(0)
+  const [currentPage, setCurrentPage, pages] = usePageInfo(2)
   const [savedWines, toggleFavStatus] = useToggleFavorite('wines', [])
   const [wineRecs, setWineRecs, getWinePairing] = useApi('wineRecs', [])
 

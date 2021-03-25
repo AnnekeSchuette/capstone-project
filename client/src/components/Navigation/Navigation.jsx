@@ -1,7 +1,6 @@
 import styled from 'styled-components/macro'
 import { NavLink } from 'react-router-dom'
 import { useHistory } from 'react-router'
-import Button from 'components/Button/Button'
 import { Search } from 'heroicons-react'
 
 export default function Navigation({ pages, onNavigate }) {
