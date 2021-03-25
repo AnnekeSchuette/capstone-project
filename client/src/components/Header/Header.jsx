@@ -1,5 +1,7 @@
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
+import { Switch, Route, useHistory } from 'react-router'
+import Button from 'components/Button/Button'
 
 Header.propTypes = {
   title: PropTypes.string.isRequired,
@@ -7,8 +9,25 @@ Header.propTypes = {
 }
 
 export default function Header({ title, subtitle }) {
+  const history = useHistory()
   return (
     <HeaderStyled>
+      <Switch>
+        <Route path="/wine-recommendation">
+          <Button
+            buttonText=""
+            iconPos="left"
+            onClick={() => history.push('..')}
+          />
+        </Route>
+        <Route path="/wine-storage">
+          <Button
+            buttonText=""
+            iconPos="left"
+            onClick={() => history.push('..')}
+          />
+        </Route>
+      </Switch>
       <Title>{title}</Title>
       <Subtitle>{subtitle}</Subtitle>
     </HeaderStyled>
@@ -25,6 +44,12 @@ const HeaderStyled = styled.header`
   color: var(--color-ghost-white);
   position: relative;
   z-index: 1;
+
+  button {
+    position: absolute;
+    left: var(--space-medium);
+    background: var(--color-midnight-punch);
+  }
 `
 const Title = styled.h1`
   font-family: 'Josefin', sans-serif;
