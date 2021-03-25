@@ -11,6 +11,9 @@
     "server": "nodemon server.js",
     "client": "cd client && npm start",
     "test": "cd client && npm test",
+    "test:e2e": "cd client && npm run test:e2e",
+    "cy:run": "cd client && cypress run",
+    "cy:open": "cd client && cypress open",
     "postinstall": "cd client && npm install",
     "storybook": "cd client && start-storybook -p 6006 -s public",
     "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
