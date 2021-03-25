@@ -1,5 +1,4 @@
 import WineCard from 'components/WineCard/WineCard'
-import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import { v4 as uuidv4 } from 'uuid'
 

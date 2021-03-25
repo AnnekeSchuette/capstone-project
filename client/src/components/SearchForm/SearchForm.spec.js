@@ -16,7 +16,6 @@ describe('SearchForm', () => {
     const callback = jest.fn()
     render(<SearchForm onSubmit={callback} />)
     fireEvent.submit(screen.getByRole('button', { name: 'Submit' }))
-    //fireEvent.click(screen.getByText(/Submit/i))
     expect(callback).toHaveBeenCalled()
   })
   it('updates on change', () => {
