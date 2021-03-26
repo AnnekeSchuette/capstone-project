@@ -8,7 +8,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   const { id } = req.params
-  res.json(await User.findById(id).catch(next))
+  res.json(await User.findById(id).populate('journal-entries').catch(next))
 })
 
 router.delete('/:id', async (req, res, next) => {
@@ -17,7 +17,11 @@ router.delete('/:id', async (req, res, next) => {
 })
 
 router.post('/', async (req, res, next) => {
-  res.json(await User.create(req.body).catch(next))
+  res
+    .json(await User.create(req.body))
+    .populate('journal-entries')
+    .execPopulate()
+    .catch(next)
 })
 
 module.exports = router

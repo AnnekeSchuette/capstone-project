@@ -6,6 +6,12 @@ const UserSchema = new mongoose.Schema(
       type: String,
       unique: true,
     },
+    journal_entries: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'JournalEntry',
+      },
+    ],
   },
   { timestamps: true, versionKey: false }
 )
