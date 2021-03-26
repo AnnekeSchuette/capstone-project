@@ -2,6 +2,26 @@ const express = require('express')
 const Category = require('../models/Category')
 const router = express.Router()
 
+const buildAncestors = async (id, parent_id) => {
+  let ancest = []
+  try {
+    let parent_category = await Category.findOne(
+      { _id: parent_id },
+      { name: 1, slug: 1, ancestors: 1 }
+    ).exec()
+    if (parent_category) {
+      const { _id, name, slug } = parent_category
+      const ancest = [...parent_category.ancestors]
+      ancest.unshift({ _id, name, slug })
+      const category = await Category.findByIdAndUpdate(id, {
+        $set: { ancestors: ancest },
+      })
+    }
+  } catch (err) {
+    console.log(err.message)
+  }
+}
+
 router.post('/', async (req, res) => {
   const category = new Category({ name: req.body.name })
   try {
@@ -28,6 +48,7 @@ router.get('/', async (req, res) => {
     res.status(500).send(err)
   }
 })
+
 // display the descendants of a category (via ID)
 router.get('/descendants', async (req, res) => {
   try {
@@ -42,25 +63,6 @@ router.get('/descendants', async (req, res) => {
   }
 })
 
-const buildAncestors = async (id, parent_id) => {
-  let ancest = []
-  try {
-    let parent_category = await Category.findOne(
-      { _id: parent_id },
-      { name: 1, slug: 1, ancestors: 1 }
-    ).exec()
-    if (parent_category) {
-      const { _id, name, slug } = parent_category
-      const ancest = [...parent_category.ancestors]
-      ancest.unshift({ _id, name, slug })
-      const category = await Category.findByIdAndUpdate(id, {
-        $set: { ancestors: ancest },
-      })
-    }
-  } catch (err) {
-    console.log(err.message)
-  }
-}
 // create sub categories
 router.post('/', async (req, res) => {
   let parent = req.body.parent ? req.body.parent : null
