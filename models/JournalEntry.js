@@ -6,11 +6,13 @@ const JournalEntrySchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    user_id: {
-      type: Number,
+    author: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
     },
     rating: {
       type: Number,
+      default: 0,
     },
     notes: {
       type: String,
