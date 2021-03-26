@@ -1,31 +1,18 @@
 import styled from 'styled-components/macro'
 import { NavLink } from 'react-router-dom'
-import { useHistory } from 'react-router'
 import { Search } from 'heroicons-react'
 
 export default function Navigation({ pages, onNavigate }) {
-  const history = useHistory()
   return (
     <NavWrapper>
-      <NavItem
-        as={NavItem}
-        exact
-        to="/"
-        onClick={() => history.push('/')}
-        key="global-search"
-      >
+      <NavItem exact to="/" key="global-search">
         <Search size="24" />
       </NavItem>
       <NavMenu pages={pages}>
         {pages
           .filter(page => page.showInNav)
           .map(({ title, path, icon }, index) => (
-            <NavItem
-              key={title}
-              exact
-              to={path}
-              onClick={() => onNavigate(index)}
-            >
+            <NavItem key={title} exact to={path} onClick={() => onNavigate(index)}>
               <img src={icon} width="40" height="40" alt="" />
               <span>{title}</span>
             </NavItem>
