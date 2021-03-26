@@ -2,22 +2,10 @@ import styled from 'styled-components/macro'
 import Button from 'components/Button/Button'
 import Input from 'components/Input/Input'
 
-export default function SearchForm({
-  onSubmit,
-  isDisabled = true,
-  search,
-  setSearch,
-}) {
+export default function SearchForm({ onSubmit, isDisabled = true, search, setSearch, ...props }) {
   return (
-    <SearchFormWrapper onSubmit={onSubmit}>
-      <Input
-        label="Get wine recommendations for your meal"
-        placeholder="Type in a dish, ingredient or cuisine ..."
-        onChange={e => setSearch(e.target.value)}
-        type="text"
-        name="searchInput"
-        value={search}
-      />
+    <SearchFormWrapper onSubmit={onSubmit} {...props}>
+      {props.children}
       <Button buttonText="Submit" disabled={isDisabled} />
     </SearchFormWrapper>
   )
