@@ -62,7 +62,7 @@ const buildAncestors = async (id, parent_id) => {
   }
 }
 // create sub categories
-/* router.post('/', async (req, res) => {
+router.post('/', async (req, res) => {
   let parent = req.body.parent ? req.body.parent : null
   const category = new Category({ name: req.body.name, parent })
   try {
@@ -72,7 +72,7 @@ const buildAncestors = async (id, parent_id) => {
   } catch (err) {
     res.status(500).send(err)
   }
-}) */
+})
 
 router.post('/', async (req, res, next) => {
   const { name, parent } = req.body
