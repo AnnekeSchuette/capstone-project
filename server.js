@@ -10,6 +10,7 @@ app.use('/', express.json()) // add middleware for json data
 app.use(express.static('./client/build'))
 app.use('/api/categories', require('./routes/categories'))
 app.use('/api/stored-wines', require('./routes/storedWines'))
+app.use('/api/dish-pairing', require('./routes/dishPairing'))
 app.use(require('./routes/error'))
 
 app.listen(PORT, () => {
