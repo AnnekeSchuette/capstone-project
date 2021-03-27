@@ -8,7 +8,7 @@ export default function Navigation({ pages, onNavigate }) {
       <NavItem exact to="/" key="global-search">
         <Search size="24" />
       </NavItem>
-      <NavMenu pages={pages}>
+      <NavMenu>
         {pages
           .filter(page => page.showInNav)
           .map(({ title, path, icon }, index) => (
