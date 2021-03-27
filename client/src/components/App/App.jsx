@@ -29,7 +29,7 @@ export default function App() {
 
   useEffect(() => {
     getAllDishPairings()
-  }, [dishPairing])
+  })
 
   return (
     <Grid>
@@ -77,7 +77,6 @@ export default function App() {
                 onChange={e => setSearch(e.target.value)}
                 type="text"
                 name="searchInput"
-                value={search}
               />
             </SearchForm>
           </Route>
@@ -94,7 +93,6 @@ export default function App() {
                 onChange={e => setSearch(e.target.value)}
                 type="text"
                 name="searchInput"
-                value={search}
               />
             </SearchForm>
           </Route>
