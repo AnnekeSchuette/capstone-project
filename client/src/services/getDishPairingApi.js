@@ -8,14 +8,7 @@ export default function getDishPairingApi(wine_type) {
   const fetchUrl = `${REACT_APP_API_SPOONACULAR_BASEURL}/food/wine/dishes?apiKey=${REACT_APP_API_SPOONACULAR_KEY2}&wine=${wineTypeEncoded}`
 
   return fetch(fetchUrl)
-    .then(async res => {
-      if (res.ok) {
-        return await res.json()
-      } else {
-        const errorMessage = await res.text()
-        return Promise.reject(new Error(errorMessage))
-      }
-    })
+    .then(res => (res.ok ? res.json() : new Error(res.text())))
     .then(data => handleData(wineTypeEncoded, data))
 
   function handleData(wine_type, { text, pairings }) {

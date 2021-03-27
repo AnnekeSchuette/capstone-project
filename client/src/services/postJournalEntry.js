@@ -6,6 +6,6 @@ export default function postJournalEntry(wine_id, rating, notes) {
     },
     body: JSON.stringify({ wine_id, rating, notes }),
   })
-    .then(res => res.json())
+    .then(res => (res.ok ? res.json() : new Error(res.text())))
     .then(data => (data.error ? Promise.reject(data) : data))
 }

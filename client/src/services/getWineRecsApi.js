@@ -17,14 +17,7 @@ export default function getWineRecommendationsApi(
   }
 
   return fetch(fetchUrl)
-    .then(async res => {
-      if (res.ok) {
-        return await res.json()
-      } else {
-        const errorMessage = await res.text()
-        return Promise.reject(new Error(errorMessage))
-      }
-    })
+    .then(res => (res.ok ? res.json() : new Error(res.text())))
     .then(data => handleData(wine, data))
     .then(data => console.log(data))
 
