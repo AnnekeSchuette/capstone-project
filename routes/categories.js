@@ -2,17 +2,15 @@ const express = require('express')
 const Category = require('../models/Category')
 const router = express.Router()
 
-const buildAncestors = async (id, parent_id) => {
-  let ancest = []
+const buildAncestors = async (id, parentId) => {
   try {
-    let parent_category = await Category.findOne(
-      { _id: parent_id },
+    const parent_category = await Category.findOne(
+      { _id: parentId },
       { name: 1, slug: 1, ancestors: 1 }
     ).exec()
     if (parent_category) {
       const { _id, name, slug } = parent_category
-      const ancest = [...parent_category.ancestors]
-      ancest.unshift({ _id, name, slug })
+      const ancest = [{ _id, name, slug }, ...parent_category.ancestors]
       const category = await Category.findByIdAndUpdate(id, {
         $set: { ancestors: ancest },
       })
@@ -25,7 +23,7 @@ const buildAncestors = async (id, parent_id) => {
 router.post('/', async (req, res) => {
   const category = new Category({ name: req.body.name })
   try {
-    let newCategory = await category.save()
+    const newCategory = await category.save()
     res.status(201).send({ response: `Category ${newCategory._id}` })
   } catch (err) {
     res.status(500).send(err)
@@ -65,10 +63,10 @@ router.get('/descendants', async (req, res) => {
 
 // create sub categories
 router.post('/', async (req, res) => {
-  let parent = req.body.parent ? req.body.parent : null
+  const parent = req.body.parent ? req.body.parent : null
   const category = new Category({ name: req.body.name, parent })
   try {
-    let newCategory = await category.save()
+    const newCategory = await category.save()
     buildAncestors(newCategory._id, parent)
     res.status(201).send({ response: `Category ${newCategory._id}` })
   } catch (err) {
