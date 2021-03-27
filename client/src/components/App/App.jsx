@@ -12,11 +12,9 @@ import usePageInfo from 'hooks/usePageInfo'
 import useApi from 'hooks/useApi'
 import useSearchForm from 'hooks/useSearchForm'
 import useLocalStorage from 'hooks/useLocalStorage'
-import WineDetailPage from 'components/WineDetailPage/WineDetailPage'
 import getDishPairing from 'services/getDishPairing'
 import getDishPairingApi from 'services/getDishPairingApi'
 import { useEffect, useState } from 'react'
-import Button from 'components/Button/Button'
 
 export default function App() {
   const [currentPage, setCurrentPage, pages] = usePageInfo(2)
@@ -31,10 +29,6 @@ export default function App() {
   useEffect(() => {
     getAllDishPairings()
   }, [])
-
-  function getAllDishPairings() {
-    getDishPairing().then(data => setAllDishPairings([...data]))
-  }
 
   return (
     <Grid>
@@ -60,7 +54,6 @@ export default function App() {
               savedWines={savedWines}
             />
           </Route>
-          <Route path="/wine/:wineId" results={wineRecs} exact component={WineDetailPage} />
           <Route exact path="/dish-pairing">
             {dishPairing && (
               <div>
@@ -113,6 +106,10 @@ export default function App() {
       <Navigation pages={pages} currentPage={currentPage} onNavigate={setCurrentPage} />
     </Grid>
   )
+
+  function getAllDishPairings() {
+    getDishPairing().then(data => setAllDishPairings([...data]))
+  }
 
   function handleSearchRecs(event) {
     event.preventDefault()
