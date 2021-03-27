@@ -10,6 +10,9 @@ const WineSchema = new mongoose.Schema(
       type: String,
       default: 0,
     },
+    type: {
+      type: String,
+    },
     description: {
       type: String,
       default: 0,

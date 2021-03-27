@@ -20,4 +20,14 @@ router.post('/', async (req, res, next) => {
   res.json(await Wine.create(req.body).catch(next))
 })
 
+router.patch('/:id', async (req, res, next) => {
+  const { id } = req.params
+  res.json(
+    await Wine.findOneAndUpdate(
+      { id: id },
+      { $set: req.body },
+      { upsert: true, returnNewDocument: true }
+    ).catch(next)
+  )
+})
 module.exports = router
