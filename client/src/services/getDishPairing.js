@@ -1,4 +1,4 @@
-export default function getDishPairing(wine_type = '') {
+export default function getDishPairing(wine_type) {
   const wineType = wine_type.replace(' ', '_')
   const config = {
     method: 'GET',
@@ -8,6 +8,6 @@ export default function getDishPairing(wine_type = '') {
   }
 
   return fetch(`/api/dish-pairing/${wineType}`, config)
-    .then(async res => res.json())
-    .then(data => data)
+    .then(res => res.json())
+    .then(data => (data.error ? Promise.reject(data) : data))
 }
