@@ -22,13 +22,14 @@ export default function App() {
   const [savedWines, toggleFavStatus] = useToggleFavorite('wines', [])
   const [wineRecs, setWineRecs, getWinePairing] = useApi('wineRecs', [])
   const [search, setSearch, isDisabled] = useSearchForm()
-  const [recentSearch, setRecentSearch] = useLocalStorage('recentSearch', [])
+  const [queryDishSearch, setQueryDishSearch] = useLocalStorage('queryDishSearch', [])
+  const [queryWineSearch, setQueryWineSearch] = useLocalStorage('queryWineSearch', [])
   const [allDishPairings, setAllDishPairings] = useLocalStorage('dishPairings', [])
   const [dishPairing, setDishPairing] = useState({})
 
   useEffect(() => {
     getAllDishPairings()
-  }, [])
+  }, [dishPairing])
 
   return (
     <Grid>
@@ -40,7 +41,7 @@ export default function App() {
           </Route>
           <Route path="/results">
             <WineListing
-              recentSearch={recentSearch}
+              recentSearch={queryWineSearch}
               results={wineRecs}
               onFavToggle={toggleFavStatus}
               savedWines={savedWines}
@@ -48,7 +49,7 @@ export default function App() {
           </Route>
           <Route path="/wine-recommendation">
             <WineListing
-              recentSearch={recentSearch}
+              recentSearch={queryWineSearch}
               results={wineRecs}
               onFavToggle={toggleFavStatus}
               savedWines={savedWines}
@@ -115,7 +116,7 @@ export default function App() {
     event.preventDefault()
     const form = event.target
     const { searchInput } = form.elements
-    setRecentSearch(searchInput.value)
+    setQueryWineSearch(searchInput.value)
     setCurrentPage(2)
     return setWineRecs(getWinePairing(searchInput.value))
   }
@@ -124,21 +125,21 @@ export default function App() {
     event.preventDefault()
     const form = event.target
     const { searchInput } = form.elements
-    setRecentSearch(searchInput.value)
+    setQueryDishSearch(searchInput.value)
 
     function checkIsInDatabase() {
-      const filteredList = allDishPairings.filter(pairing => pairing.wine_type === recentSearch)
+      const filteredList = allDishPairings.filter(pairing => pairing.wine_type === queryDishSearch)
 
       if (filteredList[0] && filteredList[0].length >= 1) {
         return setDishPairing([filteredList[0]])
       } else {
-        return getDishPairingApi(recentSearch)
+        return getDishPairingApi(queryDishSearch)
           .then(data => setDishPairing(data))
           .then(history.push('/dish-pairing'))
       }
     }
 
-    return checkIsInDatabase(recentSearch)
+    return checkIsInDatabase(queryDishSearch)
   }
 }
 
