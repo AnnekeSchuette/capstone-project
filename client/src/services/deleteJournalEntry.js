@@ -1,6 +1,6 @@
 export default function deleteJournalEntry(id) {
   return fetch(`/api/journal-entries/${id}`, {
-    method: 'Delete',
+    method: 'DELETE',
     headers: {
       'content-type': 'application/json',
     },
