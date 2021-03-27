@@ -6,6 +6,6 @@ export default function postUser(name) {
     },
     body: JSON.stringify({ name }),
   })
-    .then(res => res.json())
+    .then(res => (res.ok ? res.json() : new Error(res.text())))
     .then(data => (data.error ? Promise.reject(data) : data))
 }

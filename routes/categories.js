@@ -16,7 +16,7 @@ const buildAncestors = async (id, parentId) => {
       })
     }
   } catch (err) {
-    console.log(err.message)
+    console.error(err.message)
   }
 }
 

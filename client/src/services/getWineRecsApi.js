@@ -19,7 +19,6 @@ export default function getWineRecommendationsApi(
   return fetch(fetchUrl)
     .then(res => (res.ok ? res.json() : new Error(res.text())))
     .then(data => handleData(wine, data))
-    .then(data => console.log(data))
 
   function handleData(wine, { recommendedWines }) {
     return recommendedWines.map(item => upsertWineRecs({ ...item, type: wine }))
