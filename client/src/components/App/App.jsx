@@ -1,35 +1,35 @@
 import { NavLink, Route, Switch, useHistory } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import quarterCircle from 'assets/quarterCircle.svg'
-import Header from 'components/Header/Header'
 import Input from 'components/Input/Input'
+import Header from 'components/Header/Header'
+import Navigation from 'components/Navigation/Navigation'
 import SearchForm from 'components/SearchForm/SearchForm'
 import WineListing from 'components/WineListing/WineListing'
 import WineStorage from 'components/WineStorage/WineStorage'
-import Navigation from 'components/Navigation/Navigation'
-import useToggleFavorite from 'hooks/useToggleFavorite'
 import usePageInfo from 'hooks/usePageInfo'
 import useApi from 'hooks/useApi'
-import useSearchForm from 'hooks/useSearchForm'
 import useLocalStorage from 'hooks/useLocalStorage'
+import useSearchForm from 'hooks/useSearchForm'
+import useToggleFavorite from 'hooks/useToggleFavorite'
 import getDishPairing from 'services/getDishPairing'
 import getDishPairingApi from 'services/getDishPairingApi'
-import { useEffect, useState } from 'react'
 
 export default function App() {
-  const [currentPage, setCurrentPage, pages] = usePageInfo(2)
   const history = useHistory()
+  const [currentPage, setCurrentPage, pages] = usePageInfo(2)
   const [savedWines, toggleFavStatus] = useToggleFavorite('wines', [])
-  const [wineRecs, setWineRecs, getWinePairing] = useApi('wineRecs', [])
   const [search, setSearch, isDisabled] = useSearchForm()
-  const [queryDishSearch, setQueryDishSearch] = useLocalStorage('queryDishSearch', [])
   const [queryWineSearch, setQueryWineSearch] = useLocalStorage('queryWineSearch', [])
-  const [allDishPairings, setAllDishPairings] = useLocalStorage('dishPairings', [])
+  const [wineRecs, setWineRecs, getWinePairing] = useApi('wineRecs', [])
+  const [queryDishSearch, setQueryDishSearch] = useLocalStorage('queryDishSearch', [])
   const [dishPairing, setDishPairing] = useState({})
+  const [allDishPairings, setAllDishPairings] = useLocalStorage('dishPairings', [])
 
   useEffect(() => {
     getAllDishPairings()
-  })
+  }, [])
 
   return (
     <Grid>
