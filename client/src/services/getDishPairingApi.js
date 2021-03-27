@@ -5,9 +5,9 @@ export default function getDishPairingApi(wine_type) {
   const { REACT_APP_API_SPOONACULAR_KEY2 } = process.env
   const { REACT_APP_API_SPOONACULAR_BASEURL } = process.env
 
-  const FETCH_URL = `${REACT_APP_API_SPOONACULAR_BASEURL}/food/wine/dishes?apiKey=${REACT_APP_API_SPOONACULAR_KEY2}&wine=${wineTypeEncoded}`
+  const fetchUrl = `${REACT_APP_API_SPOONACULAR_BASEURL}/food/wine/dishes?apiKey=${REACT_APP_API_SPOONACULAR_KEY2}&wine=${wineTypeEncoded}`
 
-  return fetch(FETCH_URL)
+  return fetch(fetchUrl)
     .then(async res => {
       if (res.ok) {
         return await res.json()

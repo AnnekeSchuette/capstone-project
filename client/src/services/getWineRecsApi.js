@@ -10,15 +10,13 @@ export default function getWineRecommendationsApi(
   const { REACT_APP_API_SPOONACULAR_KEY2 } = process.env
   const { REACT_APP_API_SPOONACULAR_BASEURL } = process.env
 
-  const FETCH_URL = `${REACT_APP_API_SPOONACULAR_BASEURL}/food/wine/recommendation?apiKey=${REACT_APP_API_SPOONACULAR_KEY2}&wine=${wine}&maxPrice=${maxPrice}&minRating=${minRating}&number=${number}`
+  const fetchUrl = `${REACT_APP_API_SPOONACULAR_BASEURL}/food/wine/recommendation?apiKey=${REACT_APP_API_SPOONACULAR_KEY2}&wine=${wine}&maxPrice=${maxPrice}&minRating=${minRating}&number=${number}`
 
   if (wine === undefined || wine === null) {
-    throw new Error(
-      "Missing the required parameter 'wine' when calling getWineRecommendation"
-    )
+    throw new Error("Missing the required parameter 'wine' when calling getWineRecommendation")
   }
 
-  return fetch(FETCH_URL)
+  return fetch(fetchUrl)
     .then(async res => {
       if (res.ok) {
         return await res.json()
