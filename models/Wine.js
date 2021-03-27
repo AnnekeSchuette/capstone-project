@@ -8,22 +8,18 @@ const WineSchema = new mongoose.Schema(
     },
     title: {
       type: String,
-      default: 0,
     },
     type: {
       type: String,
     },
     description: {
       type: String,
-      default: 0,
     },
     price: {
       type: String,
-      default: 0,
     },
     imageUrl: {
       type: String,
-      default: 0,
     },
     averageRating: {
       type: Number,
@@ -39,7 +35,6 @@ const WineSchema = new mongoose.Schema(
     },
     link: {
       type: String,
-      default: 0,
     },
   },
   { timestamps: true, versionKey: false }

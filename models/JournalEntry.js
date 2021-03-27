@@ -16,7 +16,6 @@ const JournalEntrySchema = new mongoose.Schema(
     },
     notes: {
       type: String,
-      default: 0,
     },
   },
   { timestamps: true, versionKey: false }

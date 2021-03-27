@@ -8,9 +8,7 @@ const DishPairingSchema = new mongoose.Schema(
     text: {
       type: String,
     },
-    pairings: {
-      type: Array,
-    },
+    pairings: [String],
   },
   { timestamps: true, versionKey: false }
 )
