@@ -1,7 +1,9 @@
 import { NavLink, Route, Switch, useHistory } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import quarterCircle from 'assets/quarterCircle.svg'
+import DinnerNew from 'assets/icons/dinnerNew.svg'
+import WineBottle from 'assets/icons/wineBottle.svg'
 import Input from 'components/Input/Input'
 import Header from 'components/Header/Header'
 import Navigation from 'components/Navigation/Navigation'
@@ -11,7 +13,6 @@ import WineDetailPage from 'components/WineDetailPage/WineDetailPage'
 import WineStorage from 'components/WineStorage/WineStorage'
 import usePageInfo from 'hooks/usePageInfo'
 import useWineRecommendations from 'hooks/useWineRecommendations'
-import useWineDetail from 'hooks/useWineDetail'
 import useLocalStorage from 'hooks/useLocalStorage'
 import useSearchForm from 'hooks/useSearchForm'
 import useToggleFavorite from 'hooks/useToggleFavorite'
@@ -109,8 +110,21 @@ export default function App() {
             </SearchForm>
           </Route>
           <Route exact path="/">
-            <NavLink to="/search/wine">Find a wine</NavLink>
-            <NavLink to="/search/dish">Find a dish</NavLink>
+            <h2>What are you looking for?</h2>
+            <CategoryCards>
+              <NavLink to="/search/wine">
+                <h3>I need a wine</h3>
+                <figure>
+                  <img src={WineBottle} alt="" />
+                </figure>
+              </NavLink>
+              <NavLink to="/search/dish">
+                <h3>Dish match</h3>
+                <figure>
+                  <img src={DinnerNew} alt="" />
+                </figure>
+              </NavLink>
+            </CategoryCards>
           </Route>
         </Switch>
       </Main>
@@ -132,6 +146,9 @@ export default function App() {
     const { searchInput } = form.elements
     setQueryWineSearch(searchInput.value)
     setCurrentPage(2)
+    /* return setWineRecs(
+      getWineRecommendationsApi(searchInput.value, 50, 0.7, 100)
+    ) */
     return setWineRecs(getWinePairing(searchInput.value))
   }
 
@@ -185,5 +202,40 @@ const Main = styled.main`
   }
   h2 {
     text-align: center;
+  }
+`
+const CategoryCards = styled.div`
+  display: grid;
+  gap: var(--space-medium);
+  overflow: hidden;
+  grid-template-columns: 1fr 1fr;
+  margin-top: var(--space-large);
+
+  a {
+    color: var(--color-midnight);
+    text-decoration: none;
+    text-align: center;
+    justify-content: center;
+
+    figure {
+      border: 1px solid var(--color-ghost-white);
+      border-radius: var(--space-xxsmall);
+      margin: 0;
+      display: grid;
+      width: 100%;
+      justify-items: center;
+      padding: var(--space-medium);
+
+      img {
+        filter: invert(1);
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    h3 {
+      font-size: 0.9em;
+      color: #fff;
+    }
   }
 `
