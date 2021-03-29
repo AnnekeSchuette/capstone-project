@@ -7,9 +7,11 @@ import Header from 'components/Header/Header'
 import Navigation from 'components/Navigation/Navigation'
 import SearchForm from 'components/SearchForm/SearchForm'
 import WineListing from 'components/WineListing/WineListing'
+import WineDetailPage from 'components/WineDetailPage/WineDetailPage'
 import WineStorage from 'components/WineStorage/WineStorage'
 import usePageInfo from 'hooks/usePageInfo'
 import useWineRecommendations from 'hooks/useWineRecommendations'
+import useWineDetail from 'hooks/useWineDetail'
 import useLocalStorage from 'hooks/useLocalStorage'
 import useSearchForm from 'hooks/useSearchForm'
 import useToggleFavorite from 'hooks/useToggleFavorite'
@@ -21,11 +23,30 @@ export default function App() {
   const [currentPage, setCurrentPage, pages] = usePageInfo(2)
   const [savedWines, toggleFavStatus] = useToggleFavorite('wines', [])
   const [search, setSearch, isDisabled] = useSearchForm()
-  const [queryWineSearch, setQueryWineSearch] = useLocalStorage('queryWineSearch', [])
-  const [wineRecs, setWineRecs, getWinePairing] = useWineRecommendations('wineRecs', [])
-  const [queryDishSearch, setQueryDishSearch] = useLocalStorage('queryDishSearch', [])
+  const [queryWineSearch, setQueryWineSearch] = useLocalStorage(
+    'queryWineSearch',
+    []
+  )
+  const [wineRecs, setWineRecs, getWinePairing] = useWineRecommendations(
+    'wineRecs',
+    []
+  )
+  const [queryDishSearch, setQueryDishSearch] = useLocalStorage(
+    'queryDishSearch',
+    []
+  )
   const [dishPairing, setDishPairing] = useState({})
-  const [allDishPairings, setAllDishPairings] = useLocalStorage('dishPairings', [])
+  const [allDishPairings, setAllDishPairings] = useLocalStorage(
+    'dishPairings',
+    []
+  )
+
+  const [
+    clickedWineId,
+    setClickedWineId,
+    currentWineData,
+    setCurrentWineData,
+  ] = useWineDetail()
 
   useEffect(() => {
     getAllDishPairings()
@@ -37,14 +58,18 @@ export default function App() {
       <Main>
         <Switch>
           <Route path="/wine-storage">
-            <WineStorage savedWines={savedWines} onFavToggle={toggleFavStatus} />
-          </Route>
-          <Route path="/results">
-            <WineListing
-              recentSearch={queryWineSearch}
-              results={wineRecs}
-              onFavToggle={toggleFavStatus}
+            <WineStorage
               savedWines={savedWines}
+              onFavToggle={toggleFavStatus}
+              onShowDetail={setClickedWineId}
+            />
+          </Route>
+          <Route path={`/wine/${clickedWineId}`}>
+            <WineDetailPage
+              savedWines={savedWines}
+              onFavToggle={toggleFavStatus}
+              currentWineData={currentWineData}
+              clickedWineId={clickedWineId}
             />
           </Route>
           <Route path="/wine-recommendation">
@@ -102,7 +127,11 @@ export default function App() {
           </Route>
         </Switch>
       </Main>
-      <Navigation pages={pages} currentPage={currentPage} onNavigate={setCurrentPage} />
+      <Navigation
+        pages={pages}
+        currentPage={currentPage}
+        onNavigate={setCurrentPage}
+      />
     </Grid>
   )
 
@@ -126,7 +155,9 @@ export default function App() {
     setQueryDishSearch(searchInput.value)
 
     function checkIsInDatabase() {
-      const filteredList = allDishPairings.filter(pairing => pairing.wine_type === queryDishSearch)
+      const filteredList = allDishPairings.filter(
+        pairing => pairing.wine_type === queryDishSearch
+      )
 
       if (filteredList[0] && filteredList[0].length >= 1) {
         return setDishPairing([filteredList[0]])
@@ -151,7 +182,8 @@ const Grid = styled.div`
   left: 0;
   right: 0;
   background-position: fixed;
-  background: no-repeat var(--color-background) right bottom url(${quarterCircle});
+  background: no-repeat var(--color-background) right bottom
+    url(${quarterCircle});
   background-size: contain;
   color: white;
 `
