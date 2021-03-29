@@ -83,16 +83,14 @@ export default function WineCard({
             {price}
           </ListDescr>
         </DescrList>
-        <Route exact path="/wine-storage">
-          <NavLink
-            exact
-            to={{
-              pathname: `/wine/${id}`,
-            }}
-          >
-            Show details
-          </NavLink>
-        </Route>
+        <NavLink
+          exact
+          to={{
+            pathname: `/wine/${id}`,
+          }}
+        >
+          Show details
+        </NavLink>
       </CardInfo>
     </CardContent>
   )

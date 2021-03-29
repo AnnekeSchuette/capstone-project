@@ -1,24 +1,13 @@
-import { useState } from 'react'
 import { useQuery } from 'react-query'
+import getWinebyId from 'services/getWineById'
 
-export default function useWineDetail(id) {
-  const [clickedWineId, setClickedWineId] = useState()
-
+export default function useWineDetail(wineId) {
   const {
     isLoading,
     error,
-    currentWineData,
+    data: currentWineData,
     isFetching,
-  } = useQuery('currentWineData', () =>
-    fetch(`/api/stored-wines/${id}`).then(res => res.json())
-  )
+  } = useQuery('currentWineData', () => getWinebyId(wineId))
 
-  return [
-    clickedWineId,
-    setClickedWineId,
-    currentWineData,
-    isLoading,
-    isFetching,
-    error,
-  ]
+  return [isLoading, error, currentWineData, isFetching]
 }

@@ -1,9 +1,7 @@
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
-import Button from 'components/Button/Button'
-import { useHistory, useParams } from 'react-router'
-import { useQuery } from 'react-query'
-import getWinebyId from 'services/getWineById'
+import { Link, useParams } from 'react-router-dom'
+import useWineDetail from 'hooks/useWineDetail'
 
 WineDetailPage.propTypes = {
   title: PropTypes.string,
@@ -17,14 +15,15 @@ WineDetailPage.propTypes = {
 }
 
 export default function WineDetailPage(...props) {
-  const history = useHistory()
   const { wineId } = useParams()
+  /*  const { wineId } = useParams()
   const {
     isLoading,
     error,
     data: currentWineData,
     isFetching,
-  } = useQuery('currentWineData', () => getWinebyId(wineId))
+  } = useQuery('currentWineData', () => getWinebyId(wineId)) */
+  const [isLoading, error, currentWineData, isFetching] = useWineDetail(wineId)
 
   const averageRatingDecimal = currentWineData?.averageRating
     ? (currentWineData?.averageRating * 10).toFixed(1)
@@ -54,33 +53,42 @@ export default function WineDetailPage(...props) {
           <Figure>
             <img src={largeImageUrl} alt="" />
           </Figure>
+          <DescrList>
+            <ListTerm id={`${currentWineData?.id}-rating`}>Rating:</ListTerm>
+            <ListDescr
+              role="definition"
+              aria-labelledby={`${currentWineData?.id}-rating`}
+            >
+              {averageRatingDecimal}
+              <br></br>
+              <small>{currentWineData?.ratingCount} ratings</small>
+            </ListDescr>
+            <ListTerm id={`${currentWineData?.id}-score`}>Score:</ListTerm>
+            <ListDescr
+              role="definition"
+              aria-labelledby={`${currentWineData?.id}-score`}
+            >
+              {scoreDecimal}
+            </ListDescr>
+            <ListTerm id={`${currentWineData?.id}-price`}>
+              Price (avg):
+            </ListTerm>
+            <ListDescr
+              role="definition"
+              aria-labelledby={`${currentWineData?.id}-price`}
+            >
+              {currentWineData?.price}
+            </ListDescr>
+          </DescrList>
         </ImageWrapper>
-        <p>{currentWineData?.description}</p>
-        <DescrList>
-          <ListTerm id={`${currentWineData?.id}-rating`}>Rating:</ListTerm>
-          <ListDescr
-            role="definition"
-            aria-labelledby={`${currentWineData?.id}-rating`}
-          >
-            {averageRatingDecimal}
-            <br></br>
-            <small>{currentWineData?.ratingCount} ratings</small>
-          </ListDescr>
-          <ListTerm id={`${currentWineData?.id}-score`}>Score:</ListTerm>
-          <ListDescr
-            role="definition"
-            aria-labelledby={`${currentWineData?.id}-score`}
-          >
-            {scoreDecimal}
-          </ListDescr>
-          <ListTerm id={`${currentWineData?.id}-price`}>Price (avg):</ListTerm>
-          <ListDescr
-            role="definition"
-            aria-labelledby={`${currentWineData?.id}-price`}
-          >
-            {currentWineData?.price}
-          </ListDescr>
-        </DescrList>
+        <Description>
+          {currentWineData?.description}
+          <br></br>
+          <Link to={{ pathname: currentWineData?.link }} target="_blank">
+            &raquo; more info
+          </Link>
+        </Description>
+
         {props.children}
       </WineWrapper>
     )
@@ -90,22 +98,47 @@ const WineWrapper = styled.div`
   display: grid;
   grid-gap: var(--space-medium) 0;
   position: relative;
+  h3 {
+    font-weight: 300;
+    font-size: 1.1em;
+    margin: 0;
+  }
+`
+const Description = styled.p`
+  display: grid;
+  a {
+    color: #fff;
+    text-align: right;
+  }
 `
 const ImageWrapper = styled.div`
   background: var(--color-ghost-white);
-  padding: var(--space-small) var(--space-medium) var(--space-small) 0;
+  border-radius: var(--space-xxsmall);
+  box-shadow: 0px 1px 4px #00000050;
   height: 100%;
   width: 100%;
+  display: grid;
+
+  grid-template-columns: 200px auto;
+  place-items: end;
+  overflow: hidden;
+  color: var(--color-midnight);
+  font-size: 0.75em;
 `
 const Figure = styled.figure`
   width: 100%;
   margin: 0;
-  justify-self: center;
+  background: #fff;
+  padding: var(--space-xsmall) 0 var(--space-small) var(--space-medium);
+  -o-object-fit: cover;
+  object-fit: cover;
   text-align: center;
-  padding: var(--space-xsmall) 0 var(--space-xsmall) var(--space-medium);
+  -webkit-clip-path: polygon(0 100%, 0% 0%, 100% 0%, 70% 100%, 100% 100%);
+  clip-path: polygon(0 100%, 0% 0%, 100% 0%, 70% 100%, 100% 100%);
 
   img {
     max-width: 100%;
+    padding-right: 30%;
     max-height: 190px;
     height: auto;
     mix-blend-mode: multiply;
@@ -115,10 +148,10 @@ const DescrList = styled.dl`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   place-content: start;
-  font-size: 0.9em;
   gap: 10px 0;
   line-height: 1;
   margin-top: var(--space-small);
+  padding: var(--space-small) var(--space-medium) var(--space-small) 0;
 `
 const ListTerm = styled.dt`
   font-weight: 400;
