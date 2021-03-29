@@ -9,7 +9,7 @@ import SearchForm from 'components/SearchForm/SearchForm'
 import WineListing from 'components/WineListing/WineListing'
 import WineStorage from 'components/WineStorage/WineStorage'
 import usePageInfo from 'hooks/usePageInfo'
-import useApi from 'hooks/useApi'
+import useWineRecommendations from 'hooks/useWineRecommendations'
 import useLocalStorage from 'hooks/useLocalStorage'
 import useSearchForm from 'hooks/useSearchForm'
 import useToggleFavorite from 'hooks/useToggleFavorite'
@@ -22,7 +22,7 @@ export default function App() {
   const [savedWines, toggleFavStatus] = useToggleFavorite('wines', [])
   const [search, setSearch, isDisabled] = useSearchForm()
   const [queryWineSearch, setQueryWineSearch] = useLocalStorage('queryWineSearch', [])
-  const [wineRecs, setWineRecs, getWinePairing] = useApi('wineRecs', [])
+  const [wineRecs, setWineRecs, getWinePairing] = useWineRecommendations('wineRecs', [])
   const [queryDishSearch, setQueryDishSearch] = useLocalStorage('queryDishSearch', [])
   const [dishPairing, setDishPairing] = useState({})
   const [allDishPairings, setAllDishPairings] = useLocalStorage('dishPairings', [])
