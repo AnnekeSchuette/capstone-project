@@ -40,7 +40,6 @@ export default function App() {
     'dishPairings',
     []
   )
-  const [clickedWineId, setClickedWineId] = useState()
 
   useEffect(() => {
     getAllDishPairings()
@@ -55,15 +54,10 @@ export default function App() {
             <WineStorage
               savedWines={savedWines}
               onFavToggle={toggleFavStatus}
-              onShowDetail={setClickedWineId}
             />
           </Route>
           <Route path={`/wine/:wineId`}>
-            <WineDetailPage
-              savedWines={savedWines}
-              onFavToggle={toggleFavStatus}
-              clickedWineId={clickedWineId}
-            />
+            <WineDetailPage />
           </Route>
           <Route path="/wine-recommendation">
             <WineListing

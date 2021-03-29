@@ -27,7 +27,6 @@ export default function WineCard({
   link,
   savedWines = [],
   onFavToggle,
-  onShowDetail,
 }) {
   const currentWine = {
     id,
@@ -90,7 +89,6 @@ export default function WineCard({
             to={{
               pathname: `/wine/${id}`,
             }}
-            onClick={() => onShowDetail(id)}
           >
             Show details
           </NavLink>

@@ -16,12 +16,7 @@ WineDetailPage.propTypes = {
   link: PropTypes.string,
 }
 
-export default function WineDetailPage(
-  clickedWineId,
-  savedWines,
-  onFavToggle,
-  ...props
-) {
+export default function WineDetailPage(...props) {
   const history = useHistory()
   const { wineId } = useParams()
   const {
@@ -45,7 +40,7 @@ export default function WineDetailPage(
     return 'Is loading ...'
   } else if (isFetching) {
     return 'Updating ...'
-  } else if (currentWineData.error) {
+  } else if (currentWineData?.error) {
     return `Oops, this should't happen ... 😬 ${
       currentWineData.error.message === undefined
         ? 'Wine not found'
@@ -86,7 +81,6 @@ export default function WineDetailPage(
             {currentWineData?.price}
           </ListDescr>
         </DescrList>
-        <Button buttonText="" iconPos="left" onClick={() => history.goBack()} />
         {props.children}
       </WineWrapper>
     )
