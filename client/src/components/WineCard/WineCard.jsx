@@ -89,7 +89,6 @@ export default function WineCard({
             exact
             to={{
               pathname: `/wine/${id}`,
-              state: id,
             }}
             onClick={() => onShowDetail(id)}
           >

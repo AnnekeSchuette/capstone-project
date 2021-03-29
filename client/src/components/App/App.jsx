@@ -58,10 +58,11 @@ export default function App() {
               onShowDetail={setClickedWineId}
             />
           </Route>
-          <Route path={`/wine/${clickedWineId}`}>
+          <Route path={`/wine/:wineId`}>
             <WineDetailPage
               savedWines={savedWines}
               onFavToggle={toggleFavStatus}
+              clickedWineId={clickedWineId}
             />
           </Route>
           <Route path="/wine-recommendation">
