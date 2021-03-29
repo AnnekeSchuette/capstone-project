@@ -1,8 +1,9 @@
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import Button from 'components/Button/Button'
-import { useHistory } from 'react-router'
-import useWineDetail from 'hooks/useWineDetail'
+import { useHistory, useLocation } from 'react-router'
+import { useQuery } from 'react-query'
+import getWinebyId from 'services/getWineById'
 
 WineDetailPage.propTypes = {
   title: PropTypes.string,
@@ -16,56 +17,59 @@ WineDetailPage.propTypes = {
 }
 
 export default function WineDetailPage(savedWines, onFavToggle, ...props) {
-  const [
-    clickedWineId,
-    setClickedWineId,
-    currentWineData,
-    setCurrentWineData,
-  ] = useWineDetail()
+  const history = useHistory()
+  const location = useLocation()
+  const currentWineId = location.state
 
   const {
-    id,
-    title,
-    description,
-    imageUrl,
-    price,
-    averageRating,
-    ratingCount,
-    score,
-    link,
-  } = currentWineData
+    isLoading,
+    error,
+    data: currentWineData,
+    isFetching,
+  } = useQuery('currentWineData', () => getWinebyId(currentWineId))
 
-  const history = useHistory()
-
-  const averageRatingDecimal = averageRating
-    ? (averageRating * 10).toFixed(1)
+  const averageRatingDecimal = currentWineData?.averageRating
+    ? (currentWineData?.averageRating * 10).toFixed(1)
     : 'n.a.'
-  const scoreDecimal = score ? (score * 10).toFixed(1) : 'n.a.'
-  const largeImageUrl = imageUrl && imageUrl.replace('312x231', '636x393')
+  const scoreDecimal = currentWineData?.score
+    ? (currentWineData?.score * 10).toFixed(1)
+    : 'n.a.'
+  const largeImageUrl =
+    currentWineData?.imageUrl &&
+    currentWineData?.imageUrl.replace('312x231', '636x393')
 
   return (
     <WineWrapper {...props}>
-      <h3>{title}</h3>
+      <h3>{currentWineData?.title}</h3>
       <ImageWrapper>
         <Figure>
           <img src={largeImageUrl} alt="" />
         </Figure>
       </ImageWrapper>
-      <p>{description}</p>
+      <p>{currentWineData?.description}</p>
       <DescrList>
-        <ListTerm id={`${id}-rating`}>Rating:</ListTerm>
-        <ListDescr role="definition" aria-labelledby={`${id}-rating`}>
+        <ListTerm id={`${currentWineData?.id}-rating`}>Rating:</ListTerm>
+        <ListDescr
+          role="definition"
+          aria-labelledby={`${currentWineData?.id}-rating`}
+        >
           {averageRatingDecimal}
           <br></br>
-          <small>{ratingCount} ratings</small>
+          <small>{currentWineData?.ratingCount} ratings</small>
         </ListDescr>
-        <ListTerm id={`${id}-score`}>Score:</ListTerm>
-        <ListDescr role="definition" aria-labelledby={`${id}-score`}>
+        <ListTerm id={`${currentWineData?.id}-score`}>Score:</ListTerm>
+        <ListDescr
+          role="definition"
+          aria-labelledby={`${currentWineData?.id}-score`}
+        >
           {scoreDecimal}
         </ListDescr>
-        <ListTerm id={`${id}-price`}>Price (avg):</ListTerm>
-        <ListDescr role="definition" aria-labelledby={`${id}-price`}>
-          {price}
+        <ListTerm id={`${currentWineData?.id}-price`}>Price (avg):</ListTerm>
+        <ListDescr
+          role="definition"
+          aria-labelledby={`${currentWineData?.id}-price`}
+        >
+          {currentWineData?.price}
         </ListDescr>
       </DescrList>
       <Button buttonText="" iconPos="left" onClick={() => history.goBack()} />

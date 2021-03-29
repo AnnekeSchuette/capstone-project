@@ -40,13 +40,7 @@ export default function App() {
     'dishPairings',
     []
   )
-
-  const [
-    clickedWineId,
-    setClickedWineId,
-    currentWineData,
-    setCurrentWineData,
-  ] = useWineDetail()
+  const [clickedWineId, setClickedWineId] = useState()
 
   useEffect(() => {
     getAllDishPairings()
@@ -68,8 +62,6 @@ export default function App() {
             <WineDetailPage
               savedWines={savedWines}
               onFavToggle={toggleFavStatus}
-              currentWineData={currentWineData}
-              clickedWineId={clickedWineId}
             />
           </Route>
           <Route path="/wine-recommendation">

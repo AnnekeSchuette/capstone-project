@@ -1,16 +1,24 @@
-import useLocalStorage from 'hooks/useLocalStorage'
-import getWinebyId from 'services/getWineById'
-import { useEffect } from 'react'
+import { useState } from 'react'
+import { useQuery } from 'react-query'
 
 export default function useWineDetail(id) {
-  const [clickedWineId, setClickedWineId] = useLocalStorage('clickeWineId')
-  const [currentWineData, setCurrentWineData] = useLocalStorage(
-    'currentWineData'
-  )
-  useEffect(() => {
-    const data = getWinebyId(id)
-    return setCurrentWineData(data)
-  }, [])
+  const [clickedWineId, setClickedWineId] = useState()
 
-  return [clickedWineId, setClickedWineId, currentWineData, setCurrentWineData]
+  const {
+    isLoading,
+    error,
+    currentWineData,
+    isFetching,
+  } = useQuery('currentWineData', () =>
+    fetch(`/api/stored-wines/${id}`).then(res => res.json())
+  )
+
+  return [
+    clickedWineId,
+    setClickedWineId,
+    currentWineData,
+    isLoading,
+    isFetching,
+    error,
+  ]
 }

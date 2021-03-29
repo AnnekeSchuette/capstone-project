@@ -2,7 +2,7 @@ import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import truncateByWords from 'lib/truncateByWords'
 import { Heart } from 'heroicons-react'
-import { Link, Route } from 'react-router-dom'
+import { NavLink, Route } from 'react-router-dom'
 
 WineCard.propTypes = {
   title: PropTypes.string,
@@ -85,9 +85,16 @@ export default function WineCard({
           </ListDescr>
         </DescrList>
         <Route exact path="/wine-storage">
-          <Link to={`/wine/${id}`} onClick={() => onShowDetail(id)}>
+          <NavLink
+            exact
+            to={{
+              pathname: `/wine/${id}`,
+              state: id,
+            }}
+            onClick={() => onShowDetail(id)}
+          >
             Show details
-          </Link>
+          </NavLink>
         </Route>
       </CardInfo>
     </CardContent>
