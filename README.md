@@ -49,4 +49,4 @@ In the project directory, please run:
 `npm install`
 
 ## Preview
-A Preview will be released soon ... ⏳
+A preview will be released soon ... ⏳
