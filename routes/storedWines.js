@@ -8,7 +8,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   const { id } = req.params
-  res.json(await Wine.findById(id).catch(next))
+  res.json(await Wine.findOne({ id: id }).catch(next))
 })
 
 router.delete('/:id', async (req, res, next) => {

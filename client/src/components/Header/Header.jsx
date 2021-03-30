@@ -13,8 +13,20 @@ export default function Header({ title, subtitle }) {
   return (
     <HeaderStyled>
       <Switch>
-        <Route path={['/search', '/wine-recommendation', '/dish-pairing', '/wine-storage']}>
-          <Button buttonText="" iconPos="left" onClick={() => history.goBack()} />
+        <Route
+          path={[
+            '/search',
+            '/wine',
+            '/wine-recommendation',
+            '/dish-pairing',
+            '/wine-storage',
+          ]}
+        >
+          <Button
+            buttonText=""
+            iconPos="left"
+            onClick={() => history.goBack()}
+          />
         </Route>
       </Switch>
       <Title>{title}</Title>
@@ -37,7 +49,7 @@ const HeaderStyled = styled.header`
   button {
     position: absolute;
     left: var(--space-medium);
-    background: var(--color-midnight-punch);
+    background: var(--color-midnight-blue);
   }
 `
 const Title = styled.h1`

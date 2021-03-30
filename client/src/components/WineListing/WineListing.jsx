@@ -104,6 +104,6 @@ const Badge = styled.li`
   margin: 0;
   background: var(--color-candy-pink);
   border-radius: 5px;
-  color: var(--color-midnight);
+  color: var(--color-oxford-blue);
   font-size: 0.8em;
 `

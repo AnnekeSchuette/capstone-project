@@ -2,6 +2,7 @@ import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import truncateByWords from 'lib/truncateByWords'
 import { Heart } from 'heroicons-react'
+import { Link } from 'react-router-dom'
 
 WineCard.propTypes = {
   title: PropTypes.string,
@@ -82,36 +83,44 @@ export default function WineCard({
             {price}
           </ListDescr>
         </DescrList>
+        <p>
+          <Link
+            exact
+            to={{
+              pathname: `/wine/${id}`,
+            }}
+          >
+            Show details
+          </Link>
+        </p>
       </CardInfo>
     </CardContent>
   )
 }
 
 const CardContent = styled.div`
-  background: var(--color-ghost-white);
-  box-shadow: 0px 1px 4px #00000030;
-  color: var(--color-midnight);
-  border-radius: var(--space-xxsmall);
-  font-size: 0.75em;
+  background: var(--color-midnight-blue-light);
+  box-shadow: 0px 1px 4px #00000050;
+  height: 100%;
+  width: 100%;
   display: grid;
-  gap: 0 var(--space-medium);
-  position: relative;
-  grid-template-columns: 90px auto;
-  grid-template-rows: auto auto;
-  grid-auto-flow: column;
-  place-items: center;
+  grid-template-columns: 180px auto;
+  place-items: end;
   overflow: hidden;
+  color: var(--color-oxford-blue);
+  font-size: 0.9em;
+  position: relative;
 
   h3 {
+    background: var(--color-midnight-blue-light);
     font-weight: 400;
-    font-size: 1.1em;
+    font-size: 1em;
     margin: 0;
     grid-column-end: span 2;
     width: 100%;
     align-content: center;
-    padding: var(--space-small) var(--space-xlarge) var(--space-small)
+    padding: var(--space-xsmall) var(--space-xlarge) var(--space-xsmall)
       var(--space-small);
-    background: var(--color-midnight-punch-light);
   }
 `
 const ToggleFavButton = styled.button`
@@ -121,6 +130,7 @@ const ToggleFavButton = styled.button`
   right: 5px;
   top: 7px;
   box-shadow: none !important;
+  z-index: 2;
 
   svg {
     fill: ${props =>
@@ -130,21 +140,35 @@ const ToggleFavButton = styled.button`
         props.isActive ? 'var(--color-cadet-grey)' : 'var(--color-candy-pink)'};
   }
 `
+
 const CardInfo = styled.div`
-  background: var(--color-ghost-white);
-  padding: var(--space-small) var(--space-medium) var(--space-small) 0;
+  padding: var(--space-medium) var(--space-medium) var(--space-xsmall);
   height: 100%;
   width: 100%;
+
+  p > a {
+    display: grid;
+    justify-content: right;
+  }
 `
+
 const ImgWrapper = styled.figure`
+  display: grid;
   width: 100%;
+  height: 100%;
   margin: 0;
-  justify-self: center;
-  text-align: center;
-  padding: var(--space-xsmall) 0 var(--space-xsmall) var(--space-medium);
+  background: #fff;
+  padding: var(--space-xsmall) 0 var(--space-small) var(--space-medium);
+  align-items: center;
+  justify-items: center;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -webkit-clip-path: polygon(0 100%, 0% 0%, 100% 0%, 70% 100%, 100% 100%);
+  clip-path: polygon(0 100%, 0% 0%, 100% 0%, 70% 100%, 100% 100%);
 
   img {
     max-width: 100%;
+    padding-right: 35%;
     max-height: 190px;
     height: auto;
     mix-blend-mode: multiply;
@@ -154,10 +178,9 @@ const DescrList = styled.dl`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   place-content: start;
-  font-size: 0.9em;
-  gap: 10px 0;
+  gap: var(--space-xsmall) 0;
   line-height: 1;
-  margin-top: var(--space-small);
+  padding: var(--space-xsmall) 0;
 `
 const ListTerm = styled.dt`
   font-weight: 400;
