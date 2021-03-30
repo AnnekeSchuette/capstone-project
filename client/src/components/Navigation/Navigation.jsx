@@ -12,7 +12,12 @@ export default function Navigation({ pages, onNavigate }) {
         {pages
           .filter(page => page.showInNav)
           .map(({ title, path, icon }, index) => (
-            <NavItem key={title} exact to={path} onClick={() => onNavigate(index)}>
+            <NavItem
+              key={title}
+              exact
+              to={path}
+              onClick={() => onNavigate(index)}
+            >
               <img src={icon} width="40" height="40" alt="" />
               <span>{title}</span>
             </NavItem>
@@ -51,7 +56,7 @@ const NavMenu = styled.nav`
   grid-template-columns: 1fr 1fr;
   gap: 1px;
   padding: 0;
-  background: var(--color-midnight-punch);
+  background: var(--color-midnight-blue);
 `
 const NavItem = styled(NavLink)`
   display: grid;
@@ -64,9 +69,10 @@ const NavItem = styled(NavLink)`
   color: var(--color-ghost-white);
   height: 100%;
 
-  &.active {
+  &.active,
+  &:visited {
     color: var(--color-ghost-white);
-    background: var(--color-midnight);
+    background: var(--color-oxford-blue);
 
     span {
       text-decoration: underline;

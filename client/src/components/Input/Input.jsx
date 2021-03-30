@@ -23,7 +23,7 @@ const InputWrapper = styled.div`
   gap: 10px;
 `
 const InputField = styled.input`
-  border: 1px solid var(--color-midnight-punch);
+  border: 1px solid var(--color-midnight-blue);
   padding: var(--space-small);
   font-size: 0.9em;
   font-weight: 300;

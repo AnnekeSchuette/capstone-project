@@ -16,13 +16,6 @@ WineDetailPage.propTypes = {
 
 export default function WineDetailPage(...props) {
   const { wineId } = useParams()
-  /*  const { wineId } = useParams()
-  const {
-    isLoading,
-    error,
-    data: currentWineData,
-    isFetching,
-  } = useQuery('currentWineData', () => getWinebyId(wineId)) */
   const [isLoading, error, currentWineData, isFetching] = useWineDetail(wineId)
 
   const averageRatingDecimal = currentWineData?.averageRating
@@ -39,7 +32,7 @@ export default function WineDetailPage(...props) {
     return 'Is loading ...'
   } else if (isFetching) {
     return 'Updating ...'
-  } else if (currentWineData?.error) {
+  } else if (error || currentWineData?.error) {
     return `Oops, this should't happen ... 😬 ${
       currentWineData.error.message === undefined
         ? 'Wine not found'
@@ -112,8 +105,7 @@ const Description = styled.p`
   }
 `
 const ImageWrapper = styled.div`
-  background: var(--color-ghost-white);
-  border-radius: var(--space-xxsmall);
+  background: var(--color-midnight-blue-light);
   box-shadow: 0px 1px 4px #00000050;
   height: 100%;
   width: 100%;
@@ -122,14 +114,13 @@ const ImageWrapper = styled.div`
   grid-template-columns: 200px auto;
   place-items: end;
   overflow: hidden;
-  color: var(--color-midnight);
-  font-size: 0.75em;
+  color: var(--color-oxford-blue);
 `
 const Figure = styled.figure`
   width: 100%;
   margin: 0;
   background: #fff;
-  padding: var(--space-xsmall) 0 var(--space-small) var(--space-medium);
+  padding: var(--space-medium) 0 var(--space-small) var(--space-medium);
   -o-object-fit: cover;
   object-fit: cover;
   text-align: center;
@@ -138,7 +129,7 @@ const Figure = styled.figure`
 
   img {
     max-width: 100%;
-    padding-right: 30%;
+    padding-right: 35%;
     max-height: 190px;
     height: auto;
     mix-blend-mode: multiply;
@@ -150,12 +141,13 @@ const DescrList = styled.dl`
   place-content: start;
   gap: 10px 0;
   line-height: 1;
-  margin-top: var(--space-small);
   padding: var(--space-small) var(--space-medium) var(--space-small) 0;
+  width: 100%;
 `
 const ListTerm = styled.dt`
   font-weight: 400;
 `
 const ListDescr = styled.dd`
   text-align: right;
+  margin: 0;
 `

@@ -2,26 +2,6 @@ import { createGlobalStyle } from 'styled-components'
 
 export default createGlobalStyle`
   :root {
-    --color-text: var(--color-midnight);
-    --color-background:var(--color-midnight);
-    --color-complementary: #f0cc00;
-    --color-complementary-light: #f5e277;
-    --color-disabled: var(--color-cadet-grey);
-
-    --color-midnight: #010b3d;
-    --color-midnight-punch: #04135e;
-    --color-midnight-punch-light: #04135e10;
-    --color-space-cadet: #171941ff;
-    --color-pink-pantone: #dc469fff;
-
-    --color-ghost-white: #fbfbff;
-    --color-cadet-grey: #9eb3c2;
-    --color-midnight-blue: #04135e;
-    --color-oxford-blue: #010b3d;
-    --color-popstar: #b84a62;
-    --color-candy-pink: #e26e7d;
-
-
     --space-xxsmall: 5px;
     --space-xsmall: 10px;
     --space-small: 15px;
@@ -29,7 +9,21 @@ export default createGlobalStyle`
     --space-large: 35px;
     --space-xlarge: 50px;
 
+    --color-ghost-white: #fbfbff;
+    --color-cadet-grey: #9eb3c2;
+    --color-midnight-blue: #04135e;
+    --color-midnight-blue-light: #ebecf5;
+    --color-oxford-blue: #010b3d;
+    --color-popstar: #b84a62;
+    --color-candy-pink: #e26e7d;
+
+    --color-text: var(--color-oxford-blue);
+    --color-background:var(--color-oxford-blue);
+    --color-highlight: var(--color-popstar);
+    --color-highlight-light: var(--color-candy-pink);
+    --color-disabled: var(--color-cadet-grey);
   }
+
   * {
     box-sizing: border-box
   }
@@ -45,7 +39,7 @@ export default createGlobalStyle`
     font-size: 112.5%;
     line-height: 1.5;
     padding:0;
-    background:var(--color-midnight);
+    background:var(--color-background);
     min-height: 100vh;
     min-height: -webkit-fill-available;
   }
@@ -57,7 +51,7 @@ export default createGlobalStyle`
     &:focus {
       outline: none;
       border-color: transparent;
-      box-shadow: 0 0 4px 1px plum;
+      box-shadow: 0 0 4px 1px var(--color-midnight-blue);
     }
   }
 
@@ -88,7 +82,16 @@ h2 {
 }
 
 p {
-
   font-size: 0.9em;
+
+  &:first-child {margin-top:0;}
+}
+
+dl {
+  font-size: 0.8em;
+}
+
+a {
+  &:visited {color: var(--color-midnight-blue);}
 }
 `

@@ -212,7 +212,7 @@ const CategoryCards = styled.div`
   margin-top: var(--space-large);
 
   a {
-    color: var(--color-midnight);
+    color: var(--color-oxford-blue);
     text-decoration: none;
     text-align: center;
     justify-content: center;
