@@ -1,6 +1,6 @@
 # 🍷 + 🍱 = Vinz.
 
-## _**Vinz.**_ is your personal assistant who will help you discover wines and dishes that complement each other perfectly!
+## _**Vinz.**_ is your personal assistant that helps you discover wines and dishes that complement each other perfectly!
 
 ## Features ✨ 
 🍷 Get **wine recommendations** based on dishes.
