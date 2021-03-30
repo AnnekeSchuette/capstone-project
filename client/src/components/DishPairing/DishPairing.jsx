@@ -2,16 +2,12 @@ import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import { useParams } from 'react-router-dom'
 import useDishPairing from 'hooks/useDishPairing'
+import { v4 as uuidv4 } from 'uuid'
 
 DishPairing.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string,
-  imageUrl: PropTypes.string,
-  price: PropTypes.string,
-  averageRating: PropTypes.number,
-  ratingCount: PropTypes.number,
-  score: PropTypes.number,
-  link: PropTypes.string,
+  wine_type: PropTypes.string,
+  text: PropTypes.string,
+  pairings: PropTypes.arrayOf.string,
 }
 
 export default function DishPairing(...props) {
@@ -25,10 +21,40 @@ export default function DishPairing(...props) {
   } else if (error || pairingData?.error) {
     return `Oops, this should't happen ... 😬 ${
       pairingData.error.message === undefined
-        ? 'Wine not found'
+        ? 'No pairing available'
         : 'Error: ' + pairingData.error.message
     }`
   } else {
-    return
+    return (
+      <PairingWrapper {...props}>
+        <h3>You can pair "{wineType}" with the following dishes/foods</h3>
+        {pairingData?.text}
+        <p>Matching dishes:</p>
+        <BadgeList>
+          {pairingData?.pairings.map(item => (
+            <Badge key={uuidv4()}>{item}</Badge>
+          ))}
+        </BadgeList>
+      </PairingWrapper>
+    )
   }
 }
+const PairingWrapper = styled.div``
+const BadgeList = styled.ul`
+  display: flex;
+  margin: 0 0 var(--space-medium);
+  padding: 0;
+  gap: 2px;
+  text-align: center;
+  flex-wrap: wrap;
+`
+const Badge = styled.li`
+  flex: 0 1 auto;
+  list-style: none;
+  padding: 2px 5px;
+  margin: 0;
+  background: var(--color-candy-pink);
+  border-radius: 5px;
+  color: var(--color-oxford-blue);
+  font-size: 0.8em;
+`
