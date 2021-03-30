@@ -16,13 +16,37 @@
 
 ## Tech & Tools 🚀
 
-- React
-- Javascript
-- Styled Components
-- Storybook
-- Node.js
-- mongoDB Atlas
-- mongoose
-- Express
-- Jest
-- Testing Library
+This project was bootstrapped with Create React App. Further tooling:
+
+    Javascript ES6+
+    React Router
+    React Query
+    Styled-Components
+    Storybook
+    Spoonacular API
+    MongoDB Atlas
+    Mongoose
+    Node.js
+    Express
+    Jest
+    React-Testing-Libary
+    Cypress
+
+## Running the project
+
+You can clone my repository with:
+
+HTTPS:
+`$ git clone https://github.com/AnnekeSchuette/capstone-project.git`
+
+SSH:
+`$ git clone git@github.com:AnnekeSchuette/capstone-project.git`
+
+## Available Scripts
+
+In the project directory, please run:
+
+`npm install`
+
+## Preview
+A Preview will be released soon ... ⏳
