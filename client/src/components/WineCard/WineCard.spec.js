@@ -2,6 +2,7 @@ import { screen, render } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import WineCard from 'components/WineCard/WineCard'
 import userEvent from '@testing-library/user-event'
+import { MemoryRouter } from 'react-router-dom'
 
 const testdata = {
   id: 454160,
@@ -18,25 +19,25 @@ const testdata = {
 
 describe('WineCard', () => {
   it('renders a card with the title "Gascon Malbec Riserva"', () => {
-    render(<WineCard {...testdata} />)
+    render(<WineCard {...testdata} />, { wrapper: MemoryRouter })
     expect(screen.getByRole('heading', { level: 3 })).toHaveTextContent(
       'Gascon Malbec Riserva'
     )
   })
 
   it('renders an image', () => {
-    render(<WineCard {...testdata} />)
+    render(<WineCard {...testdata} />, { wrapper: MemoryRouter })
     expect(screen.getByRole('figure')).toBeVisible()
     expect(screen.getByRole('img')).toBeVisible()
   })
 
   it('renders an image of higher quality', () => {
-    render(<WineCard {...testdata} />)
+    render(<WineCard {...testdata} />, { wrapper: MemoryRouter })
     expect(screen.getByRole('img').src).toMatch(/636x393/i)
   })
 
   it('renders a list of information: price, rating, score', () => {
-    render(<WineCard {...testdata} />)
+    render(<WineCard {...testdata} />, { wrapper: MemoryRouter })
     expect(
       screen.queryByRole('definition', { name: 'Price (avg):' })
     ).toBeInTheDocument()
@@ -49,7 +50,7 @@ describe('WineCard', () => {
   })
 
   it('renders the correct information for price ("$12.99"), rating (8.8) andscore (8.2)', () => {
-    render(<WineCard {...testdata} />)
+    render(<WineCard {...testdata} />, { wrapper: MemoryRouter })
     expect(
       screen.queryByRole('definition', { name: 'Price (avg):' })
     ).toHaveTextContent('$12.99')
@@ -62,7 +63,9 @@ describe('WineCard', () => {
   })
 
   it('shows "n.a", if a list value is empty', () => {
-    render(<WineCard title="Wine with title only" id="454160" />)
+    render(<WineCard title="Wine with title only" id="454160" />, {
+      wrapper: MemoryRouter,
+    })
     expect(
       screen.queryByRole('definition', { name: 'Price (avg):' })
     ).toHaveTextContent('n.a.')
@@ -75,7 +78,7 @@ describe('WineCard', () => {
   })
 
   it('renders a card with a truncated description text of 20 words, which is 77 characters including (...)', () => {
-    render(<WineCard {...testdata} />)
+    render(<WineCard {...testdata} />, { wrapper: MemoryRouter })
     expect(screen.queryByText(/Dark, rich and complex/i)).toBeInTheDocument()
     expect(
       screen.getByText(/Dark, rich and complex/i).textContent
@@ -83,7 +86,7 @@ describe('WineCard', () => {
   })
 
   it('renders a card with a truncated text of 14 words', () => {
-    render(<WineCard {...testdata} />)
+    render(<WineCard {...testdata} />, { wrapper: MemoryRouter })
     expect(screen.queryByText(/Dark, rich and complex/i)).toBeInTheDocument()
     expect(
       screen
@@ -94,7 +97,7 @@ describe('WineCard', () => {
   })
 
   it('renders a bookmark icon on card', () => {
-    render(<WineCard {...testdata} />)
+    render(<WineCard {...testdata} />, { wrapper: MemoryRouter })
     expect(
       screen.getByRole('switch', { name: 'Put in wine storage' })
     ).toBeInTheDocument()
@@ -102,7 +105,9 @@ describe('WineCard', () => {
 
   it('toggles aria-label and aria-checked on click', () => {
     const callback = jest.fn()
-    render(<WineCard {...testdata} onFavToggle={callback} />)
+    render(<WineCard {...testdata} onFavToggle={callback} />, {
+      wrapper: MemoryRouter,
+    })
 
     expect(
       screen.getByRole('switch', { name: 'Put in wine storage' })

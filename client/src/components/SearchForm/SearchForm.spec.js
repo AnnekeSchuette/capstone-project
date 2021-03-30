@@ -1,10 +1,18 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import SearchForm from 'components/SearchForm/SearchForm'
+import Input from 'components/Input/Input'
 
 describe('SearchForm', () => {
   it('renders a searchform with input field (text) and search button', () => {
-    render(<SearchForm />)
+    render(
+      <SearchForm>
+        <Input
+          label="Get wine recommendations for your meal"
+          placeholder="Type in a dish, ingredient or cuisine ..."
+        />
+      </SearchForm>
+    )
     expect(
       screen.getByLabelText('Get wine recommendations for your meal')
     ).toBeInTheDocument()
@@ -22,7 +30,12 @@ describe('SearchForm', () => {
     const setSearch = jest.fn(value => {})
 
     const { queryByPlaceholderText } = render(
-      <SearchForm setSearch={setSearch} />
+      <SearchForm setSearch={setSearch}>
+        <Input
+          label="Get wine recommendations for your meal"
+          placeholder="Type in a dish, ingredient or cuisine ..."
+        />
+      </SearchForm>
     )
 
     const searchInput = queryByPlaceholderText(
