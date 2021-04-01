@@ -105,6 +105,7 @@ const CardContent = styled.div`
   a {
     display: grid;
     grid-gap: var(--space-xsmall) 0;
+    color: var(--color-oxford-blue);
     text-decoration: none;
 
     h3 {

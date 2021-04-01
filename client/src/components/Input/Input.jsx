@@ -1,6 +1,13 @@
 import styled from 'styled-components/macro'
 
-export default function Input({ label, name, value, placeholder, onChange }) {
+export default function Input({
+  label,
+  name,
+  value,
+  placeholder,
+  autoComplete,
+  onChange,
+}) {
   return (
     <InputWrapper>
       <InputLabel>
@@ -11,6 +18,7 @@ export default function Input({ label, name, value, placeholder, onChange }) {
           value={value}
           placeholder={placeholder}
           onChange={onChange}
+          autoComplete={autoComplete}
         />
       </InputLabel>
     </InputWrapper>

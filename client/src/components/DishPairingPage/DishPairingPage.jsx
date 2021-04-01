@@ -45,17 +45,17 @@ const BadgeList = styled.ul`
   display: flex;
   margin: 0 0 var(--space-medium);
   padding: 0;
-  gap: 2px;
+  gap: 5px;
   text-align: center;
   flex-wrap: wrap;
 `
 const Badge = styled.li`
   flex: 0 1 auto;
   list-style: none;
-  padding: 2px 5px;
+  padding: 2px 10px;
   margin: 0;
   background: var(--color-candy-pink);
   border-radius: 5px;
   color: var(--color-oxford-blue);
-  font-size: 0.8em;
+  font-size: 0.9em;
 `

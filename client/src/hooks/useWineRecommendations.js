@@ -11,8 +11,8 @@ export default function useWineRecommendations() {
   const { REACT_APP_API_SPOONACULAR_KEY } = process.env
   const { REACT_APP_API_SPOONACULAR_BASEURL } = process.env
 
-  const getWinePairing = (food, opts) => {
-    const WINE_PAIRING_URL = `${REACT_APP_API_SPOONACULAR_BASEURL}/food/wine/pairing?apiKey=${REACT_APP_API_SPOONACULAR_KEY}&food=${food}`
+  const getWinePairing = (food, maxPrice, opts) => {
+    const WINE_PAIRING_URL = `${REACT_APP_API_SPOONACULAR_BASEURL}/food/wine/pairing?apiKey=${REACT_APP_API_SPOONACULAR_KEY}&food=${food}&maxPrice=${maxPrice}`
 
     fetch(WINE_PAIRING_URL)
       .then(res => res.json())
@@ -26,9 +26,9 @@ export default function useWineRecommendations() {
   }
   const getMoreWineRecommendations = (
     wineName,
-    maxPrice = 50,
+    maxPrice = 150,
     minRating = 0.7,
-    numberResults = 3
+    numberResults = 100
   ) => {
     const WINE_RECS_URL = `${REACT_APP_API_SPOONACULAR_BASEURL}/food/wine/recommendation?apiKey=${REACT_APP_API_SPOONACULAR_KEY}&wine=${wineName}&maxPrice=${maxPrice}&minRating=${minRating}&number=${numberResults}`
 
