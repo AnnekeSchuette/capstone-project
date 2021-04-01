@@ -6,7 +6,7 @@ const JournalEntrySchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    author: {
+    user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
     },
@@ -21,4 +21,8 @@ const JournalEntrySchema = new mongoose.Schema(
   { timestamps: true, versionKey: false }
 )
 
-module.exports = mongoose.model('JournalEntry', JournalEntrySchema, 'journal_entries')
+module.exports = mongoose.model(
+  'JournalEntry',
+  JournalEntrySchema,
+  'journal_entries'
+)

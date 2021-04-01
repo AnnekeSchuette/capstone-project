@@ -6,9 +6,16 @@ router.get('/', async (req, res, next) => {
   res.json(await JournalEntry.find().catch(next))
 })
 
-router.get('/:id', async (req, res, next) => {
-  const { id } = req.params
-  res.json(await JournalEntry.findById(id).populate('author').catch(next))
+router.get('/:wine_id', async (req, res, next) => {
+  res.json(
+    await JournalEntry.find({
+      wine_id: req.params.wine_id,
+      /* $and: [
+        { wine_id: req.params.wine_id },
+        { user_id: `ObjectId('${req.params.user_id}')` },
+      ], */
+    }).catch(next)
+  )
 })
 
 router.patch('/:id/edit', async (req, res, next) => {
@@ -29,7 +36,7 @@ router.delete('/:id', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   res
     .json(await JournalEntry.create(req.body))
-    .populate('author')
+    .populate('user')
     .execPopulate()
     .catch(next)
 })
