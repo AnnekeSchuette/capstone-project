@@ -1,5 +1,4 @@
 import { NavLink, Route, Switch, useHistory } from 'react-router-dom'
-import { useEffect, useState } from 'react'
 import styled from 'styled-components/macro'
 import quarterCircle from 'assets/quarterCircle.svg'
 import DinnerNew from 'assets/icons/dinnerNew.svg'
@@ -16,8 +15,7 @@ import useWineRecommendations from 'hooks/useWineRecommendations'
 import useLocalStorage from 'hooks/useLocalStorage'
 import useSearchForm from 'hooks/useSearchForm'
 import useToggleFavorite from 'hooks/useToggleFavorite'
-import getDishPairing from 'services/getDishPairing'
-import getDishPairingApi from 'services/getDishPairingApi'
+import DishPairingPage from 'components/DishPairingPage/DishPairingPage'
 
 export default function App() {
   const history = useHistory()
@@ -32,19 +30,6 @@ export default function App() {
     'wineRecs',
     []
   )
-  const [queryDishSearch, setQueryDishSearch] = useLocalStorage(
-    'queryDishSearch',
-    []
-  )
-  const [dishPairing, setDishPairing] = useState({})
-  const [allDishPairings, setAllDishPairings] = useLocalStorage(
-    'dishPairings',
-    []
-  )
-
-  useEffect(() => {
-    getAllDishPairings()
-  }, [])
 
   return (
     <Grid>
@@ -60,6 +45,9 @@ export default function App() {
           <Route path={`/wine/:wineId`}>
             <WineDetailPage />
           </Route>
+          <Route path={`/dish-pairing/:wineType`}>
+            <DishPairingPage />
+          </Route>
           <Route path="/wine-recommendation">
             <WineListing
               recentSearch={queryWineSearch}
@@ -67,15 +55,6 @@ export default function App() {
               onFavToggle={toggleFavStatus}
               savedWines={savedWines}
             />
-          </Route>
-          <Route exact path="/dish-pairing">
-            {dishPairing && (
-              <div>
-                <p>{dishPairing.wine_type}</p>
-                <p>{dishPairing.text}</p>
-                <p>{dishPairing.pairings}</p>
-              </div>
-            )}
           </Route>
           <Route exact path="/search/dish">
             <SearchForm
@@ -136,10 +115,6 @@ export default function App() {
     </Grid>
   )
 
-  function getAllDishPairings() {
-    getDishPairing().then(data => setAllDishPairings([...data]))
-  }
-
   function handleSearchRecs(event) {
     event.preventDefault()
     const form = event.target
@@ -156,23 +131,7 @@ export default function App() {
     event.preventDefault()
     const form = event.target
     const { searchInput } = form.elements
-    setQueryDishSearch(searchInput.value)
-
-    function checkIsInDatabase() {
-      const filteredList = allDishPairings.filter(
-        pairing => pairing.wine_type === queryDishSearch
-      )
-
-      if (filteredList[0] && filteredList[0].length >= 1) {
-        return setDishPairing([filteredList[0]])
-      } else {
-        return getDishPairingApi(queryDishSearch)
-          .then(data => setDishPairing(data))
-          .then(history.push('/dish-pairing'))
-      }
-    }
-
-    return checkIsInDatabase(queryDishSearch)
+    return history.push(`/dish-pairing/${searchInput.value}`)
   }
 }
 

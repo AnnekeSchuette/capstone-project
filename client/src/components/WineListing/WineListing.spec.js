@@ -45,7 +45,7 @@ const wrapper = ({ children }) => <Router history={history}>{children}</Router>
 
 describe('WineListing', () => {
   it('renders all productMatches in the list, which should be 2 WineCards in this case', () => {
-    render(<WineListing results={testdata} />)
+    render(<WineListing results={testdata} />, { wrapper })
     expect(screen.queryAllByRole('heading', { level: 3 })).toHaveLength(2)
   })
 

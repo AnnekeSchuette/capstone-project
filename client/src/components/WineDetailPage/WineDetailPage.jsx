@@ -2,6 +2,7 @@ import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import { Link, useParams } from 'react-router-dom'
 import useWineDetail from 'hooks/useWineDetail'
+import quarterCircleGrey from 'assets/quarterCircleGrey.svg'
 
 WineDetailPage.propTypes = {
   title: PropTypes.string,
@@ -105,34 +106,36 @@ const Description = styled.p`
   }
 `
 const ImageWrapper = styled.div`
-  background: var(--color-midnight-blue-light);
-  box-shadow: 0px 1px 4px #00000050;
+  color: var(--color-oxford-blue);
+  padding: var(--space-medium);
+  border-radius: var(--space-xxsmall);
+  box-shadow: 0px 2px 5px #00000070;
+  background-position: fixed;
+  background: no-repeat var(--color-ghost-white) right 80px
+    url(${quarterCircleGrey});
+  background-size: cover;
   height: 100%;
   width: 100%;
   display: grid;
-
-  grid-template-columns: 200px auto;
+  grid-gap: var(--space-medium);
+  grid-template-columns: 120px auto;
   place-items: end;
   overflow: hidden;
   color: var(--color-oxford-blue);
 `
 const Figure = styled.figure`
   width: 100%;
+  height: 100%;
   margin: 0;
-  background: #fff;
-  padding: var(--space-medium) 0 var(--space-small) var(--space-medium);
-  -o-object-fit: cover;
-  object-fit: cover;
-  text-align: center;
-  -webkit-clip-path: polygon(0 100%, 0% 0%, 100% 0%, 70% 100%, 100% 100%);
-  clip-path: polygon(0 100%, 0% 0%, 100% 0%, 70% 100%, 100% 100%);
+  display: grid;
 
   img {
     max-width: 100%;
-    padding-right: 35%;
-    max-height: 190px;
+    max-height: 160px;
     height: auto;
     mix-blend-mode: multiply;
+    align-self: center;
+    place-self: start;
   }
 `
 const DescrList = styled.dl`
@@ -141,7 +144,7 @@ const DescrList = styled.dl`
   place-content: start;
   gap: 10px 0;
   line-height: 1;
-  padding: var(--space-small) var(--space-medium) var(--space-small) 0;
+  padding: 0;
   width: 100%;
 `
 const ListTerm = styled.dt`

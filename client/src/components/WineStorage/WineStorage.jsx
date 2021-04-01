@@ -41,7 +41,7 @@ export default function WineStorage({ savedWines, onFavToggle }) {
 
 const WineStorageList = styled.div`
   display: grid;
-  gap: var(--space-medium);
+  gap: var(--space-large);
 `
 const ListEmptyMessage = styled.p`
   text-align: center;
