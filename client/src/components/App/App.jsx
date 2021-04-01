@@ -16,6 +16,7 @@ import useLocalStorage from 'hooks/useLocalStorage'
 import useSearchForm from 'hooks/useSearchForm'
 import useToggleFavorite from 'hooks/useToggleFavorite'
 import DishPairingPage from 'components/DishPairingPage/DishPairingPage'
+import { useState } from 'react'
 
 export default function App() {
   const history = useHistory()
@@ -30,6 +31,7 @@ export default function App() {
     'wineRecs',
     []
   )
+  const [userId, setUserId] = useState('605d0ce2b0fee964524884fc')
 
   return (
     <Grid>
@@ -43,7 +45,7 @@ export default function App() {
             />
           </Route>
           <Route path={`/wine/:wineId`}>
-            <WineDetailPage />
+            <WineDetailPage userId={userId} />
           </Route>
           <Route path={`/dish-pairing/:wineType`}>
             <DishPairingPage />
@@ -69,6 +71,7 @@ export default function App() {
                 onChange={e => setSearch(e.target.value)}
                 type="text"
                 name="searchInput"
+                autoComplete="off"
               />
             </SearchForm>
           </Route>
@@ -85,20 +88,21 @@ export default function App() {
                 onChange={e => setSearch(e.target.value)}
                 type="text"
                 name="searchInput"
+                autoComplete="off"
               />
             </SearchForm>
           </Route>
           <Route exact path="/">
-            <h2>What are you looking for?</h2>
+            <h3>What are you looking for?</h3>
             <CategoryCards>
               <NavLink to="/search/wine">
-                <h3>I need a wine</h3>
+                <h4>I need a wine</h4>
                 <figure>
                   <img src={WineBottle} alt="" />
                 </figure>
               </NavLink>
               <NavLink to="/search/dish">
-                <h3>Dish match</h3>
+                <h4>Dish match</h4>
                 <figure>
                   <img src={DinnerNew} alt="" />
                 </figure>
@@ -124,7 +128,7 @@ export default function App() {
     /* return setWineRecs(
       getWineRecommendationsApi(searchInput.value, 50, 0.7, 100)
     ) */
-    return setWineRecs(getWinePairing(searchInput.value))
+    return setWineRecs(getWinePairing(searchInput.value, 50))
   }
 
   function handleSearchDish(event) {
@@ -152,14 +156,20 @@ const Grid = styled.div`
 `
 const Main = styled.main`
   padding: var(--space-medium);
-  overflow-y: scroll;
+  overflow: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+
+  &:-webkit-scrollbar {
+    display: none;
+  }
 
   &::after {
     content: '';
     display: block;
     height: var(--space-large);
   }
-  h2 {
+  h3 {
     text-align: center;
   }
 `
@@ -192,8 +202,7 @@ const CategoryCards = styled.div`
       }
     }
 
-    h3 {
-      font-size: 0.9em;
+    h4 {
       color: #fff;
     }
   }

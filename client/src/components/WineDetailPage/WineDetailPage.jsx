@@ -1,8 +1,13 @@
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
+import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import useWineDetail from 'hooks/useWineDetail'
+import useJournal from 'hooks/useJournal'
 import quarterCircleGrey from 'assets/quarterCircleGrey.svg'
+import JournalEntry from 'components/JournalEntry/JournalEntry'
+import JournalForm from 'components/JournalForm/JournalForm'
+import getFormattedDate from 'lib/getFormattedDate'
 
 WineDetailPage.propTypes = {
   title: PropTypes.string,
@@ -15,16 +20,31 @@ WineDetailPage.propTypes = {
   link: PropTypes.string,
 }
 
-export default function WineDetailPage(...props) {
+export default function WineDetailPage(userId, ...props) {
   const { wineId } = useParams()
   const [isLoading, error, currentWineData, isFetching] = useWineDetail(wineId)
+
+  const [ratingScore, setRatingScore] = useState(0)
+  const [
+    journalLoading,
+    journalError,
+    journalEntry,
+    journalFetching,
+  ] = useJournal(wineId)
+
+  const entryCreatedAt =
+    journalEntry !== undefined && new Date(journalEntry[0].createdAt)
+  const entryCreatedAtFormatted =
+    journalEntry !== undefined && getFormattedDate(entryCreatedAt)
 
   const averageRatingDecimal = currentWineData?.averageRating
     ? (currentWineData?.averageRating * 10).toFixed(1)
     : 'n.a.'
+
   const scoreDecimal = currentWineData?.score
     ? (currentWineData?.score * 10).toFixed(1)
     : 'n.a.'
+
   const largeImageUrl =
     currentWineData?.imageUrl &&
     currentWineData?.imageUrl.replace('312x231', '636x393')
@@ -84,6 +104,21 @@ export default function WineDetailPage(...props) {
         </Description>
 
         {props.children}
+        {journalEntry !== undefined ? (
+          <JournalEntry
+            ratingScore={journalEntry[0]?.rating}
+            journalContent={journalEntry[0].notes}
+            createdAt={entryCreatedAtFormatted}
+          />
+        ) : (
+          <JournalForm
+            ratingScore={ratingScore}
+            setRatingScore={setRatingScore}
+            journalContent=""
+            wineId={wineId}
+            userId={userId}
+          />
+        )}
       </WineWrapper>
     )
   }
