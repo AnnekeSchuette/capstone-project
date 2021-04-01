@@ -1,8 +1,13 @@
 import styled from 'styled-components/macro'
 import Button from 'components/Button/Button'
-import Input from 'components/Input/Input'
 
-export default function SearchForm({ onSubmit, isDisabled = true, search, setSearch, ...props }) {
+export default function SearchForm({
+  onSubmit,
+  isDisabled = true,
+  search,
+  setSearch,
+  ...props
+}) {
   return (
     <SearchFormWrapper onSubmit={onSubmit} {...props}>
       {props.children}
