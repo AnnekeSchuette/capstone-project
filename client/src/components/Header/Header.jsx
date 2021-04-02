@@ -48,7 +48,8 @@ const HeaderStyled = styled.header`
 
   button {
     position: absolute;
-    left: var(--space-medium);
+    left: var(--space-small);
+    top: var(--space-medium);
     background: var(--color-midnight-blue);
   }
 `
