@@ -5,7 +5,7 @@
 ## Features ✨ 
 🍷 Get **wine recommendations** based on dishes.
 
-🍛 Or find suitable suggestions for a particular wine in the **_recipe search_**
+🍛 Or find suitable meals for a particular wine in the **_dish search_**
 
 📔 In your _**tasting journal**_ you can save the wines you have tasted and add your personal _**rating**_ ⭐️ and keep _**notes**_ ✍️
 
