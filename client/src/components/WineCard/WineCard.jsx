@@ -95,7 +95,7 @@ const CardContent = styled.div`
   color: var(--color-oxford-blue);
   padding: var(--space-medium) var(--space-medium);
   border-radius: var(--space-xxsmall);
-  box-shadow: 0px 2px 5px #00000070;
+  box-shadow: 0px 3px 2px #00000070;
   background-position: fixed;
   background: no-repeat var(--color-midnight-blue-light) right 80px
     url(${quarterCircleWhite});
