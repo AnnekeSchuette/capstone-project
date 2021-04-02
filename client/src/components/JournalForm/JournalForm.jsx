@@ -12,9 +12,9 @@ export default function JournalForm({
   wineId,
   userId,
   isDisabled = false,
-  ratingScore = 0,
+  ratingScore,
   setRatingScore,
-  noteContent,
+  journalContent,
   ...props
 }) {
   const onSubmit = event => {
@@ -34,20 +34,21 @@ export default function JournalForm({
       <Rating
         ratingScore={ratingScore}
         setRatingScore={setRatingScore}
-        isDisabled={false}
+        isDisabled={isDisabled}
       />
       <label htmlFor="journalText">
         <h3>Keep notes</h3>
       </label>
       <JournalNote
         id="journalText"
+        defaultValue={journalContent}
         placeholder="Type in your note, i.e. information about the taste or the dish you served this wine to."
         rows="4"
         autoComplete="off"
         name="notes"
       ></JournalNote>
       {props.children}
-      <Button buttonText="Save" disabled={isDisabled} />
+      <Button buttonText="Save" />
     </JournalFormWrapper>
   )
 }

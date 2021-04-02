@@ -9,7 +9,7 @@ Rating.propTypes = {
 export default function Rating({
   ratingScore = 0,
   setRatingScore,
-  isDisabled = true,
+  isDisabled,
 }) {
   const fullStars = [...Array(ratingScore)]
   const emptyStars = [...Array(5 - ratingScore)]
