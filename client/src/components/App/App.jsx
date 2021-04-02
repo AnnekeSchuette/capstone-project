@@ -1,21 +1,21 @@
-import { NavLink, Route, Switch, useHistory } from 'react-router-dom'
+import { Route, Switch, useHistory } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import quarterCircle from 'assets/quarterCircle.svg'
-import DinnerNew from 'assets/icons/dinnerNew.svg'
-import WineBottle from 'assets/icons/wineBottle.svg'
+
 import Input from 'components/Input/Input'
 import Header from 'components/Header/Header'
 import Navigation from 'components/Navigation/Navigation'
 import SearchForm from 'components/SearchForm/SearchForm'
-import WineListing from 'components/WineListing/WineListing'
-import WineDetailPage from 'components/WineDetailPage/WineDetailPage'
-import WineStorage from 'components/WineStorage/WineStorage'
+import WineListing from 'pages/WineListing/WineListing'
+import WineDetailPage from 'pages/WineDetailPage/WineDetailPage'
+import WineStorage from 'pages/WineStorage/WineStorage'
 import usePageInfo from 'hooks/usePageInfo'
 import useWineRecommendations from 'hooks/useWineRecommendations'
+import ReceptionPage from 'pages/ReceptionPage'
 import useLocalStorage from 'hooks/useLocalStorage'
 import useSearchForm from 'hooks/useSearchForm'
 import useToggleFavorite from 'hooks/useToggleFavorite'
-import DishPairingPage from 'components/DishPairingPage/DishPairingPage'
+import DishPairingPage from 'pages/DishPairingPage/DishPairingPage'
 import { useState } from 'react'
 
 export default function App() {
@@ -93,21 +93,7 @@ export default function App() {
             </SearchForm>
           </Route>
           <Route exact path="/">
-            <h3>What are you looking for?</h3>
-            <CategoryCards>
-              <NavLink to="/search/wine">
-                <h4>I need a wine</h4>
-                <figure>
-                  <img src={WineBottle} alt="" />
-                </figure>
-              </NavLink>
-              <NavLink to="/search/dish">
-                <h4>Dish match</h4>
-                <figure>
-                  <img src={DinnerNew} alt="" />
-                </figure>
-              </NavLink>
-            </CategoryCards>
+            <ReceptionPage />
           </Route>
         </Switch>
       </Main>
@@ -124,7 +110,7 @@ export default function App() {
     const form = event.target
     const { searchInput } = form.elements
     setQueryWineSearch(searchInput.value)
-    setCurrentPage(2)
+    setCurrentPage(0)
     /* return setWineRecs(
       getWineRecommendationsApi(searchInput.value, 50, 0.7, 100)
     ) */
@@ -168,42 +154,5 @@ const Main = styled.main`
     content: '';
     display: block;
     height: var(--space-large);
-  }
-  h3 {
-    text-align: center;
-  }
-`
-const CategoryCards = styled.div`
-  display: grid;
-  gap: var(--space-medium);
-  overflow: hidden;
-  grid-template-columns: 1fr 1fr;
-  margin-top: var(--space-large);
-
-  a {
-    color: var(--color-oxford-blue);
-    text-decoration: none;
-    text-align: center;
-    justify-content: center;
-
-    figure {
-      border: 1px solid var(--color-ghost-white);
-      border-radius: var(--space-xxsmall);
-      margin: 0;
-      display: grid;
-      width: 100%;
-      justify-items: center;
-      padding: var(--space-medium);
-
-      img {
-        filter: invert(1);
-        width: 50px;
-        height: 50px;
-      }
-    }
-
-    h4 {
-      color: #fff;
-    }
   }
 `

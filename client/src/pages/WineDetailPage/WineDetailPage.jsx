@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro'
+import { useQuery } from 'react-query'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
@@ -8,6 +9,7 @@ import quarterCircleGrey from 'assets/quarterCircleGrey.svg'
 import JournalEntry from 'components/JournalEntry/JournalEntry'
 import JournalForm from 'components/JournalForm/JournalForm'
 import getFormattedDate from 'lib/getFormattedDate'
+import getJournalEntry from 'services/getJournalEntry'
 
 WineDetailPage.propTypes = {
   title: PropTypes.string,
@@ -25,17 +27,24 @@ export default function WineDetailPage(userId, ...props) {
   const [isLoading, error, currentWineData, isFetching] = useWineDetail(wineId)
 
   const [ratingScore, setRatingScore] = useState(0)
-  const [
+  const [editMode, setEditMode] = useState(false)
+  /*   const [
     journalLoading,
     journalError,
     journalEntry,
     journalFetching,
-  ] = useJournal(wineId)
+  ] = useJournal(wineId) */
+  const {
+    isLoading: journalLoading,
+    error: journalError,
+    data: journalEntry,
+    isFetching: journalFetching,
+  } = useQuery('journalEntry', () => getJournalEntry(wineId))
 
-  const entryCreatedAt =
-    journalEntry !== undefined && new Date(journalEntry[0].createdAt)
+  /* const entryCreatedAt = journalEntry[0] && new Date(journalEntry[0]?.createdAt)
   const entryCreatedAtFormatted =
-    journalEntry !== undefined && getFormattedDate(entryCreatedAt)
+    journalEntry[0] && getFormattedDate(entryCreatedAt) */
+  const entryCreatedAtFormatted = '2021/04/01 8:34'
 
   const averageRatingDecimal = currentWineData?.averageRating
     ? (currentWineData?.averageRating * 10).toFixed(1)
@@ -104,17 +113,29 @@ export default function WineDetailPage(userId, ...props) {
         </Description>
 
         {props.children}
-        {journalEntry !== undefined ? (
-          <JournalEntry
-            ratingScore={journalEntry[0]?.rating}
-            journalContent={journalEntry[0].notes}
-            createdAt={entryCreatedAtFormatted}
-          />
+        {journalEntry[0] ? (
+          editMode ? (
+            <JournalForm
+              ratingScore={journalEntry[0].rating}
+              setRatingScore={setRatingScore}
+              journalContent={journalEntry[0].notes}
+              isDisabled={false}
+              wineId={wineId}
+              userId={userId}
+            />
+          ) : (
+            <JournalEntry
+              ratingScore={journalEntry[0].rating}
+              journalContent={journalEntry[0].notes}
+              createdAt={entryCreatedAtFormatted}
+              onEdit={setEditMode}
+            />
+          )
         ) : (
           <JournalForm
             ratingScore={ratingScore}
             setRatingScore={setRatingScore}
-            journalContent=""
+            isDisabled={false}
             wineId={wineId}
             userId={userId}
           />
@@ -127,6 +148,7 @@ const WineWrapper = styled.div`
   display: grid;
   grid-gap: var(--space-medium) 0;
   position: relative;
+
   h3 {
     font-weight: 300;
     font-size: 1.1em;
@@ -135,6 +157,7 @@ const WineWrapper = styled.div`
 `
 const Description = styled.p`
   display: grid;
+
   a {
     color: #fff;
     text-align: right;

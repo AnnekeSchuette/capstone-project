@@ -53,22 +53,22 @@ export default function WineListing({
   const pairingText = isValidResult && <p>{results.pairingText}</p>
 
   const pairedWines = isValidResult && (
-    <MoreInfoWrap>
+    <div>
       <p>Matching types of wine:</p>
       <BadgeList>
         {results.pairedWines.map(wine => (
           <Badge key={uuidv4()}>{wine}</Badge>
         ))}
       </BadgeList>
-    </MoreInfoWrap>
+    </div>
   )
 
   return (
     <WineList>
       <h2>{`Your wine recommendation for "${recentSearch}"`}</h2>
       {listContent}
-      {pairingText}
       {pairedWines}
+      {pairingText}
     </WineList>
   )
 }
@@ -86,12 +86,9 @@ const ListEmptyMessage = styled.div`
   display: grid;
   gap: var(--space-medium) 0;
 `
-const MoreInfoWrap = styled.div`
-  padding-bottom: var(space--large);
-`
 const BadgeList = styled.ul`
   display: flex;
-  margin: 0 0 var(--space-medium);
+  margin: 0;
   padding: 0;
   gap: 5px;
   text-align: center;
