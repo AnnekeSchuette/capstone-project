@@ -4,7 +4,7 @@ import { Switch, Route, useHistory } from 'react-router'
 import Button from 'components/Button/Button'
 
 Header.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   subtitle: PropTypes.string,
 }
 
@@ -14,14 +14,16 @@ export default function Header({ title, subtitle }) {
     <HeaderStyled>
       <Switch>
         <Route
-          path={[
-            '/search',
-            '/wine',
-            '/wine-recommendation',
-            '/dish-pairing',
-            '/wine-storage',
-          ]}
+          exact
+          path={['/wine', '/wine/recommendation', '/dish-pairing', '/journal']}
         >
+          <Button
+            buttonText=""
+            iconPos="left"
+            onClick={() => history.push('.')}
+          />
+        </Route>
+        <Route path={['/wine/detail/', '/wine/storage']}>
           <Button
             buttonText=""
             iconPos="left"

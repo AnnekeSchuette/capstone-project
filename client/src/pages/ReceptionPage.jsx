@@ -1,23 +1,23 @@
 import styled from 'styled-components/macro'
 import { NavLink } from 'react-router-dom'
 import DinnerNew from 'assets/icons/dinnerNew.svg'
-import WineBottle from 'assets/icons/wineBottle.svg'
+import FoodAndWine from 'assets/icons/foodAndWine.svg'
 
 import React from 'react'
 
 export default function ReceptionPage() {
   return (
     <ReceptionPageWrapper>
-      <h3>What are you looking for?</h3>
+      <h3>What are you looking for today?</h3>
       <CategoryCards>
-        <NavLink to="/search/wine">
-          <h4>I need a wine</h4>
+        <NavLink to="/wine">
+          <h4>Wine Recommendation</h4>
           <figure>
-            <img src={WineBottle} alt="" />
+            <img src={FoodAndWine} alt="" />
           </figure>
         </NavLink>
-        <NavLink to="/search/dish">
-          <h4>Dish match</h4>
+        <NavLink to="/dish-pairing">
+          <h4>Dish Inspiration</h4>
           <figure>
             <img src={DinnerNew} alt="" />
           </figure>
@@ -37,6 +37,7 @@ const ReceptionPageWrapper = styled.section`
   }
   h4 {
     color: #fff;
+    padding: 0 var(--space-small);
   }
 `
 const CategoryCards = styled.div`
