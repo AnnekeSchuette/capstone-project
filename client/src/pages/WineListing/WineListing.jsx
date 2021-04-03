@@ -1,4 +1,5 @@
 import WineCard from 'components/WineCard/WineCard'
+import { capitalize } from 'lib/capitalizeString'
 import styled from 'styled-components/macro'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -8,13 +9,14 @@ export default function WineListing({
   onFavToggle,
   recentSearch,
 }) {
+  const capitalizedSearchString = capitalize(recentSearch)
   const isValidResult =
     !results.status && 'productMatches' in results && results.pairingText !== ''
 
   const noResultsMessage =
     !isValidResult &&
     recentSearch !== '' &&
-    `Sorry, we couldn't find any matches for "${recentSearch}".😢
+    `Sorry, we couldn't find any matches for "${capitalizedSearchString}".😢
     \n You could try another term or similar dish.`
 
   const listContent = isValidResult ? (
@@ -65,7 +67,7 @@ export default function WineListing({
 
   return (
     <WineList>
-      <h2>{`Your wine recommendation for "${recentSearch}"`}</h2>
+      <h3>{`Your wine recommendation for "${capitalizedSearchString}"`}</h3>
       {listContent}
       {pairedWines}
       {pairingText}

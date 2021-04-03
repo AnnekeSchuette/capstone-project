@@ -83,7 +83,6 @@ h2 {
 }
 
 p {
-  font-size: 0.9em;
 
   &:first-child {margin-top:0;}
 }

@@ -62,7 +62,7 @@ export default function WineCard({
       >
         <Heart size={34} />
       </ToggleFavButton>
-      <Link exact to={{ pathname: `/wine/${id}` }}>
+      <Link exact to={{ pathname: `/wine/detail/${id}` }}>
         <h3>{title}</h3>
         <ImageWrapper>
           <DescrList>

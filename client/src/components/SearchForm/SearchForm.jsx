@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import styled from 'styled-components/macro'
 import Button from 'components/Button/Button'
 
@@ -8,6 +9,10 @@ export default function SearchForm({
   setSearch,
   ...props
 }) {
+  useEffect(() => {
+    setSearch('')
+  }, [setSearch])
+
   return (
     <SearchFormWrapper onSubmit={onSubmit} {...props}>
       {props.children}
