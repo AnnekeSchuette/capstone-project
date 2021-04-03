@@ -1,7 +1,6 @@
 import { Route, Switch, useHistory } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import quarterCircle from 'assets/quarterCircle.svg'
-
 import Input from 'components/Input/Input'
 import Header from 'components/Header/Header'
 import Navigation from 'components/Navigation/Navigation'
@@ -9,6 +8,7 @@ import SearchForm from 'components/SearchForm/SearchForm'
 import WineListing from 'pages/WineListing/WineListing'
 import WineDetailPage from 'pages/WineDetailPage/WineDetailPage'
 import WineStorage from 'pages/WineStorage/WineStorage'
+import JournalPage from 'pages/JournalPage/JournalPage'
 import usePageInfo from 'hooks/usePageInfo'
 import useWineRecommendations from 'hooks/useWineRecommendations'
 import ReceptionPage from 'pages/ReceptionPage'
@@ -16,7 +16,6 @@ import useLocalStorage from 'hooks/useLocalStorage'
 import useSearchForm from 'hooks/useSearchForm'
 import useToggleFavorite from 'hooks/useToggleFavorite'
 import DishPairingPage from 'pages/DishPairingPage/DishPairingPage'
-import { useState } from 'react'
 
 export default function App() {
   const history = useHistory()
@@ -27,30 +26,42 @@ export default function App() {
     'queryWineSearch',
     []
   )
+  const [queryDishSearch, setQueryDishSearch] = useLocalStorage(
+    'queryDishSearch',
+    []
+  )
   const [wineRecs, setWineRecs, getWinePairing] = useWineRecommendations(
     'wineRecs',
     []
   )
-  const [userId, setUserId] = useState('605d0ce2b0fee964524884fc')
+  const user = '605d0ce2b0fee964524884fc'
 
   return (
     <Grid>
-      <Header title="Vinz" subtitle={pages[currentPage].subtitle} />
+      <Header
+        title="Vinz"
+        subtitle={pages
+          .filter(page => page.path === currentPage ?? page.title === 'Vinz.')
+          .map(page => page.subtitle)}
+      />
       <Main>
         <Switch>
-          <Route path="/wine-storage">
+          <Route exact path="/wine/storage">
             <WineStorage
               savedWines={savedWines}
               onFavToggle={toggleFavStatus}
             />
           </Route>
-          <Route path={`/wine/:wineId`}>
-            <WineDetailPage userId={userId} />
+          <Route exact path="/journal">
+            <JournalPage />
           </Route>
-          <Route path={`/dish-pairing/:wineType`}>
-            <DishPairingPage />
+          <Route exact path={`/wine/detail/:wineId`}>
+            <WineDetailPage user={user} />
           </Route>
-          <Route path="/wine-recommendation">
+          <Route exact path={`/dish-pairing/:wineType`}>
+            <DishPairingPage recentSearch={queryDishSearch} />
+          </Route>
+          <Route exact path="/wine/recommendation">
             <WineListing
               recentSearch={queryWineSearch}
               results={wineRecs}
@@ -58,7 +69,7 @@ export default function App() {
               savedWines={savedWines}
             />
           </Route>
-          <Route exact path="/search/dish">
+          <Route exact path="/dish-pairing">
             <SearchForm
               isDisabled={isDisabled}
               onSubmit={handleSearchDish}
@@ -66,8 +77,8 @@ export default function App() {
               setSearch={setSearch}
             >
               <Input
-                label="Find dishes to match your wine"
-                placeholder="Type in a wine type ..."
+                label="Find dishes to complement your wine"
+                placeholder="Type in wine type, e.g. 'Shiraz', 'Riesling' ..."
                 onChange={e => setSearch(e.target.value)}
                 type="text"
                 name="searchInput"
@@ -75,7 +86,7 @@ export default function App() {
               />
             </SearchForm>
           </Route>
-          <Route exact path="/search/wine">
+          <Route exact path="/wine">
             <SearchForm
               isDisabled={isDisabled}
               onSubmit={handleSearchRecs}
@@ -92,9 +103,7 @@ export default function App() {
               />
             </SearchForm>
           </Route>
-          <Route exact path="/">
-            <ReceptionPage />
-          </Route>
+          <Route exact path="/" component={ReceptionPage} />
         </Switch>
       </Main>
       <Navigation
@@ -110,10 +119,6 @@ export default function App() {
     const form = event.target
     const { searchInput } = form.elements
     setQueryWineSearch(searchInput.value)
-    setCurrentPage(0)
-    /* return setWineRecs(
-      getWineRecommendationsApi(searchInput.value, 50, 0.7, 100)
-    ) */
     return setWineRecs(getWinePairing(searchInput.value, 50))
   }
 
@@ -121,6 +126,8 @@ export default function App() {
     event.preventDefault()
     const form = event.target
     const { searchInput } = form.elements
+
+    setQueryDishSearch(searchInput.value)
     return history.push(`/dish-pairing/${searchInput.value}`)
   }
 }
