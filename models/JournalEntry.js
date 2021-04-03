@@ -2,13 +2,17 @@ const mongoose = require('mongoose')
 
 const JournalEntrySchema = new mongoose.Schema(
   {
-    wine_id: {
+    wineId: {
       type: Number,
       required: true,
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
+    },
+    wine: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Wine',
     },
     rating: {
       type: Number,

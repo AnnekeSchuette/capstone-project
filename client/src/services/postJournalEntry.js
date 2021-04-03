@@ -1,11 +1,11 @@
-export default function postJournalEntry(entry) {
-  return fetch('/api/journal-entries', {
+export default function postJournalEntry(wineId, wine, user, rating, notes) {
+  return fetch('/api/journal-entries/:wineId', {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
     },
-    body: JSON.stringify(entry),
+    body: JSON.stringify(wineId, wine, user, rating, notes),
   })
     .then(res => (res.ok ? res.json() : new Error(res.text())))
-    .then(data => (data.error ? Promise.reject(data) : data))
+    .catch(error => error)
 }

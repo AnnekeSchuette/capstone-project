@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const WinePairing = new mongoose.Schema(
   {
-    wine_id: {
+    wineId: {
       type: Number,
       required: true,
     },
@@ -20,4 +20,8 @@ const WinePairing = new mongoose.Schema(
   { timestamps: true, versionKey: false }
 )
 
-module.exports = mongoose.model('WinePairing', WinePairingSchema, 'wine_pairing')
+module.exports = mongoose.model(
+  'WinePairing',
+  WinePairingSchema,
+  'wine_pairing'
+)

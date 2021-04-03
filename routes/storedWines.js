@@ -8,7 +8,11 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   const { id } = req.params
-  res.json(await Wine.findOne({ id: id }).catch(next))
+  res.json(await Wine.findOne({ wineId: id }).catch(next))
+})
+
+router.get('/title/:title', async (req, res, next) => {
+  res.json(await Wine.find({ title: { $regex: req.params.title } }).catch(next))
 })
 
 router.delete('/:id', async (req, res, next) => {
@@ -24,7 +28,7 @@ router.patch('/:id', async (req, res, next) => {
   const { id } = req.params
   res.json(
     await Wine.findOneAndUpdate(
-      { id: id },
+      { wineId: id },
       { $set: req.body },
       { upsert: true, returnNewDocument: true }
     ).catch(next)

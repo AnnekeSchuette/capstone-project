@@ -2,23 +2,57 @@ const express = require('express')
 const JournalEntry = require('../models/JournalEntry')
 const router = express.Router()
 
-router.get('/', async (req, res, next) => {
+/* router.get('/', async (req, res, next) => {
   res.json(await JournalEntry.find().catch(next))
-})
+}) */
 
-router.get('/:wine_id', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   res.json(
-    await JournalEntry.find({
-      wine_id: req.params.wine_id,
-      /* $and: [
-        { wine_id: req.params.wine_id },
-        { user_id: `ObjectId('${req.params.user_id}')` },
-      ], */
-    }).catch(next)
+    await JournalEntry.aggregate([
+      {
+        $lookup: {
+          from: 'stored_wines',
+          localField: 'wineId',
+          foreignField: 'wineId',
+          as: 'wine',
+        },
+      },
+    ])
   )
 })
 
-router.patch('/:id/edit', async (req, res, next) => {
+router.get('/:wineId', async (req, res, next) => {
+  const { wineId } = req.params
+  res.json(await JournalEntry.findOne({ wineId: wineId }).catch(next))
+})
+
+router.post('/:wineId', async (req, res, next) => {
+  res.json(await JournalEntry.create(req.body).catch(next))
+})
+
+/* router.get('/:wineId', async (req, res, next) => {
+  res.json(
+    await JournalEntry.find({
+      wineId: req.params.wineId,
+      $and: [
+        { wineId: req.params.wineId },
+        { user: req.params.user},
+      ],
+    }).catch(next)
+  )
+}) */
+
+router.patch('/:id', async (req, res, next) => {
+  const { id } = req.params
+  res.json(
+    await JournalEntry.findOneAndUpdate(
+      { _id: { id } },
+      { $set: req.body },
+      { upsert: true, returnNewDocument: true }
+    ).catch(next)
+  )
+})
+router.put('/:id', async (req, res, next) => {
   const { id } = req.params
   res.json(
     await JournalEntry.findByIdAndUpdate(
@@ -28,17 +62,10 @@ router.patch('/:id/edit', async (req, res, next) => {
     ).catch(next)
   )
 })
+
 router.delete('/:id', async (req, res, next) => {
   const { id } = req.params
   res.json(await JournalEntry.findByIdAndDelete(id).catch(next))
-})
-
-router.post('/', async (req, res, next) => {
-  res
-    .json(await JournalEntry.create(req.body))
-    .populate('user')
-    .execPopulate()
-    .catch(next)
 })
 
 module.exports = router
