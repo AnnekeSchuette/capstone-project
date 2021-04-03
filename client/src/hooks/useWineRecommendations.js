@@ -18,7 +18,7 @@ export default function useWineRecommendations() {
       .then(res => res.json())
       .then(data => {
         setWineRecs(data) && handleData(data)
-        return history.push('/wine-recommendation')
+        return history.push('/wine/recommendation')
       })
       .catch(error => () => {
         console.error(error)
