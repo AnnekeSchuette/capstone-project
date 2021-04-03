@@ -1,15 +1,13 @@
 import styled from 'styled-components/macro'
-import { useQuery } from 'react-query'
 import PropTypes from 'prop-types'
-import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import useWineDetail from 'hooks/useWineDetail'
-import useJournal from 'hooks/useJournal'
+import { useState } from 'react'
 import quarterCircleGrey from 'assets/quarterCircleGrey.svg'
-import JournalEntry from 'components/JournalEntry/JournalEntry'
 import JournalForm from 'components/JournalForm/JournalForm'
-import getFormattedDate from 'lib/getFormattedDate'
-import getJournalEntry from 'services/getJournalEntry'
+import JournalEntry from 'components/JournalEntry/JournalEntry'
+import postJournalEntry from 'services/postJournalEntry'
+import updateJournalEntry from 'services/updateJournalEntry'
+import useWineDetails from 'hooks/useWineDetails'
 
 WineDetailPage.propTypes = {
   title: PropTypes.string,
@@ -22,29 +20,32 @@ WineDetailPage.propTypes = {
   link: PropTypes.string,
 }
 
-export default function WineDetailPage(userId, ...props) {
+export default function WineDetailPage(user, ...props) {
   const { wineId } = useParams()
-  const [isLoading, error, currentWineData, isFetching] = useWineDetail(wineId)
-
   const [ratingScore, setRatingScore] = useState(0)
   const [editMode, setEditMode] = useState(false)
-  /*   const [
-    journalLoading,
-    journalError,
-    journalEntry,
-    journalFetching,
-  ] = useJournal(wineId) */
-  const {
-    isLoading: journalLoading,
-    error: journalError,
-    data: journalEntry,
-    isFetching: journalFetching,
-  } = useQuery('journalEntry', () => getJournalEntry(wineId))
 
-  /* const entryCreatedAt = journalEntry[0] && new Date(journalEntry[0]?.createdAt)
-  const entryCreatedAtFormatted =
-    journalEntry[0] && getFormattedDate(entryCreatedAt) */
-  const entryCreatedAtFormatted = '2021/04/01 8:34'
+  const [data, isLoading, error, isFetching] = useWineDetails(
+    wineId,
+    ratingScore,
+    setRatingScore
+  )
+
+  if (isLoading) {
+    return 'Is loading ...'
+  }
+  if (isFetching) {
+    return 'Updating ...'
+  }
+
+  if (error || data.error) {
+    return `Oops, this should't happen ... 😬 ${
+      data.error.message === undefined
+        ? 'Wine not found'
+        : 'Error: ' + data.error.message
+    }`
+  }
+  const [currentWineData, journalEntryData] = data
 
   const averageRatingDecimal = currentWineData?.averageRating
     ? (currentWineData?.averageRating * 10).toFixed(1)
@@ -58,92 +59,110 @@ export default function WineDetailPage(userId, ...props) {
     currentWineData?.imageUrl &&
     currentWineData?.imageUrl.replace('312x231', '636x393')
 
-  if (isLoading) {
-    return 'Is loading ...'
-  } else if (isFetching) {
-    return 'Updating ...'
-  } else if (error || currentWineData?.error) {
-    return `Oops, this should't happen ... 😬 ${
-      currentWineData.error.message === undefined
-        ? 'Wine not found'
-        : 'Error: ' + currentWineData.error.message
-    }`
-  } else {
-    return (
-      <WineWrapper {...props}>
-        <h3>{currentWineData?.title}</h3>
-        <ImageWrapper>
-          <Figure>
-            <img src={largeImageUrl} alt="" />
-          </Figure>
-          <DescrList>
-            <ListTerm id={`${currentWineData?.id}-rating`}>Rating:</ListTerm>
-            <ListDescr
-              role="definition"
-              aria-labelledby={`${currentWineData?.id}-rating`}
-            >
-              {averageRatingDecimal}
-              <br></br>
-              <small>{currentWineData?.ratingCount} ratings</small>
-            </ListDescr>
-            <ListTerm id={`${currentWineData?.id}-score`}>Score:</ListTerm>
-            <ListDescr
-              role="definition"
-              aria-labelledby={`${currentWineData?.id}-score`}
-            >
-              {scoreDecimal}
-            </ListDescr>
-            <ListTerm id={`${currentWineData?.id}-price`}>
-              Price (avg):
-            </ListTerm>
-            <ListDescr
-              role="definition"
-              aria-labelledby={`${currentWineData?.id}-price`}
-            >
-              {currentWineData?.price}
-            </ListDescr>
-          </DescrList>
-        </ImageWrapper>
-        <Description>
-          {currentWineData?.description}
-          <br></br>
-          <Link to={{ pathname: currentWineData?.link }} target="_blank">
-            &raquo; more info
-          </Link>
-        </Description>
+  const handleJournalEntryCreate = event => {
+    event.preventDefault()
+    const form = event.target
+    const { notes } = form.elements
 
-        {props.children}
-        {journalEntry[0] ? (
-          editMode ? (
-            <JournalForm
-              ratingScore={journalEntry[0].rating}
-              setRatingScore={setRatingScore}
-              journalContent={journalEntry[0].notes}
-              isDisabled={false}
-              wineId={wineId}
-              userId={userId}
-            />
-          ) : (
-            <JournalEntry
-              ratingScore={journalEntry[0].rating}
-              journalContent={journalEntry[0].notes}
-              createdAt={entryCreatedAtFormatted}
-              onEdit={setEditMode}
-            />
-          )
-        ) : (
+    return postJournalEntry({
+      wineId,
+      rating: ratingScore,
+      notes: notes.value,
+    })
+  }
+  const handleJournalEntryUpdate = event => {
+    event.preventDefault()
+    const form = event.target
+    const { notes } = form.elements
+
+    return updateJournalEntry({
+      _id: journalEntryData._id,
+      wineId,
+      rating: ratingScore,
+      notes: notes.value,
+    })
+  }
+  return (
+    <WineWrapper {...props}>
+      <h3>{currentWineData?.title}</h3>
+      <ImageWrapper>
+        <Figure>
+          <img src={largeImageUrl} alt="" />
+        </Figure>
+        <DescrList>
+          <ListTerm id={`${currentWineData?.id}-rating`}>Rating:</ListTerm>
+          <ListDescr
+            role="definition"
+            aria-labelledby={`${currentWineData?.id}-rating`}
+          >
+            {averageRatingDecimal}
+            <br></br>
+            <small>{currentWineData?.ratingCount} ratings</small>
+          </ListDescr>
+          <ListTerm id={`${currentWineData?.id}-score`}>Score:</ListTerm>
+          <ListDescr
+            role="definition"
+            aria-labelledby={`${currentWineData?.id}-score`}
+          >
+            {scoreDecimal}
+          </ListDescr>
+          <ListTerm id={`${currentWineData?.id}-price`}>Price (avg):</ListTerm>
+          <ListDescr
+            role="definition"
+            aria-labelledby={`${currentWineData?.id}-price`}
+          >
+            {currentWineData?.price}
+          </ListDescr>
+        </DescrList>
+      </ImageWrapper>
+      <Description>
+        {currentWineData?.description}
+        <br></br>
+        <Link to={{ pathname: currentWineData?.link }} target="_blank">
+          &raquo; more info
+        </Link>
+      </Description>
+      {props.children}
+      {journalEntryData ? (
+        editMode ? (
           <JournalForm
             ratingScore={ratingScore}
             setRatingScore={setRatingScore}
-            isDisabled={false}
+            journalContent={journalEntryData?.notes}
             wineId={wineId}
-            userId={userId}
+            user={user}
+            initialValues={journalEntryData}
+            onSubmit={handleJournalEntryUpdate}
+            submitText="save changes"
+            editMode={editMode}
           />
-        )}
-      </WineWrapper>
-    )
-  }
+        ) : (
+          <JournalEntry
+            journalEntryData={journalEntryData}
+            editMode={editMode}
+            onEdit={setEditMode}
+          >
+            <h4>Your personal rating and notes</h4>
+          </JournalEntry>
+        )
+      ) : (
+        <>
+          <JournalForm
+            ratingScore={ratingScore}
+            initialValues={journalEntryData}
+            setRatingScore={setRatingScore}
+            wineId={wineId}
+            user={user}
+            onSubmit={handleJournalEntryCreate}
+            editMode="true"
+            submitText="create entry"
+          />
+        </>
+      )}
+    </WineWrapper>
+  )
 }
+
 const WineWrapper = styled.div`
   display: grid;
   grid-gap: var(--space-medium) 0;

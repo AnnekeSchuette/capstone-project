@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro'
+import { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import postJournalEntry from 'services/postJournalEntry'
 import Rating from 'components/Rating/Rating'
@@ -11,12 +12,13 @@ JournalForm.propTypes = {
 export default function JournalForm({
   wineId,
   userId,
-  isDisabled = false,
-  ratingScore,
+  ratingScore = 0,
   setRatingScore,
   journalContent,
+  editMode,
   ...props
 }) {
+  useEffect(() => {})
   const onSubmit = event => {
     event.preventDefault()
     const form = event.target
@@ -34,7 +36,7 @@ export default function JournalForm({
       <Rating
         ratingScore={ratingScore}
         setRatingScore={setRatingScore}
-        isDisabled={isDisabled}
+        editMode={editMode}
       />
       <label htmlFor="journalText">
         <h3>Keep notes</h3>

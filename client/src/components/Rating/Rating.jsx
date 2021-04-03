@@ -6,11 +6,7 @@ Rating.propTypes = {
   ratingScore: PropTypes.number,
   setRatingScore: PropTypes.func,
 }
-export default function Rating({
-  ratingScore = 0,
-  setRatingScore,
-  isDisabled,
-}) {
+export default function Rating({ ratingScore, setRatingScore, editMode }) {
   const fullStars = [...Array(ratingScore)]
   const emptyStars = [...Array(5 - ratingScore)]
 
@@ -19,8 +15,8 @@ export default function Rating({
       {fullStars.map((points, index) => (
         <StarButton
           key={index}
-          onClick={() => setRatingScore(index)}
-          disabled={isDisabled}
+          onClick={event => handleRatingToggle(event, index)}
+          role="button"
         >
           <Star size="30" />
         </StarButton>
@@ -28,19 +24,27 @@ export default function Rating({
       {emptyStars.map((points, index) => (
         <StarButton
           key={index + ratingScore}
-          onClick={() => setRatingScore(index + ratingScore + 1)}
-          disabled={isDisabled}
+          onClick={event => handleRatingToggle(event, index + ratingScore + 1)}
+          role="button"
         >
           <StarOutline size="30" />
         </StarButton>
       ))}
     </RatingWrapper>
   )
+  function handleRatingToggle(event, value) {
+    event.preventDefault()
+    if (!editMode) {
+      return
+    } else {
+      return setRatingScore(value)
+    }
+  }
 }
 
 const RatingWrapper = styled.div`
   display: flex;
-  gap: var(--space-small);
+  gap: var(--space-xxsmall);
   place-content: center;
 `
 
@@ -50,4 +54,9 @@ const StarButton = styled.button`
   border: none;
   background: none;
   color: var(--color-popstar);
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
 `

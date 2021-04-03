@@ -3,39 +3,45 @@ import PropTypes from 'prop-types'
 import Rating from 'components/Rating/Rating'
 import { Pencil } from 'heroicons-react'
 import Button from 'components/Button/Button'
+import getFormattedDate from 'lib/getFormattedDate'
 
 JournalEntry.propTypes = {
   ratingScore: PropTypes.number,
   personalRating: PropTypes.number,
 }
+
 export default function JournalEntry({
-  createdAt,
+  editMode,
   onEdit,
-  ratingScore = 0,
-  journalContent = '',
+  ratingScore,
+  setRatingScore,
+  journalEntryData,
   ...props
 }) {
+  const { rating, notes, createdAt } = journalEntryData
+  const createdAtFormatted = getFormattedDate(new Date(createdAt))
+
   return (
     <JournalEntryWrapper {...props}>
+      {props.children}
       <EditButton onClick={() => onEdit(true)}>
         <Pencil size="20" />
       </EditButton>
-      <h4>Your personal rating and notes</h4>
-      <RatingWrapper>
-        <dt>Rating: </dt>
-        <dd>
-          <Rating ratingScore={ratingScore} />
-        </dd>
-      </RatingWrapper>
       <JournalNote>
-        <span>{createdAt}</span>
-        <p>{journalContent}</p>
+        <span>{createdAtFormatted}</span>
+        <RatingWrapper>
+          <Rating
+            ratingScore={rating}
+            editMode={editMode}
+            setRatingScore={setRatingScore}
+          />
+        </RatingWrapper>
+        <p>{notes}</p>
       </JournalNote>
-      {props.children}
     </JournalEntryWrapper>
   )
 }
-const JournalEntryWrapper = styled.section`
+const JournalEntryWrapper = styled.article`
   display: grid;
   width: 100%;
   gap: var(--space-small);
@@ -48,18 +54,18 @@ const JournalEntryWrapper = styled.section`
   position: relative;
   place-content: start;
 
-  h4 {
+  h4,
+  h5 {
     padding-bottom: var(--space-xsmall);
     font-size: 0.9em;
     font-weight: 400;
   }
 `
-const RatingWrapper = styled.dl`
+const RatingWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
   font-size: 0.9em;
-  align-items: center;
-  font-weight: 500;
+  place-items: start;
+  margin: var(--space-small) 0;
 `
 const JournalNote = styled.div`
   font-weight: 300;
@@ -71,9 +77,12 @@ const JournalNote = styled.div`
 `
 const EditButton = styled(Button)`
   position: absolute;
-  right: var(--space-xxsmall);
+  right: var(--space-xsmall);
   top: var(--space-xxsmall);
-  padding: var(--space-xxsmall);
+  padding: var(--space-xxsmall) 0 var(--space-xxsmall) var(--space-xxsmall);
   box-shadow: none;
-  border-radius: var(--space-xxsmall);
+  border-radius: 0px;
+  background: none;
+  color: var(--color-popstar);
+  border-bottom: 1px solid var(--color-popstar);
 `
