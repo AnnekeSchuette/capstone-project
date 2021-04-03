@@ -1,11 +1,10 @@
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
-import { useParams, useHistory } from 'react-router-dom'
+import { capitalize } from 'lib/capitalizeString'
+import { EmojiSadOutline } from 'heroicons-react'
+import { useParams } from 'react-router-dom'
 import useDishPairing from 'hooks/useDishPairing'
 import { v4 as uuidv4 } from 'uuid'
-import { useQuery } from 'react-query'
-import getDishPairingApi from 'services/getDishPairingApi'
-import { render } from 'react-dom'
 
 DishPairing.propTypes = {
   wine_type: PropTypes.string,
@@ -13,63 +12,70 @@ DishPairing.propTypes = {
   pairings: PropTypes.array,
 }
 export default function DishPairing(...props) {
-  const history = useHistory()
   const { wineType } = useParams()
-  /* const [isLoading, error, pairingData, isFetching] = useDishPairing(wineType) */
+  const [isLoading, error, pairingData, isFetching] = useDishPairing(wineType)
+  const capitalizedWineType = capitalize(wineType)
 
-  const {
-    isLoading,
-    error,
-    data: pairingData,
-    isFetching,
-  } = useQuery('pairingData', () => getDishPairingApi(wineType))
-
-  if (pairingData !== undefined && pairingData.pairings === '[]') {
+  if (isLoading) {
+    return <StatusMessage role="alert">Is loading ...</StatusMessage>
+  }
+  if (isFetching) {
+    return <StatusMessage role="alert">Updating ...</StatusMessage>
+  }
+  if (error) {
     return (
-      <PairingWrapper {...props}>
-        <h3>
-          You can pair <Highlight>{wineType}</Highlight> with the following
-          dishes/foods
-        </h3>
-        {pairingData?.text}
-        <div>
-          {' '}
-          <p>Matching dishes:</p>
-          <BadgeList>
-            {pairingData?.pairings.map(item => (
-              <Badge key={uuidv4()}>{item}</Badge>
-            ))}
-          </BadgeList>
-        </div>
-      </PairingWrapper>
-    )
-  } else if (isLoading) {
-    return 'Is loading ...'
-  } else if (isFetching) {
-    return 'Updating ...'
-  } else if (error || pairingData?.error) {
-    return `Oops, this should't happen ... 😬 ${
-      pairingData.error.message === undefined
-        ? 'No pairing available'
-        : 'Error: ' + pairingData.error.message
-    }`
-  } else {
-    return (
-      <div>
-        Unfortunately there is no pairing available for
-        {<Highlight> {wineType} </Highlight>}
-      </div>
+      <StatusMessage role="alert">
+        Oops, this should't happen ... 😬
+        {'Error: ' + pairingData.error.message}
+      </StatusMessage>
     )
   }
+  if (pairingData.pairings.length < 1 || pairingData?.error) {
+    return (
+      <StatusMessage role="alert">
+        <p>
+          Unfortunately, we can't find pairing dishes for
+          {<Highlight> {capitalizedWineType} </Highlight>} at the moment
+        </p>
+        <p>
+          <EmojiSadOutline size="64" />
+        </p>
+      </StatusMessage>
+    )
+  }
+  return (
+    <PairingWrapper {...props}>
+      <h3>
+        You can pair <Highlight>{capitalizedWineType}</Highlight> with the
+        following dishes/foods
+      </h3>
+
+      <BadgeList>
+        {pairingData?.pairings.map(item => (
+          <Badge key={uuidv4()}>{item}</Badge>
+        ))}
+      </BadgeList>
+      <WineTypeInfo>
+        <h4>About {capitalizedWineType}</h4>
+        <p>{pairingData?.text}</p>
+      </WineTypeInfo>
+    </PairingWrapper>
+  )
 }
 const PairingWrapper = styled.div`
   display: grid;
   gap: var(--space-large);
 `
+const WineTypeInfo = styled.article`
+  h4 {
+    font-weight: 400;
+    margin-bottom: var(--space-small);
+  }
+`
 
 const BadgeList = styled.ul`
   display: flex;
-  margin: 0 0 var(--space-medium);
+  margin: 0;
   padding: 0;
   gap: 5px;
   text-align: center;
@@ -90,4 +96,16 @@ const Badge = styled.li`
 const Highlight = styled.span`
   color: var(--color-popstar);
   font-style: italic;
+`
+
+const StatusMessage = styled.div`
+  display: grid;
+  gap: var(--space-medium);
+  place-items: center;
+  text-align: center;
+  font-size: 1.2em;
+
+  svg {
+    stroke: var(--color-midnight-blue);
+  }
 `
