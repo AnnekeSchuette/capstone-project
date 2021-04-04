@@ -1,7 +1,10 @@
-import WineCard from 'components/WineCard/WineCard'
-import { capitalize } from 'lib/capitalizeString'
+import { useLayoutEffect } from 'react'
 import styled from 'styled-components/macro'
 import { v4 as uuidv4 } from 'uuid'
+import { EmojiSadOutline } from 'heroicons-react'
+import { capitalize } from 'lib/capitalizeString'
+import StatusMessage from 'components/StatusMessage/StatusMessage'
+import WineCard from 'components/WineCard/WineCard'
 
 export default function WineListing({
   results,
@@ -13,11 +16,17 @@ export default function WineListing({
   const isValidResult =
     !results.status && 'productMatches' in results && results.pairingText !== ''
 
-  const noResultsMessage =
-    !isValidResult &&
-    recentSearch !== '' &&
-    `Sorry, we couldn't find any matches for "${capitalizedSearchString}".😢
-    \n You could try another term or similar dish.`
+  const noResultsMessage = !isValidResult && recentSearch !== '' && (
+    <StatusMessage>
+      <p>
+        Sorry, we couldn't find any matches for "{capitalizedSearchString}".
+      </p>
+      <p>
+        <EmojiSadOutline size="64" />
+      </p>
+      You could try another term or similar dish.
+    </StatusMessage>
+  )
 
   const listContent = isValidResult ? (
     results.productMatches.map(
@@ -67,7 +76,9 @@ export default function WineListing({
 
   return (
     <WineList>
-      <h3>{`Your wine recommendation for "${capitalizedSearchString}"`}</h3>
+      {isValidResult && (
+        <h3>{`Your wine recommendation for "${capitalizedSearchString}"`}</h3>
+      )}
       {listContent}
       {pairedWines}
       {pairingText}

@@ -2,7 +2,7 @@ import styled from 'styled-components/macro'
 import JournalEntry from 'components/JournalEntry/JournalEntry'
 import { useQuery } from 'react-query'
 import { Link } from 'react-router-dom'
-import { sortByDateAsc } from 'lib/sortByDate'
+import StatusMessage from 'components/StatusMessage/StatusMessage'
 
 export default function JournalPage() {
   const { data: journalEntries, isLoading, error, isFetching } = useQuery(
@@ -14,19 +14,20 @@ export default function JournalPage() {
   )
 
   if (isLoading) {
-    return 'Is loading ...'
+    return <StatusMessage>Is loading ...</StatusMessage>
   }
-
   if (isFetching) {
-    return 'Updating ...'
+    return <StatusMessage>Updating ...</StatusMessage>
   }
-
   if (error || journalEntries?.error) {
-    return `Oops, this should't happen ... 😬 ${
-      journalEntries?.error.message === undefined
-        ? 'No entries found'
-        : 'Error: ' + journalEntries?.error.message
-    }`
+    return (
+      <StatusMessage>
+        Oops, this should't happen ... 😬 $
+        {journalEntries?.error.message === undefined
+          ? 'No entries found'
+          : 'Error: ' + journalEntries?.error.message}
+      </StatusMessage>
+    )
   }
 
   return (

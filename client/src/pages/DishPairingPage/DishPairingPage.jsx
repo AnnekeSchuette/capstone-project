@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { capitalize } from 'lib/capitalizeString'
 import { EmojiSadOutline } from 'heroicons-react'
 import { useParams } from 'react-router-dom'
+import StatusMessage from 'components/StatusMessage/StatusMessage'
 import useDishPairing from 'hooks/useDishPairing'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -17,14 +18,14 @@ export default function DishPairing(...props) {
   const capitalizedWineType = capitalize(wineType)
 
   if (isLoading) {
-    return <StatusMessage role="alert">Is loading ...</StatusMessage>
+    return <StatusMessage>Is loading ...</StatusMessage>
   }
   if (isFetching) {
-    return <StatusMessage role="alert">Updating ...</StatusMessage>
+    return <StatusMessage>Updating ...</StatusMessage>
   }
   if (error) {
     return (
-      <StatusMessage role="alert">
+      <StatusMessage>
         Oops, this should't happen ... 😬
         {'Error: ' + pairingData.error.message}
       </StatusMessage>
@@ -32,7 +33,7 @@ export default function DishPairing(...props) {
   }
   if (pairingData.pairings.length < 1 || pairingData?.error) {
     return (
-      <StatusMessage role="alert">
+      <StatusMessage>
         <p>
           Unfortunately, we can't find pairing dishes for
           {<Highlight> {capitalizedWineType} </Highlight>} at the moment
@@ -96,16 +97,4 @@ const Badge = styled.li`
 const Highlight = styled.span`
   color: var(--color-popstar);
   font-style: italic;
-`
-
-const StatusMessage = styled.div`
-  display: grid;
-  gap: var(--space-medium);
-  place-items: center;
-  text-align: center;
-  font-size: 1.2em;
-
-  svg {
-    stroke: var(--color-midnight-blue);
-  }
 `

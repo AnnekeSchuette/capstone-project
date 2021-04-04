@@ -8,6 +8,7 @@ import JournalEntry from 'components/JournalEntry/JournalEntry'
 import postJournalEntry from 'services/postJournalEntry'
 import updateJournalEntry from 'services/updateJournalEntry'
 import useWineDetails from 'hooks/useWineDetails'
+import StatusMessage from 'components/StatusMessage/StatusMessage'
 
 WineDetailPage.propTypes = {
   title: PropTypes.string,
@@ -32,18 +33,21 @@ export default function WineDetailPage(user, ...props) {
   )
 
   if (isLoading) {
-    return 'Is loading ...'
+    return <StatusMessage>Is loading ...</StatusMessage>
   }
   if (isFetching) {
-    return 'Updating ...'
+    return <StatusMessage>Updating ...</StatusMessage>
   }
 
   if (error || data.error) {
-    return `Oops, this should't happen ... 😬 ${
-      data.error.message === undefined
-        ? 'Wine not found'
-        : 'Error: ' + data.error.message
-    }`
+    return (
+      <StatusMessage>
+        Oops, this should't happen ... 😬 $
+        {data.error.message === undefined
+          ? 'Wine not found'
+          : 'Error: ' + data.error.message}
+      </StatusMessage>
+    )
   }
   const [currentWineData, journalEntryData] = data
 
