@@ -10,7 +10,6 @@ import WineDetailPage from 'pages/WineDetailPage/WineDetailPage'
 import WineStorage from 'pages/WineStorage/WineStorage'
 import JournalPage from 'pages/JournalPage/JournalPage'
 import usePageInfo from 'hooks/usePageInfo'
-import useWineRecommendations from 'hooks/useWineRecommendations'
 import ReceptionPage from 'pages/ReceptionPage'
 import useLocalStorage from 'hooks/useLocalStorage'
 import useSearchForm from 'hooks/useSearchForm'
@@ -28,10 +27,6 @@ export default function App() {
   )
   const [queryDishSearch, setQueryDishSearch] = useLocalStorage(
     'queryDishSearch',
-    []
-  )
-  const [wineRecs, setWineRecs, getWinePairing] = useWineRecommendations(
-    'wineRecs',
     []
   )
   const user = '605d0ce2b0fee964524884fc'
@@ -61,10 +56,9 @@ export default function App() {
           <Route exact path={`/dish-pairing/:wineType`}>
             <DishPairingPage recentSearch={queryDishSearch} />
           </Route>
-          <Route exact path="/wine/recommendation">
+          <Route exact path="/wine/recommendation/:queryWineSearch">
             <WineListing
               recentSearch={queryWineSearch}
-              results={wineRecs}
               onFavToggle={toggleFavStatus}
               savedWines={savedWines}
             />
@@ -119,7 +113,7 @@ export default function App() {
     const form = event.target
     const { searchInput } = form.elements
     setQueryWineSearch(searchInput.value)
-    return setWineRecs(getWinePairing(searchInput.value, 50))
+    return history.push(`/wine/recommendation/${searchInput.value}`)
   }
 
   function handleSearchDish(event) {

@@ -1,10 +1,12 @@
-import { useLayoutEffect } from 'react'
 import styled from 'styled-components/macro'
 import { v4 as uuidv4 } from 'uuid'
+import { useParams } from 'react-router-dom'
 import { EmojiSadOutline } from 'heroicons-react'
 import { capitalize } from 'lib/capitalizeString'
 import StatusMessage from 'components/StatusMessage/StatusMessage'
 import WineCard from 'components/WineCard/WineCard'
+import useWineRecommendations from 'hooks/useWineRecommendations'
+import PuffLoader from 'react-spinners/PuffLoader'
 
 export default function WineListing({
   results,
@@ -12,9 +14,46 @@ export default function WineListing({
   onFavToggle,
   recentSearch,
 }) {
+  const { queryWineSearch } = useParams()
+  const [
+    isLoading,
+    error,
+    wineRecommendation,
+    isFetching,
+  ] = useWineRecommendations(queryWineSearch)
+
+  if (isLoading) {
+    return (
+      <StatusMessage>
+        Is loading ...
+        <PuffLoader color="#b84a62" loading="true" size={150} />
+      </StatusMessage>
+    )
+  }
+  if (isFetching) {
+    return (
+      <StatusMessage>
+        Updating ...
+        <PuffLoader color="#b84a62" loading="true" size={150} />
+      </StatusMessage>
+    )
+  }
+
+  if (error || wineRecommendation.error) {
+    return (
+      <StatusMessage>
+        Oops, this should't happen ... 😬 $
+        {wineRecommendation.error.message === undefined
+          ? 'No pairing wine found'
+          : 'Error: ' + wineRecommendation.error.message}
+      </StatusMessage>
+    )
+  }
   const capitalizedSearchString = capitalize(recentSearch)
   const isValidResult =
-    !results.status && 'productMatches' in results && results.pairingText !== ''
+    !wineRecommendation.status &&
+    'productMatches' in wineRecommendation &&
+    wineRecommendation.pairingText !== ''
 
   const noResultsMessage = !isValidResult && recentSearch !== '' && (
     <StatusMessage>
@@ -29,7 +68,7 @@ export default function WineListing({
   )
 
   const listContent = isValidResult ? (
-    results.productMatches.map(
+    wineRecommendation.productMatches.map(
       ({
         id,
         title,
@@ -61,13 +100,13 @@ export default function WineListing({
     <ListEmptyMessage>{noResultsMessage}</ListEmptyMessage>
   )
 
-  const pairingText = isValidResult && <p>{results.pairingText}</p>
+  const pairingText = isValidResult && <p>{wineRecommendation.pairingText}</p>
 
   const pairedWines = isValidResult && (
     <div>
       <p>Matching types of wine:</p>
       <BadgeList>
-        {results.pairedWines.map(wine => (
+        {wineRecommendation.pairedWines.map(wine => (
           <Badge key={uuidv4()}>{wine}</Badge>
         ))}
       </BadgeList>
