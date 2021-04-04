@@ -38,6 +38,18 @@ export default function usePageInfo() {
       path: '/',
       showInNav: false,
     },
+    {
+      title: 'Search',
+      subtitle: 'Dish Search',
+      path: '/dish-pairing',
+      showInNav: false,
+    },
+    {
+      title: 'Search',
+      subtitle: 'Wine Search',
+      path: '/wine',
+      showInNav: false,
+    },
   ]
   return [currentPage, setCurrentPage, pages]
 }

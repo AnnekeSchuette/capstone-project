@@ -55,7 +55,7 @@ const HeaderStyled = styled.header`
     background: var(--color-midnight-blue);
   }
 `
-const Title = styled.h1`
+const Title = styled.div`
   font-family: 'Josefin', sans-serif;
   font-size: 1.7em;
   font-weight: 300;
@@ -75,8 +75,9 @@ const Title = styled.h1`
     position: absolute;
   }
 `
-const Subtitle = styled.h2`
+const Subtitle = styled.h1`
   font-family: 'Josefin', sans-serif;
   font-size: 0.9em;
   margin: 0;
+  font-weight: 300;
 `

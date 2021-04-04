@@ -77,9 +77,12 @@ h1 {
   font-size: 1.5em;
 }
 
-
 h2 {
     font-size: 1.2em;
+}
+
+h3 {
+    text-align: center;
 }
 
 p {
