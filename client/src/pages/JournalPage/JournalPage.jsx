@@ -3,6 +3,7 @@ import JournalEntry from 'components/JournalEntry/JournalEntry'
 import { useQuery } from 'react-query'
 import { Link } from 'react-router-dom'
 import StatusMessage from 'components/StatusMessage/StatusMessage'
+import PuffLoader from 'react-spinners/PuffLoader'
 
 export default function JournalPage() {
   const { data: journalEntries, isLoading, error, isFetching } = useQuery(
@@ -14,10 +15,20 @@ export default function JournalPage() {
   )
 
   if (isLoading) {
-    return <StatusMessage>Is loading ...</StatusMessage>
+    return (
+      <StatusMessage>
+        Is loading ...
+        <PuffLoader color="#b84a62" loading="true" size={150} />
+      </StatusMessage>
+    )
   }
   if (isFetching) {
-    return <StatusMessage>Updating ...</StatusMessage>
+    return (
+      <StatusMessage>
+        Updating ...
+        <PuffLoader color="#b84a62" loading="true" size={150} />
+      </StatusMessage>
+    )
   }
   if (error || journalEntries?.error) {
     return (

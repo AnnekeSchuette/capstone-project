@@ -15,6 +15,7 @@
     "react-query": "^3.13.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-spinners": "^0.10.6",
     "spoonacular_api": "^1.0.0",
     "styled-components": "^5.2.1",
     "supercons": "^0.0.1",

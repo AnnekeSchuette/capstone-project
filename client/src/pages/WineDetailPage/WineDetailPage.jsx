@@ -9,6 +9,7 @@ import postJournalEntry from 'services/postJournalEntry'
 import updateJournalEntry from 'services/updateJournalEntry'
 import useWineDetails from 'hooks/useWineDetails'
 import StatusMessage from 'components/StatusMessage/StatusMessage'
+import PuffLoader from 'react-spinners/PuffLoader'
 
 WineDetailPage.propTypes = {
   title: PropTypes.string,
@@ -33,10 +34,20 @@ export default function WineDetailPage(user, ...props) {
   )
 
   if (isLoading) {
-    return <StatusMessage>Is loading ...</StatusMessage>
+    return (
+      <StatusMessage>
+        Is loading ...
+        <PuffLoader color="#b84a62" loading="true" size={150} />
+      </StatusMessage>
+    )
   }
   if (isFetching) {
-    return <StatusMessage>Updating ...</StatusMessage>
+    return (
+      <StatusMessage>
+        Updating ...
+        <PuffLoader color="#b84a62" loading="true" size={150} />
+      </StatusMessage>
+    )
   }
 
   if (error || data.error) {

@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom'
 import StatusMessage from 'components/StatusMessage/StatusMessage'
 import useDishPairing from 'hooks/useDishPairing'
 import { v4 as uuidv4 } from 'uuid'
+import PuffLoader from 'react-spinners/PuffLoader'
 
 DishPairing.propTypes = {
   wine_type: PropTypes.string,
@@ -18,10 +19,20 @@ export default function DishPairing(...props) {
   const capitalizedWineType = capitalize(wineType)
 
   if (isLoading) {
-    return <StatusMessage>Is loading ...</StatusMessage>
+    return (
+      <StatusMessage>
+        Is loading ...
+        <PuffLoader color="#b84a62" loading="true" size={150} />
+      </StatusMessage>
+    )
   }
   if (isFetching) {
-    return <StatusMessage>Updating ...</StatusMessage>
+    return (
+      <StatusMessage>
+        Updating ...
+        <PuffLoader color="#b84a62" loading="true" size={150} />
+      </StatusMessage>
+    )
   }
   if (error) {
     return (
