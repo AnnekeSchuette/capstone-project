@@ -23,7 +23,14 @@ export default function Header({ title, subtitle }) {
             onClick={() => history.push('.')}
           />
         </Route>
-        <Route path={['/wine/detail/', '/wine/storage']}>
+        <Route
+          path={[
+            '/wine/detail',
+            '/wine/storage',
+            '/dish-pairing/result',
+            '/wine/recommendation/:wineType',
+          ]}
+        >
           <Button
             buttonText=""
             iconPos="left"

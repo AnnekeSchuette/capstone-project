@@ -6,10 +6,15 @@ import AlcoholicBeverageLicensing from 'assets/icons/alcoholicBeverageLicensing.
 export default function usePageInfo() {
   const [currentPage, setCurrentPage] = useState('/')
   const location = useLocation()
+  const currentPath = location.pathname
+  const currentPathShort =
+    currentPath.split('/').length > 3
+      ? currentPath.slice(0, currentPath.lastIndexOf('/'))
+      : currentPath
 
   useEffect(() => {
-    return setCurrentPage(location.pathname)
-  }, [location.pathname])
+    return setCurrentPage(currentPathShort)
+  }, [currentPathShort])
 
   const pages = [
     {
@@ -45,9 +50,21 @@ export default function usePageInfo() {
       showInNav: false,
     },
     {
+      title: 'Dish Pairing Result',
+      subtitle: 'Dish Pairings',
+      path: '/dish-pairing/result',
+      showInNav: false,
+    },
+    {
       title: 'Search',
       subtitle: 'Wine Search',
       path: '/wine',
+      showInNav: false,
+    },
+    {
+      title: 'Wine Detail',
+      subtitle: 'Wine Detail',
+      path: '/wine/detail',
       showInNav: false,
     },
   ]

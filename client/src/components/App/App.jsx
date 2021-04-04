@@ -18,7 +18,12 @@ import DishPairingPage from 'pages/DishPairingPage/DishPairingPage'
 
 export default function App() {
   const history = useHistory()
-  const [currentPage, setCurrentPage, pages] = usePageInfo(2)
+  const [currentPage, setCurrentPage, pages] = usePageInfo('/')
+  const currentSubtitle = pages
+    .filter(page => currentPage === page.path)
+    .map(page => page.subtitle)
+    .toString()
+
   const [savedWines, toggleFavStatus] = useToggleFavorite('wines', [])
   const [search, setSearch, isDisabled] = useSearchForm()
   const [queryWineSearch, setQueryWineSearch] = useLocalStorage(
@@ -33,12 +38,7 @@ export default function App() {
 
   return (
     <Grid>
-      <Header
-        title="Vinz"
-        subtitle={pages
-          .filter(page => page.path === currentPage ?? page.title === 'Vinz.')
-          .map(page => page.subtitle)}
-      />
+      <Header title="Vinz" subtitle={currentSubtitle} />
       <Main>
         <Switch>
           <Route exact path="/wine/storage">
@@ -53,7 +53,7 @@ export default function App() {
           <Route exact path={`/wine/detail/:wineId`}>
             <WineDetailPage user={user} />
           </Route>
-          <Route exact path={`/dish-pairing/:wineType`}>
+          <Route exact path={`/dish-pairing/result/:wineType`}>
             <DishPairingPage recentSearch={queryDishSearch} />
           </Route>
           <Route exact path="/wine/recommendation/:queryWineSearch">
@@ -77,6 +77,7 @@ export default function App() {
                 type="text"
                 name="searchInput"
                 autoComplete="off"
+                autoFocus
               />
             </SearchForm>
           </Route>
@@ -94,6 +95,7 @@ export default function App() {
                 type="text"
                 name="searchInput"
                 autoComplete="off"
+                autoFocus
               />
             </SearchForm>
           </Route>
@@ -122,7 +124,7 @@ export default function App() {
     const { searchInput } = form.elements
 
     setQueryDishSearch(searchInput.value)
-    return history.push(`/dish-pairing/${searchInput.value}`)
+    return history.push(`/dish-pairing/result/${searchInput.value}`)
   }
 }
 
@@ -130,11 +132,6 @@ const Grid = styled.div`
   display: grid;
   grid-template-rows: 75px auto 75px;
   height: 100vh;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
   background-position: fixed;
   background: no-repeat var(--color-background) right bottom
     url(${quarterCircle});
