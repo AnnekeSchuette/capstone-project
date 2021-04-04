@@ -7,6 +7,7 @@ export default function Input({
   placeholder,
   autoComplete,
   onChange,
+  ...props
 }) {
   return (
     <InputWrapper>
@@ -19,6 +20,7 @@ export default function Input({
           placeholder={placeholder}
           onChange={onChange}
           autoComplete={autoComplete}
+          {...props}
         />
       </InputLabel>
     </InputWrapper>

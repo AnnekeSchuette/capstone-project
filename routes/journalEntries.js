@@ -17,7 +17,7 @@ router.get('/', async (req, res, next) => {
           as: 'wine',
         },
       },
-    ])
+    ]).sort({ createdAt: -1 })
   )
 })
 
@@ -29,18 +29,6 @@ router.get('/:wineId', async (req, res, next) => {
 router.post('/:wineId', async (req, res, next) => {
   res.json(await JournalEntry.create(req.body).catch(next))
 })
-
-/* router.get('/:wineId', async (req, res, next) => {
-  res.json(
-    await JournalEntry.find({
-      wineId: req.params.wineId,
-      $and: [
-        { wineId: req.params.wineId },
-        { user: req.params.user},
-      ],
-    }).catch(next)
-  )
-}) */
 
 router.patch('/:id', async (req, res, next) => {
   const { id } = req.params
