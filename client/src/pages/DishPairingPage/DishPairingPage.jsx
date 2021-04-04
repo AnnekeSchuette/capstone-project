@@ -76,9 +76,10 @@ export default function DishPairing(...props) {
 }
 const PairingWrapper = styled.div`
   display: grid;
-  gap: var(--space-large);
+  gap: var(--space-xlarge);
 `
 const WineTypeInfo = styled.article`
+  text-align: center;
   h4 {
     font-weight: 400;
     margin-bottom: var(--space-small);
@@ -92,6 +93,7 @@ const BadgeList = styled.ul`
   gap: 5px;
   text-align: center;
   flex-wrap: wrap;
+  justify-content: center;
 `
 
 const Badge = styled.li`

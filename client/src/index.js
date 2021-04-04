@@ -16,7 +16,7 @@ ReactDOM.render(
         <GlobalFonts />
         <GlobalStyle />
         <App />
-        <ReactQueryDevtools initialIsOpen={false} />
+        {/* <ReactQueryDevtools initialIsOpen={false} /> */}
       </QueryClientProvider>
     </Router>
   </React.StrictMode>,
