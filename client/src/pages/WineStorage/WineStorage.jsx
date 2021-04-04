@@ -1,4 +1,5 @@
 import WineCard from 'components/WineCard/WineCard'
+import { Heart } from 'heroicons-react'
 import styled from 'styled-components/macro'
 
 export default function WineStorage({ savedWines, onFavToggle }) {
@@ -33,10 +34,21 @@ export default function WineStorage({ savedWines, onFavToggle }) {
         )
       )
     ) : (
-      <ListEmptyMessage>No wines stored, yet</ListEmptyMessage>
+      <ListEmptyMessage>
+        No wines stored, yet. <br></br> Save wines by clicking the
+        <Highlight>
+          <Heart size="20" />
+        </Highlight>
+        icon.
+      </ListEmptyMessage>
     )
 
-  return <WineStorageList>{wines}</WineStorageList>
+  return (
+    <WineStorageList>
+      <h3>Your reserved wines</h3>
+      {wines}
+    </WineStorageList>
+  )
 }
 
 const WineStorageList = styled.div`
@@ -45,4 +57,9 @@ const WineStorageList = styled.div`
 `
 const ListEmptyMessage = styled.p`
   text-align: center;
+  align-items: end;
+`
+const Highlight = styled.span`
+  color: var(--color-popstar);
+  padding: 0 var(--space-xxsmall);
 `

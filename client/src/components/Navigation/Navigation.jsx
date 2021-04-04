@@ -5,7 +5,7 @@ import { Search } from 'heroicons-react'
 export default function Navigation({ pages, onNavigate }) {
   return (
     <NavWrapper>
-      <NavItem exact to="/" key="global-search">
+      <NavItem exact to="/" key="global-search" onClick={() => onNavigate('/')}>
         <Search size="24" />
       </NavItem>
       <NavMenu>
@@ -16,7 +16,7 @@ export default function Navigation({ pages, onNavigate }) {
               key={title}
               exact
               to={path}
-              onClick={() => onNavigate(index)}
+              onClick={() => onNavigate(path)}
             >
               <img src={icon} width="40" height="40" alt="" />
               <span>{title}</span>
@@ -84,6 +84,6 @@ const NavItem = styled(NavLink)`
     padding: var(--space-xsmall) 0 0;
   }
   span {
-    font-size: 0.7em;
+    font-size: 0.8em;
   }
 `

@@ -62,8 +62,8 @@ export default function WineCard({
       >
         <Heart size={34} />
       </ToggleFavButton>
-      <Link exact to={{ pathname: `/wine/${id}` }}>
-        <h3>{title}</h3>
+      <Link to={{ pathname: `/wine/detail/${id}` }}>
+        <h4>{title}</h4>
         <ImageWrapper>
           <DescrList>
             <ListTerm id={`${id}-rating`}>Rating:</ListTerm>
@@ -93,9 +93,9 @@ export default function WineCard({
 
 const CardContent = styled.div`
   color: var(--color-oxford-blue);
-  padding: var(--space-medium) var(--space-medium);
+  padding: var(--space-small) var(--space-small);
   border-radius: var(--space-xxsmall);
-  box-shadow: 0px 2px 5px #00000070;
+  box-shadow: 0px 3px 2px #00000070;
   background-position: fixed;
   background: no-repeat var(--color-midnight-blue-light) right 80px
     url(${quarterCircleWhite});
@@ -105,9 +105,10 @@ const CardContent = styled.div`
   a {
     display: grid;
     grid-gap: var(--space-xsmall) 0;
+    color: var(--color-oxford-blue);
     text-decoration: none;
 
-    h3 {
+    h4 {
       font-weight: 300;
       font-size: 1em;
       margin: 0;

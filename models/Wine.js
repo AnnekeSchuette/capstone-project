@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const WineSchema = new mongoose.Schema(
   {
-    id: {
+    wineId: {
       type: Number,
       required: true,
     },

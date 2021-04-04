@@ -13,7 +13,9 @@ export default function getWineRecommendationsApi(
   const fetchUrl = `${REACT_APP_API_SPOONACULAR_BASEURL}/food/wine/recommendation?apiKey=${REACT_APP_API_SPOONACULAR_KEY2}&wine=${wine}&maxPrice=${maxPrice}&minRating=${minRating}&number=${number}`
 
   if (wine === undefined || wine === null) {
-    throw new Error("Missing the required parameter 'wine' when calling getWineRecommendation")
+    throw new Error(
+      "Missing the required parameter 'wine' when calling getWineRecommendation"
+    )
   }
 
   return fetch(fetchUrl)

@@ -70,19 +70,22 @@ export default createGlobalStyle`
 h2,h3,h4,h5,h6 {
   font-family: 'Josefin', sans-serif;
   font-weight:300;
+  margin:0;
 }
 
 h1 {
   font-size: 1.5em;
 }
 
-
 h2 {
     font-size: 1.2em;
 }
 
+h3 {
+    text-align: center;
+}
+
 p {
-  font-size: 0.9em;
 
   &:first-child {margin-top:0;}
 }
@@ -92,6 +95,10 @@ dl {
 }
 
 a {
-  &:visited {color: var(--color-midnight-blue);}
+  &:visited,
+  :hover,
+  :focus {
+    color: var(--color-oxford-blue);
+  }
 }
 `

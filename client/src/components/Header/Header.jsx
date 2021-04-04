@@ -4,7 +4,7 @@ import { Switch, Route, useHistory } from 'react-router'
 import Button from 'components/Button/Button'
 
 Header.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   subtitle: PropTypes.string,
 }
 
@@ -14,12 +14,21 @@ export default function Header({ title, subtitle }) {
     <HeaderStyled>
       <Switch>
         <Route
+          exact
+          path={['/wine', '/wine/recommendation', '/dish-pairing', '/journal']}
+        >
+          <Button
+            buttonText=""
+            iconPos="left"
+            onClick={() => history.push('.')}
+          />
+        </Route>
+        <Route
           path={[
-            '/search',
-            '/wine',
-            '/wine-recommendation',
-            '/dish-pairing',
-            '/wine-storage',
+            '/wine/detail',
+            '/wine/storage',
+            '/dish-pairing/result',
+            '/wine/recommendation/:wineType',
           ]}
         >
           <Button
@@ -48,11 +57,12 @@ const HeaderStyled = styled.header`
 
   button {
     position: absolute;
-    left: var(--space-medium);
+    left: var(--space-small);
+    top: var(--space-medium);
     background: var(--color-midnight-blue);
   }
 `
-const Title = styled.h1`
+const Title = styled.div`
   font-family: 'Josefin', sans-serif;
   font-size: 1.7em;
   font-weight: 300;
@@ -72,8 +82,9 @@ const Title = styled.h1`
     position: absolute;
   }
 `
-const Subtitle = styled.h2`
+const Subtitle = styled.h1`
   font-family: 'Josefin', sans-serif;
   font-size: 0.9em;
   margin: 0;
+  font-weight: 300;
 `

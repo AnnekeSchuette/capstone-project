@@ -2,13 +2,17 @@ const mongoose = require('mongoose')
 
 const JournalEntrySchema = new mongoose.Schema(
   {
-    wine_id: {
+    wineId: {
       type: Number,
       required: true,
     },
-    author: {
+    user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
+    },
+    wine: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Wine',
     },
     rating: {
       type: Number,
@@ -21,4 +25,8 @@ const JournalEntrySchema = new mongoose.Schema(
   { timestamps: true, versionKey: false }
 )
 
-module.exports = mongoose.model('JournalEntry', JournalEntrySchema, 'journal_entries')
+module.exports = mongoose.model(
+  'JournalEntry',
+  JournalEntrySchema,
+  'journal_entries'
+)
