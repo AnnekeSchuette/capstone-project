@@ -225,7 +225,6 @@ const Figure = styled.figure`
     max-width: 100%;
     max-height: 160px;
     height: auto;
-    mix-blend-mode: multiply;
     align-self: center;
     place-self: start;
   }
