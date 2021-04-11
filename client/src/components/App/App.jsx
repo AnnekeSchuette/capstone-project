@@ -1,21 +1,18 @@
 import { Route, Switch } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import quarterCircle from 'assets/quarterCircle.svg'
-import Input from 'components/Input/Input'
 import Header from 'components/Header/Header'
 import Navigation from 'components/Navigation/Navigation'
-import SearchForm from 'components/SearchForm/SearchForm'
+import SearchDishForm from 'components/SearchDishForm/SearchDishForm'
+import SearchWineForm from 'components/SearchWineForm/SearchWineForm'
 import WineRecPage from 'pages/WineRecPage/WineRecPage'
 import WineDetailPage from 'pages/WineDetailPage/WineDetailPage'
 import WineStorage from 'pages/WineStorage/WineStorage'
 import JournalPage from 'pages/JournalPage/JournalPage'
-import usePageInfo from 'hooks/usePageInfo'
 import ReceptionPage from 'pages/ReceptionPage'
-import useSearchForm from 'hooks/useSearchForm'
-import useWineRecSearch from 'hooks/useWineRecSearch'
-import useDishSearch from 'hooks/useDishSearch'
-import useToggleFavorite from 'hooks/useToggleFavorite'
 import DishPairingPage from 'pages/DishPairingPage/DishPairingPage'
+import usePageInfo from 'hooks/usePageInfo'
+import useToggleFavorite from 'hooks/useToggleFavorite'
 
 export default function App() {
   const [currentPage, setCurrentPage, pages] = usePageInfo('/')
@@ -25,9 +22,6 @@ export default function App() {
     .toString()
 
   const [savedWines, toggleFavStatus] = useToggleFavorite('wines', [])
-  const [search, setSearch, isDisabled] = useSearchForm()
-  const [handleSearchRecs, queryWineSearch] = useWineRecSearch()
-  const [handleSearchDish, queryDishSearch] = useDishSearch()
 
   const user = '605d0ce2b0fee964524884fc'
 
@@ -46,53 +40,26 @@ export default function App() {
             <JournalPage />
           </Route>
           <Route exact path={`/wine/detail/:wineId`}>
-            <WineDetailPage user={user} />
+            <WineDetailPage
+              user={user}
+              savedWines={savedWines}
+              onFavToggle={toggleFavStatus}
+            />
           </Route>
           <Route exact path={`/dish-pairing/result/:wineType`}>
-            <DishPairingPage recentSearch={queryDishSearch} />
+            <DishPairingPage />
           </Route>
           <Route exact path="/wine/recommendation/:queryWineSearch">
             <WineRecPage
-              recentSearch={queryWineSearch}
               onFavToggle={toggleFavStatus}
               savedWines={savedWines}
             />
           </Route>
           <Route exact path="/dish-pairing">
-            <SearchForm
-              isDisabled={isDisabled}
-              onSubmit={handleSearchDish}
-              search={search}
-              setSearch={setSearch}
-            >
-              <Input
-                label="Find dishes to complement your wine"
-                placeholder="Type in wine type, e.g. 'Shiraz', 'Riesling' ..."
-                onChange={e => setSearch(e.target.value)}
-                type="text"
-                name="searchInput"
-                autoComplete="off"
-                autoFocus
-              />
-            </SearchForm>
+            <SearchDishForm />
           </Route>
           <Route exact path="/wine">
-            <SearchForm
-              isDisabled={isDisabled}
-              onSubmit={handleSearchRecs}
-              search={search}
-              setSearch={setSearch}
-            >
-              <Input
-                label="Get wine recommendations for your meal"
-                placeholder="Type in a dish, ingredient or cuisine ..."
-                onChange={e => setSearch(e.target.value)}
-                type="text"
-                name="searchInput"
-                autoComplete="off"
-                autoFocus
-              />
-            </SearchForm>
+            <SearchWineForm />
           </Route>
           <Route exact path="/" component={ReceptionPage} />
         </Switch>

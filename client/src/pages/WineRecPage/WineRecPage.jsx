@@ -51,13 +51,13 @@ export default function WineRecPage({ savedWines, onFavToggle, recentSearch }) {
       </StatusMessage>
     )
   }
-  const capitalizedSearchString = capitalize(recentSearch)
+  const capitalizedSearchString = capitalize(queryWineSearch)
   const isValidResult =
     !wineRecommendation.status &&
     'productMatches' in wineRecommendation &&
     wineRecommendation.pairingText !== ''
 
-  const noResultsMessage = !isValidResult && recentSearch !== '' && (
+  const noResultsMessage = !isValidResult && queryWineSearch !== '' && (
     <StatusMessage>
       <p>
         Sorry, we couldn't find any matches for "{capitalizedSearchString}".
