@@ -1,4 +1,4 @@
-import { Route, Switch, useHistory } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import quarterCircle from 'assets/quarterCircle.svg'
 import Input from 'components/Input/Input'
@@ -11,14 +11,13 @@ import WineStorage from 'pages/WineStorage/WineStorage'
 import JournalPage from 'pages/JournalPage/JournalPage'
 import usePageInfo from 'hooks/usePageInfo'
 import ReceptionPage from 'pages/ReceptionPage'
-import useLocalStorage from 'hooks/useLocalStorage'
 import useSearchForm from 'hooks/useSearchForm'
 import useWineRecSearch from 'hooks/useWineRecSearch'
+import useDishSearch from 'hooks/useDishSearch'
 import useToggleFavorite from 'hooks/useToggleFavorite'
 import DishPairingPage from 'pages/DishPairingPage/DishPairingPage'
 
 export default function App() {
-  const history = useHistory()
   const [currentPage, setCurrentPage, pages] = usePageInfo('/')
   const currentSubtitle = pages
     .filter(page => currentPage === page.path)
@@ -27,16 +26,9 @@ export default function App() {
 
   const [savedWines, toggleFavStatus] = useToggleFavorite('wines', [])
   const [search, setSearch, isDisabled] = useSearchForm()
-  const [
-    queryWineSearch,
-    setQueryWineSearch,
-    handleSearchRecs,
-  ] = useWineRecSearch()
+  const [handleSearchRecs, queryWineSearch] = useWineRecSearch()
+  const [handleSearchDish, queryDishSearch] = useDishSearch()
 
-  const [queryDishSearch, setQueryDishSearch] = useLocalStorage(
-    'queryDishSearch',
-    []
-  )
   const user = '605d0ce2b0fee964524884fc'
 
   return (
@@ -112,15 +104,6 @@ export default function App() {
       />
     </Grid>
   )
-
-  function handleSearchDish(event) {
-    event.preventDefault()
-    const form = event.target
-    const { searchInput } = form.elements
-
-    setQueryDishSearch(searchInput.value)
-    return history.push(`/dish-pairing/result/${searchInput.value}`)
-  }
 }
 
 const Grid = styled.div`
