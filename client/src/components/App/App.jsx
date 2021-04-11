@@ -13,6 +13,7 @@ import usePageInfo from 'hooks/usePageInfo'
 import ReceptionPage from 'pages/ReceptionPage'
 import useLocalStorage from 'hooks/useLocalStorage'
 import useSearchForm from 'hooks/useSearchForm'
+import useWineRecSearch from 'hooks/useWineRecSearch'
 import useToggleFavorite from 'hooks/useToggleFavorite'
 import DishPairingPage from 'pages/DishPairingPage/DishPairingPage'
 
@@ -26,10 +27,12 @@ export default function App() {
 
   const [savedWines, toggleFavStatus] = useToggleFavorite('wines', [])
   const [search, setSearch, isDisabled] = useSearchForm()
-  const [queryWineSearch, setQueryWineSearch] = useLocalStorage(
-    'queryWineSearch',
-    []
-  )
+  const [
+    queryWineSearch,
+    setQueryWineSearch,
+    handleSearchRecs,
+  ] = useWineRecSearch()
+
   const [queryDishSearch, setQueryDishSearch] = useLocalStorage(
     'queryDishSearch',
     []
@@ -109,14 +112,6 @@ export default function App() {
       />
     </Grid>
   )
-
-  function handleSearchRecs(event) {
-    event.preventDefault()
-    const form = event.target
-    const { searchInput } = form.elements
-    setQueryWineSearch(searchInput.value)
-    return history.push(`/wine/recommendation/${searchInput.value}`)
-  }
 
   function handleSearchDish(event) {
     event.preventDefault()
