@@ -42,7 +42,11 @@ export default function DishPairing(...props) {
       </StatusMessage>
     )
   }
-  if (pairingData.pairings.length < 1 || pairingData?.error) {
+  if (
+    pairingData?.pairings.length < 1 ||
+    pairingData === null ||
+    pairingData?.error
+  ) {
     return (
       <StatusMessage>
         <p>
