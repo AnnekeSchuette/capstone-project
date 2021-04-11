@@ -1,12 +1,12 @@
-import WineListing from 'components/WineListing/WineListing'
+import WineRecPage from 'components/WineRecPage/WineRecPage'
 import { actions } from '@storybook/addon-actions'
 
 export default {
-  title: 'Capstone Project/WineListing',
-  component: WineListing,
+  title: 'Capstone Project/WineRecPage',
+  component: WineRecPage,
 }
 
-const Template = args => <WineListing {...args} {...events} />
+const Template = args => <WineRecPage {...args} {...events} />
 const events = actions({ onFavToggle: 'is bookmarked' })
 export const Default = Template.bind({})
 

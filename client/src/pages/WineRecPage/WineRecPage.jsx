@@ -9,13 +9,13 @@ import WineCard from 'components/WineCard/WineCard'
 import useWineRecommendations from 'hooks/useWineRecommendations'
 import PuffLoader from 'react-spinners/PuffLoader'
 
-WineListing.propTypes = {
+WineRecPage.propTypes = {
   savedWines: PropTypes.arrayOf(PropTypes.object),
   onFavToggle: PropTypes.func,
   recentSearch: PropTypes.string,
 }
 
-export default function WineListing({ savedWines, onFavToggle, recentSearch }) {
+export default function WineRecPage({ savedWines, onFavToggle, recentSearch }) {
   const { queryWineSearch } = useParams()
   const [
     isLoading,
@@ -112,18 +112,18 @@ export default function WineListing({ savedWines, onFavToggle, recentSearch }) {
   )
 
   return (
-    <WineList>
+    <WineRecommendation>
       {isValidResult && (
         <h3>{`Your wine recommendation for "${capitalizedSearchString}"`}</h3>
       )}
       {listContent}
       {pairedWines}
       {pairingText}
-    </WineList>
+    </WineRecommendation>
   )
 }
 
-const WineList = styled.div`
+const WineRecommendation = styled.div`
   display: grid;
   gap: var(--space-small);
 

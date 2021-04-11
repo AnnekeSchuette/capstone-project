@@ -1,6 +1,6 @@
 import { screen, render } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
-import WineListing from 'components/WineListing/WineListing'
+import WineRecPage from 'components/WineRecPage/WineRecPage'
 import { createMemoryHistory } from 'history'
 import { Router } from 'react-router'
 
@@ -43,14 +43,14 @@ history.push = jest.fn()
 
 const wrapper = ({ children }) => <Router history={history}>{children}</Router>
 
-describe('WineListing', () => {
+describe('WineRecPage', () => {
   it('renders all productMatches in the list, which should be 2 WineCards in this case', () => {
-    render(<WineListing results={testdata} />, { wrapper })
+    render(<WineRecPage results={testdata} />, { wrapper })
     expect(screen.queryAllByRole('heading', { level: 3 })).toHaveLength(2)
   })
 
   it('renders a "pairingText"', () => {
-    render(<WineListing results={testdata} />, { wrapper })
+    render(<WineRecPage results={testdata} />, { wrapper })
     expect(
       screen.queryByText(
         /Souffle can be paired with Bordeaux, Champagne, and White Burgundy./i
@@ -59,7 +59,7 @@ describe('WineListing', () => {
   })
 
   it('renders "pairedWines" as list', () => {
-    render(<WineListing results={testdata} />, { wrapper })
+    render(<WineRecPage results={testdata} />, { wrapper })
     expect(screen.getAllByRole('listitem')).toHaveLength(3)
   })
 })

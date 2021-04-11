@@ -5,7 +5,7 @@ import Input from 'components/Input/Input'
 import Header from 'components/Header/Header'
 import Navigation from 'components/Navigation/Navigation'
 import SearchForm from 'components/SearchForm/SearchForm'
-import WineListing from 'pages/WineListing/WineListing'
+import WineRecPage from 'pages/WineRecPage/WineRecPage'
 import WineDetailPage from 'pages/WineDetailPage/WineDetailPage'
 import WineStorage from 'pages/WineStorage/WineStorage'
 import JournalPage from 'pages/JournalPage/JournalPage'
@@ -52,7 +52,7 @@ export default function App() {
             <DishPairingPage recentSearch={queryDishSearch} />
           </Route>
           <Route exact path="/wine/recommendation/:queryWineSearch">
-            <WineListing
+            <WineRecPage
               recentSearch={queryWineSearch}
               onFavToggle={toggleFavStatus}
               savedWines={savedWines}
