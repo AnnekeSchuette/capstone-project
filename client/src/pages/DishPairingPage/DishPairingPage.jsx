@@ -3,15 +3,15 @@ import PropTypes from 'prop-types'
 import { capitalize } from 'lib/capitalizeString'
 import { EmojiSadOutline } from 'heroicons-react'
 import { useParams } from 'react-router-dom'
+import BadgeList from 'components/BadgeList/BadgeList'
 import StatusMessage from 'components/StatusMessage/StatusMessage'
 import useDishPairing from 'hooks/useDishPairing'
-import { v4 as uuidv4 } from 'uuid'
 import PuffLoader from 'react-spinners/PuffLoader'
 
 DishPairing.propTypes = {
   wine_type: PropTypes.string,
   text: PropTypes.string,
-  pairings: PropTypes.array,
+  pairings: PropTypes.arrayOf(PropTypes.string),
 }
 export default function DishPairing(...props) {
   const { wineType } = useParams()
@@ -66,11 +66,7 @@ export default function DishPairing(...props) {
         following dishes/foods
       </h3>
 
-      <BadgeList>
-        {pairingData?.pairings.map(item => (
-          <Badge key={uuidv4()}>{item}</Badge>
-        ))}
-      </BadgeList>
+      <BadgeList data={pairingData?.pairings} justify />
       <WineTypeInfo>
         <h4>About {capitalizedWineType}</h4>
         <p>{pairingData?.text}</p>
@@ -89,28 +85,6 @@ const WineTypeInfo = styled.article`
     margin-bottom: var(--space-small);
   }
 `
-
-const BadgeList = styled.ul`
-  display: flex;
-  margin: 0;
-  padding: 0;
-  gap: 5px;
-  text-align: center;
-  flex-wrap: wrap;
-  justify-content: center;
-`
-
-const Badge = styled.li`
-  flex: 0 1 auto;
-  list-style: none;
-  padding: 2px 10px;
-  margin: 0;
-  background: var(--color-candy-pink);
-  border-radius: 5px;
-  color: var(--color-oxford-blue);
-  font-size: 0.9em;
-`
-
 const Highlight = styled.span`
   color: var(--color-popstar);
   font-style: italic;
