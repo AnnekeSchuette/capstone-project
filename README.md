@@ -5,12 +5,14 @@
 ## Features ✨ 
 🍷 Get **wine recommendations** based on dishes.
 
-🍛 Or find suitable meals for a particular wine in the **_dish search_**
+💖 Save wines you want to taste in your personal **__wine storage__**
 
-📔 In your _**tasting journal**_ you can save the wines you have tasted and add your personal _**rating**_ ⭐️ and keep _**notes**_ ✍️
+🍛 Find suitable meals for a particular wine via **_dish search_**
+
+📔 Use your _**tasting journal**_ to keep track of a wine you have tried and add your personal _**rating**_ ⭐️ and _**taste experience**_ ✍️ 
 
 ## About ⚡️ 
-> I love to cook with friends, to try unknown recipes every time and taste delicious new wines with them.<br />
+> I love to cook with friends and try out new recipes and wines with them. For me it's the perfect way to share conviviality, pleasure and creativity. <br />
 > Getting inspiration, however, is often cumbersome and time-consuming - as a layperson, choosing a suitable wine for a dish is difficult. <br /><br />
 > That gave me the idea for this app, which is my digital capstone project for the _neueFische_ **web development bootcamp**.<br />
 

@@ -1,9 +1,9 @@
 export default function getWinePairingApi(food, maxPrice = 50) {
   require('dotenv').config()
-  const { REACT_APP_API_SPOONACULAR_KEY } = process.env
+  const { REACT_APP_API_SPOONACULAR_KEY2 } = process.env
   const { REACT_APP_API_SPOONACULAR_BASEURL } = process.env
 
-  const fetchUrl = `${REACT_APP_API_SPOONACULAR_BASEURL}/food/wine/pairing?apiKey=${REACT_APP_API_SPOONACULAR_KEY}&food=${food}&maxPrice=${maxPrice}`
+  const fetchUrl = `${REACT_APP_API_SPOONACULAR_BASEURL}/food/wine/pairing?apiKey=${REACT_APP_API_SPOONACULAR_KEY2}&food=${food}&maxPrice=${maxPrice}`
 
   if (food === undefined || food === null) {
     throw new Error(

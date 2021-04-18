@@ -1,19 +1,21 @@
 import styled from 'styled-components/macro'
-import { v4 as uuidv4 } from 'uuid'
+import PropTypes from 'prop-types'
 import { useParams } from 'react-router-dom'
 import { EmojiSadOutline } from 'heroicons-react'
 import { capitalize } from 'lib/capitalizeString'
 import StatusMessage from 'components/StatusMessage/StatusMessage'
+import BadgeList from 'components/BadgeList/BadgeList'
 import WineCard from 'components/WineCard/WineCard'
 import useWineRecommendations from 'hooks/useWineRecommendations'
 import PuffLoader from 'react-spinners/PuffLoader'
 
-export default function WineListing({
-  results,
-  savedWines,
-  onFavToggle,
-  recentSearch,
-}) {
+WineRecPage.propTypes = {
+  savedWines: PropTypes.arrayOf(PropTypes.object),
+  onFavToggle: PropTypes.func,
+  recentSearch: PropTypes.string,
+}
+
+export default function WineRecPage({ savedWines, onFavToggle, recentSearch }) {
   const { queryWineSearch } = useParams()
   const [
     isLoading,
@@ -42,20 +44,20 @@ export default function WineListing({
   if (error || wineRecommendation.error) {
     return (
       <StatusMessage>
-        Oops, this should't happen ... 😬 $
+        Oops, this should't happen ... 😬
         {wineRecommendation.error.message === undefined
           ? 'No pairing wine found'
           : 'Error: ' + wineRecommendation.error.message}
       </StatusMessage>
     )
   }
-  const capitalizedSearchString = capitalize(recentSearch)
+  const capitalizedSearchString = capitalize(queryWineSearch)
   const isValidResult =
     !wineRecommendation.status &&
     'productMatches' in wineRecommendation &&
     wineRecommendation.pairingText !== ''
 
-  const noResultsMessage = !isValidResult && recentSearch !== '' && (
+  const noResultsMessage = !isValidResult && queryWineSearch !== '' && (
     <StatusMessage>
       <p>
         Sorry, we couldn't find any matches for "{capitalizedSearchString}".
@@ -97,7 +99,7 @@ export default function WineListing({
       )
     )
   ) : (
-    <ListEmptyMessage>{noResultsMessage}</ListEmptyMessage>
+    <StatusMessage>{noResultsMessage}</StatusMessage>
   )
 
   const pairingText = isValidResult && <p>{wineRecommendation.pairingText}</p>
@@ -105,54 +107,27 @@ export default function WineListing({
   const pairedWines = isValidResult && (
     <div>
       <p>Matching types of wine:</p>
-      <BadgeList>
-        {wineRecommendation.pairedWines.map(wine => (
-          <Badge key={uuidv4()}>{wine}</Badge>
-        ))}
-      </BadgeList>
+      <BadgeList data={wineRecommendation.pairedWines} />
     </div>
   )
 
   return (
-    <WineList>
+    <WineRecommendation>
       {isValidResult && (
         <h3>{`Your wine recommendation for "${capitalizedSearchString}"`}</h3>
       )}
       {listContent}
       {pairedWines}
       {pairingText}
-    </WineList>
+    </WineRecommendation>
   )
 }
 
-const WineList = styled.div`
+const WineRecommendation = styled.div`
   display: grid;
   gap: var(--space-small);
 
   button {
     justify-self: start;
   }
-`
-const ListEmptyMessage = styled.div`
-  text-align: center;
-  display: grid;
-  gap: var(--space-medium) 0;
-`
-const BadgeList = styled.ul`
-  display: flex;
-  margin: 0;
-  padding: 0;
-  gap: 5px;
-  text-align: center;
-  flex-wrap: wrap;
-`
-const Badge = styled.li`
-  flex: 0 1 auto;
-  list-style: none;
-  padding: 2px 10px;
-  margin: 0;
-  background: var(--color-candy-pink);
-  border-radius: 5px;
-  color: var(--color-oxford-blue);
-  font-size: 0.9em;
 `

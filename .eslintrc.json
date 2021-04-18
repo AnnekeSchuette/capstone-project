@@ -3,7 +3,7 @@
         "browser": true,
         "es2021": true,
         "cypress/globals": true,
-    "jest": true
+        "jest": true
     },
     "extends": [
         "eslint:recommended",
@@ -20,7 +20,8 @@
     },
     "plugins": [
         "prettier",
-        "react"
+        "react",
+        "cypress"
     ],
     "rules": {
         "import/first": 0,
@@ -47,9 +48,9 @@
         "spaced-comment": 0,
         "no-undef": 0,
         "cypress/no-assigning-return-values": "error",
-    "cypress/no-unnecessary-waiting": "error",
-    "cypress/assertion-before-screenshot": "warn",
-    "cypress/no-force": "warn",
-    "cypress/no-async-tests": "error"
+        "cypress/no-unnecessary-waiting": "error",
+        "cypress/assertion-before-screenshot": "warn",
+        "cypress/no-force": "warn",
+        "cypress/no-async-tests": "error"
     }
 }

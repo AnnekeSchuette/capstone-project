@@ -1,6 +1,13 @@
 {
   "compilerOptions": {
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "types": ["cypress"]
   },
-  "include": ["src", "src/fonts"]
+  "include": [
+    "src",
+    "src/fonts",
+    "**/*.ts",
+    "../node_modules/cypress",
+    "../../node_modules/dotenv"
+  ]
 }

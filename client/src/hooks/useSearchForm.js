@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback } from 'react'
+import { useHistory } from 'react-router-dom'
 
 export default function useSearchForm() {
+  const history = useHistory()
   const [search, setSearch] = useState('')
   const [isDisabled, setIsDisabled] = useState(false)
 
@@ -12,5 +14,13 @@ export default function useSearchForm() {
     handleChange(search)
   }, [search, handleChange])
 
-  return [search, setSearch, isDisabled, setIsDisabled]
+  function handleSubmit(event, path) {
+    event.preventDefault()
+    const form = event.target
+    const { searchInput } = form.elements
+
+    return history.push(`${path}${searchInput.value}`)
+  }
+
+  return [handleSubmit, search, setSearch, isDisabled, setIsDisabled]
 }
