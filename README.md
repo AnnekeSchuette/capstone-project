@@ -51,4 +51,4 @@ In the project directory, please run:
 `npm install`
 
 ## Preview
-![Mockups](./public/Vinz-screen-mockup_wider_en.png)
+![Mockup](./client/public/Vinz-screen-mockup_wider_en.png)
