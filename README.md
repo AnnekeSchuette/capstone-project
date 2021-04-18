@@ -49,4 +49,4 @@ In the project directory, please run:
 `npm install`
 
 ## Preview
-A preview will be released soon ... ⏳
+![Mockups](./public/Vinz-screen-mockup_wider_en.png)
