@@ -35,7 +35,8 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "plugin:cypress/recommended"
     ],
     "rules": {
       "import/no-anonymous-default-export": "off"
@@ -62,6 +63,9 @@
     "@storybook/preset-create-react-app": "^3.1.6",
     "@storybook/react": "^6.1.21",
     "cypress": "^6.8.0",
+    "eslint-plugin-cypress": "^2.11.2",
+    "eslint-plugin-react": "^7.23.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "start-server-and-test": "^1.12.1"
   }
 }
