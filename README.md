@@ -2,16 +2,18 @@
 
 ## _**Vinz.**_ is your personal assistant that helps you discover wines and dishes that complement each other perfectly!
 
-## Features ✨ 
+## Features ✨
+
 🍷 Get **wine recommendations** based on dishes.
 
-💖 Save wines you want to taste in your personal **__wine storage__**
+💖 Save wines you want to taste in your personal ****wine storage****
 
 🍛 Find suitable meals for a particular wine via **_dish search_**
 
-📔 Use your _**tasting journal**_ to keep track of a wine you have tried and add your personal _**rating**_ ⭐️ and _**taste experience**_ ✍️ 
+📔 Use your _**tasting journal**_ to keep track of a wine you have tried and add your personal _**rating**_ ⭐️ and _**taste experience**_ ✍️
 
-## About ⚡️ 
+## About ⚡️
+
 > I love to cook with friends and try out new recipes and wines with them. For me it's the perfect way to share conviviality, pleasure and creativity. <br />
 > Getting inspiration, however, is often cumbersome and time-consuming - as a layperson, choosing a suitable wine for a dish is difficult. <br /><br />
 > That gave me the idea for this app, which is my digital capstone project for the _neueFische_ **web development bootcamp**.<br />
@@ -51,4 +53,5 @@ In the project directory, please run:
 `npm install`
 
 ## Preview
-![Mockup](./client/public/Vinz-screen-mockup_wider_en.png)
+
+![App Preview Mockup](./client/public/Vinz-screen-mockup_en.png)
