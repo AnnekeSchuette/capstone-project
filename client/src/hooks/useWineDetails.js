@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query'
 
-export default function useWineDetails(wineId, ratingScore, setRatingScore) {
+export default function useWineDetails(wineId) {
   const getWinebyId = () => fetch(`/api/stored-wines/${wineId}`)
   const getJournalEntry = () => fetch(`/api/journal-entries/${wineId}`)
 

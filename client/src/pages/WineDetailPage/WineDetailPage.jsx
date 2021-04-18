@@ -27,11 +27,7 @@ export default function WineDetailPage(user, ...props) {
   const [ratingScore, setRatingScore] = useState(0)
   const [editMode, setEditMode] = useState(false)
 
-  const [data, isLoading, error, isFetching] = useWineDetails(
-    wineId,
-    ratingScore,
-    setRatingScore
-  )
+  const [data, isLoading, error, isFetching] = useWineDetails(wineId)
 
   if (isLoading) {
     return (
@@ -50,13 +46,13 @@ export default function WineDetailPage(user, ...props) {
     )
   }
 
-  if (error || data.error) {
+  if (error || data?.error) {
     return (
       <StatusMessage>
-        Oops, this should't happen ... 😬 $
-        {data.error.message === undefined
+        Oops, this should't happen ... 😬
+        {data?.error.message === undefined
           ? 'Wine not found'
-          : 'Error: ' + data.error.message}
+          : 'Error: ' + data?.error.message}
       </StatusMessage>
     )
   }
