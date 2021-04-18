@@ -63,9 +63,6 @@
     "@storybook/preset-create-react-app": "^3.1.6",
     "@storybook/react": "^6.1.21",
     "cypress": "^7.1.0",
-    "eslint-plugin-cypress": "^2.11.2",
-    "eslint-plugin-react": "^7.23.1",
-    "eslint-plugin-react-hooks": "^4.2.0",
     "start-server-and-test": "^1.12.1"
   }
 }
