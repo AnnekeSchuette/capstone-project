@@ -70,7 +70,8 @@ const NavItem = styled(NavLink)`
   height: 100%;
 
   &.active,
-  &:visited {
+  &:visited,
+  &:hover {
     color: var(--color-ghost-white);
     background: var(--color-oxford-blue);
 
