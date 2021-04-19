@@ -56,4 +56,4 @@ In the project directory, please run:
 
 ![App Preview Mockup](./client/public/Vinz-screen-mockup_en.png)
 
-_hint: This gives you the source code of the app. Unfortunately you will need to request an API key from spoonacular.com to use the full functionality of this App when cloning the repository. You can set your API key via environmental variable or directly exchange it in the services files. Also you need to setup a MongoDB to save journal entries. Configure like you desire! 👩🏻‍🦰✌🏻_
+_hint: This gives you the source code of the app. Unfortunately you will need to request an API key from spoonacular.com to use the full functionality of this App when cloning the repository. You can set your API key via environmental variable or directly exchange it in the services files. Also you need to setup a MongoDB to save journal entries. Configure like you desire!_ 👩🏻‍🦰✌🏻
