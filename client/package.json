@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "version": "0.1.0",
+  "version": "1.3.0",
   "private": true,
   "proxy": "http://localhost:4000",
   "dependencies": {
@@ -38,9 +38,16 @@
       "react-app/jest",
       "plugin:cypress/recommended"
     ],
-    "rules": {
-      "import/no-anonymous-default-export": "off"
-    }
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.js"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
   },
   "browserslist": {
     "production": [
@@ -55,14 +62,14 @@
     ]
   },
   "devDependencies": {
+    "cypress": "^7.1.0",
+    "start-server-and-test": "^1.12.1",
     "@cypress/instrument-cra": "^1.4.0",
     "@storybook/addon-actions": "^6.1.21",
     "@storybook/addon-essentials": "^6.1.21",
     "@storybook/addon-links": "^6.1.21",
     "@storybook/node-logger": "^6.1.21",
     "@storybook/preset-create-react-app": "^3.1.6",
-    "@storybook/react": "^6.1.21",
-    "cypress": "^7.1.0",
-    "start-server-and-test": "^1.12.1"
+    "@storybook/react": "^6.1.21"
   }
 }
