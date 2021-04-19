@@ -1,18 +1,7 @@
-import { useEffect } from 'react'
 import styled from 'styled-components/macro'
 import Button from 'components/Button/Button'
 
-export default function SearchForm({
-  onSubmit,
-  isDisabled = true,
-  search,
-  setSearch,
-  ...props
-}) {
-  useEffect(() => {
-    setSearch('')
-  }, [setSearch])
-
+export default function SearchForm({ onSubmit, isDisabled = true, ...props }) {
   return (
     <SearchFormWrapper onSubmit={onSubmit} {...props}>
       {props.children}

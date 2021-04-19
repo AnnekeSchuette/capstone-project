@@ -11,6 +11,10 @@ export default function useSearchForm() {
   }, [])
 
   useEffect(() => {
+    setSearch('')
+  }, [setSearch])
+
+  useEffect(() => {
     handleChange(search)
   }, [search, handleChange])
 
