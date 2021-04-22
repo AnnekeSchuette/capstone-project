@@ -1,6 +1,6 @@
 import { screen, render } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
-import WineRecPage from 'components/WineRecPage/WineRecPage'
+import WineRecPage from 'pages/WineRecPage/WineRecPage'
 import { createMemoryHistory } from 'history'
 import { Router } from 'react-router'
 

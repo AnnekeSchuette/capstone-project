@@ -20,7 +20,7 @@ const testdata = {
 describe('WineCard', () => {
   it('renders a card with the title "Gascon Malbec Riserva"', () => {
     render(<WineCard {...testdata} />, { wrapper: MemoryRouter })
-    expect(screen.getByRole('heading', { level: 3 })).toHaveTextContent(
+    expect(screen.getByRole('heading', { level: 4 })).toHaveTextContent(
       'Gascon Malbec Riserva'
     )
   })
