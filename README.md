@@ -4,13 +4,13 @@
 
 ## Features ✨
 
-🍷 Get **wine recommendations** based on dishes.
+🍷 Get **_wine recommendations_** based on dishes.
 
-💖 Save wines you want to taste in your personal ****wine storage****
+💖 Save wines you want to taste in your personal **_wine storage_**
 
 🍛 Find suitable meals for a particular wine via **_dish search_**
 
-📔 Use your _**tasting journal**_ to keep track of a wine you have tried and add your personal _**rating**_ ⭐️ and _**taste experience**_ ✍️
+📔 Use your **_tasting journal_** to keep track of a wine you have tried and add your personal **_rating_** ⭐️ and **_taste experience_** ✍️
 
 ## About ⚡️
 
