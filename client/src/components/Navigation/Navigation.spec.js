@@ -1,9 +1,9 @@
 import { screen, render } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
 import '@testing-library/jest-dom/extend-expect'
 import Navigation from 'components/Navigation/Navigation'
 import FoodAndWine from 'assets/icons/foodAndWine.svg'
 import AlcoholicBeverageLicensing from 'assets/icons/alcoholicBeverageLicensing.svg'
-import { MemoryRouter } from 'react-router-dom'
 
 const pages = [
   {

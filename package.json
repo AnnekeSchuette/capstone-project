@@ -1,7 +1,7 @@
 {
-  "name": "capstone-project",
-  "version": "1.0.0",
-  "description": "",
+  "name": "vinz",
+  "version": "1.3.0",
+  "description": "Vinz. is your personal assistant that helps you discover wines and dishes that complement each other perfectly!",
   "main": "index.js",
   "engines": {
     "node": "14.x"
@@ -9,6 +9,7 @@
   "scripts": {
     "start": "npm-run-all --parallel server client",
     "server": "nodemon server.js",
+    "build": "cd client && npm run build",
     "client": "cd client && npm start",
     "test": "cd client && npm test",
     "test:e2e": "cd client && npm run test:e2e",
@@ -30,8 +31,6 @@
     "uuidv4": "^6.2.6"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.8",
-    "babel-loader": "^8.1.0",
     "eslint": "^7.22.0",
     "eslint-plugin-cypress": "^2.11.2",
     "eslint-plugin-react": "^7.23.1",

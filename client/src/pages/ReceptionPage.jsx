@@ -8,7 +8,7 @@ import React from 'react'
 export default function ReceptionPage() {
   return (
     <ReceptionPageWrapper>
-      <h3>What are you looking for today?</h3>
+      <h2>What are you looking for today?</h2>
       <CategoryCards>
         <NavLink to="/wine">
           <figure>
@@ -41,6 +41,10 @@ const ReceptionPageWrapper = styled.section`
 const CategoryCards = styled.div`
   display: grid;
   gap: var(--space-medium);
+
+  @media screen and (min-width: 667px) {
+    grid-template-columns: 1fr 1fr;
+  }
 
   a {
     text-decoration: none;

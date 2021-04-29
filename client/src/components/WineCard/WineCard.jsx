@@ -63,7 +63,7 @@ export default function WineCard({
         <Heart size={34} />
       </ToggleFavButton>
       <Link to={{ pathname: `/wine/detail/${id}` }}>
-        <h4>{title}</h4>
+        <h3>{title}</h3>
         <ImageWrapper>
           <DescrList>
             <ListTerm id={`${id}-rating`}>Rating:</ListTerm>
@@ -108,7 +108,7 @@ const CardContent = styled.div`
     color: var(--color-oxford-blue);
     text-decoration: none;
 
-    h4 {
+    h3 {
       font-weight: 300;
       font-size: 1em;
       margin: 0;
@@ -158,7 +158,7 @@ const Figure = styled.figure`
     max-width: 100%;
     max-height: 160px;
     height: auto;
-    mix-blend-mode: multiply;
+    mix-blend-mode: darken;
     align-self: center;
     place-self: end;
   }

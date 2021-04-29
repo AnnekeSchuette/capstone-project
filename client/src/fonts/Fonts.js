@@ -37,6 +37,7 @@ export default createGlobalStyle`
       url(${Lora400Svg}) format('svg');
     font-style: normal;
     font-weight: 400;
+    font-display: swap;
   }
 
   /* lora-600 - latin */
@@ -50,6 +51,7 @@ export default createGlobalStyle`
       url(${Lora600Svg}) format('svg');
     font-style: normal;
     font-weight: 600;
+    font-display: swap;
   }
   /* josefin-300 - latin */
   @font-face {
@@ -62,6 +64,7 @@ export default createGlobalStyle`
       url(${Josefin300Svg}) format('svg');
       font-weight: 300;
       font-style: normal;
+      font-display: swap;
   }
   /* josefin-regular - latin */
   @font-face {
@@ -74,5 +77,6 @@ export default createGlobalStyle`
       url(${Josefin400Svg}) format('svg');
     font-style: normal;
     font-weight: 400;
+    font-display: swap;
   }
 `

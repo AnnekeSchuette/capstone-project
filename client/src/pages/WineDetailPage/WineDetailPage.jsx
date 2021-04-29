@@ -95,7 +95,7 @@ export default function WineDetailPage(user, ...props) {
   }
   return (
     <WineWrapper {...props}>
-      <h3>{currentWineData?.title}</h3>
+      <h2>{currentWineData?.title}</h2>
       <ImageWrapper>
         <Figure>
           <img src={largeImageUrl} alt="" />
@@ -148,13 +148,14 @@ export default function WineDetailPage(user, ...props) {
             editMode={editMode}
           />
         ) : (
-          <JournalEntry
-            journalEntryData={journalEntryData}
-            editMode={editMode}
-            onEdit={setEditMode}
-          >
-            <h4>Your personal rating and notes</h4>
-          </JournalEntry>
+          <>
+            <h3>Your personal rating and notes</h3>
+            <JournalEntry
+              journalEntryData={journalEntryData}
+              editMode={editMode}
+              onEdit={setEditMode}
+            ></JournalEntry>
+          </>
         )
       ) : (
         <>
@@ -179,10 +180,14 @@ const WineWrapper = styled.div`
   grid-gap: var(--space-medium) 0;
   position: relative;
 
-  h3 {
+  h2 {
     font-weight: 300;
     font-size: 1.1em;
     margin: 0;
+  }
+
+  h3 {
+    text-align: center;
   }
 `
 const Description = styled.p`
