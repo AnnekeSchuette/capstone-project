@@ -42,6 +42,11 @@ export default createGlobalStyle`
     background:var(--color-background);
     min-height: 100vh;
     min-height: -webkit-fill-available;
+
+    @media screen and (min-width:667px){
+      max-width:667px;
+      margin:0 auto;
+    }
   }
 
   input, button, textarea {
@@ -78,10 +83,7 @@ h1 {
 }
 
 h2 {
-    font-size: 1.2em;
-}
-
-h3 {
+    font-size: 1.3em;
     text-align: center;
 }
 

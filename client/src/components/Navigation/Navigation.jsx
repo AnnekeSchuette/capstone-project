@@ -5,7 +5,13 @@ import { Search } from 'heroicons-react'
 export default function Navigation({ pages, onNavigate }) {
   return (
     <NavWrapper>
-      <NavItem exact to="/" key="global-search" onClick={() => onNavigate('/')}>
+      <NavItem
+        exact
+        to="/"
+        key="global-search"
+        onClick={() => onNavigate('/')}
+        aria-label="Search for pairings by dish or wine type"
+      >
         <Search size="24" />
       </NavItem>
       <NavMenu>

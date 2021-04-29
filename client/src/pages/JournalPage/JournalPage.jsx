@@ -43,14 +43,15 @@ export default function JournalPage() {
 
   return (
     <JournalPageGrid>
-      <h3>Keep Track Of Your Tastings</h3>
+      <h2>Keep Track Of Your Tastings</h2>
       {journalEntries.map(journalEntryData => {
         const detailLink = `/wine/detail/${journalEntryData.wineId}`
-        const { imageUrl } = journalEntryData.wine[0]
+        const { imageUrl, title } = journalEntryData.wine[0]
 
         return (
           <Link to={detailLink} key={journalEntryData._id}>
             <JournalListItem journalEntryData={journalEntryData}>
+              <h3>{title}</h3>
               <img src={imageUrl} alt="" />
             </JournalListItem>
           </Link>
@@ -73,16 +74,22 @@ const JournalListItem = styled(JournalEntry)`
   grid-template-columns: 1fr 80px;
   place-items: end;
 
+  h3 {
+    grid-column: span 2;
+    grid-area: 1 / 1 / 2 / 3;
+  }
+
   img {
     max-height: 180px;
     max-width: 100%;
-    grid-area: 1 / 2 / 2 / 3;
+    grid-area: 2 / 2 / 2 / 3;
     justify-self: center;
     padding-bottom: var(--space-small);
+    mix-blend-mode: darken;
   }
 
   div {
-    grid-area: 1 / 1 / 2 / 2;
+    grid-area: 2 / 1 / 2 / 2;
     width: 100%;
     place-content: start;
   }

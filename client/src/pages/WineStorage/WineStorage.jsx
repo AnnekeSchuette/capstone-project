@@ -45,7 +45,7 @@ export default function WineStorage({ savedWines, onFavToggle }) {
 
   return (
     <WineStorageList>
-      <h3>Your reserved wines</h3>
+      <h2>Your reserved wines</h2>
       {wines}
     </WineStorageList>
   )

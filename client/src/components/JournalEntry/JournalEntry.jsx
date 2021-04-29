@@ -54,11 +54,9 @@ const JournalEntryWrapper = styled.article`
   position: relative;
   place-content: start;
 
-  h4,
-  h5 {
-    padding-bottom: var(--space-xsmall);
+  h3 {
     font-size: 0.9em;
-    font-weight: 400;
+    place-self: start;
   }
 `
 const RatingWrapper = styled.div`

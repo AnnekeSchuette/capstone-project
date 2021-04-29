@@ -85,11 +85,11 @@ const Grid = styled.div`
 `
 const Main = styled.main`
   padding: var(--space-medium);
-  overflow: scroll;
+  overflow-y: scroll;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none;
 
-  &:-webkit-scrollbar {
+  &::-webkit-scrollbar {
     display: none;
   }
 
