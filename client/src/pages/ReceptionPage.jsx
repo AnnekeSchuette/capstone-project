@@ -14,13 +14,13 @@ export default function ReceptionPage() {
           <figure>
             <img src={FoodAndWine} alt="" />
           </figure>
-          <h4>Wine Recommendation</h4>
+          <h3>Wine Recommendation</h3>
         </NavLink>
         <NavLink to="/dish-pairing">
           <figure>
             <img src={DinnerNew} alt="" />
           </figure>
-          <h4>Dish Inspiration</h4>
+          <h3>Dish Inspiration</h3>
         </NavLink>
       </CategoryCards>
     </ReceptionPageWrapper>
@@ -32,10 +32,8 @@ const ReceptionPageWrapper = styled.section`
   align-items: center;
 
   h3 {
-    text-align: center;
-  }
-  h4 {
-    color: #fff;
+    font-size: 1em;
+    color: var(--color-ghost-white);
   }
 `
 const CategoryCards = styled.div`
