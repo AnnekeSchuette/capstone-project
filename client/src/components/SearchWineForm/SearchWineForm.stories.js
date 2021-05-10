@@ -1,12 +1,12 @@
-import SearchDishForm from 'components/SearchDishForm/SearchDishForm'
+import SearchWineForm from 'components/SearchWineForm/SearchWineForm'
 import { actions } from '@storybook/addon-actions'
 
 export default {
-  title: 'Capstone Project/SearchDish',
-  component: SearchDishForm,
+  title: 'Capstone Project/SearchWine',
+  component: SearchWineForm,
 }
 
-const Template = args => <SearchDishForm {...args} {...events} />
+const Template = args => <SearchWineForm {...args} {...events} />
 const events = actions({ setSearch: 'submitted!' })
 
 export const Default = Template.bind({})
