@@ -9,5 +9,5 @@ const Template = args => <RecipeCard {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  data: ['merlot', 'cabernet sauvignon', 'pinot noir'],
+  catTags: ['italian', 'pasta', 'vegetarian'],
 }

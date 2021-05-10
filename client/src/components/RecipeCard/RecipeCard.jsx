@@ -2,15 +2,19 @@ import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import BadgeList from 'components/BadgeList/BadgeList'
 
+RecipeCard.propTypes = {
+  catTags: PropTypes.arrayOf(PropTypes.string),
+}
+
 export default function RecipeCard({
-  catTags = ['italian, pasta, vegetarian'],
+  catTags = ['italian', 'pasta', 'vegetarian'],
   ...props
 }) {
   return (
     <RecipeCardWrapper {...props}>
       <h3>Headline</h3>
       <h4>Subline</h4>
-      <BadgeList data={catTags} />
+      {catTags && <BadgeList data={catTags} />}
       {props.children}
     </RecipeCardWrapper>
   )
