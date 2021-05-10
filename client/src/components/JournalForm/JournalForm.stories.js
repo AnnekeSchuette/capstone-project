@@ -2,7 +2,7 @@ import JournalForm from 'components/JournalForm/JournalForm'
 import { actions } from '@storybook/addon-actions'
 
 export default {
-  title: 'Capstone Project/JournalForm',
+  title: 'Vinz – Capstone Project/JournalForm',
   component: JournalForm,
 }
 

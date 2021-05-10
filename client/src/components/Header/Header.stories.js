@@ -1,7 +1,7 @@
 import Header from 'components/Header/Header'
 
 export default {
-  title: 'Capstone Project/Header',
+  title: 'Vinz – Capstone Project/Header',
   component: Header,
 }
 

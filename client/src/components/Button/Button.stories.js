@@ -1,7 +1,7 @@
 import Button from 'components/Button/Button'
 
 export default {
-  title: 'Capstone Project/Button',
+  title: 'Vinz – Capstone Project/Button',
   component: Button,
 }
 

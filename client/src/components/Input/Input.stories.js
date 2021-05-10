@@ -1,7 +1,7 @@
 import Input from 'components/Input/Input'
 
 export default {
-  title: 'Capstone Project/Input',
+  title: 'Vinz – Capstone Project/Input',
   component: Input,
 }
 

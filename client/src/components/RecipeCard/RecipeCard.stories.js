@@ -1,7 +1,7 @@
 import RecipeCard from 'components/RecipeCard/RecipeCard'
 
 export default {
-  title: 'Capstone Project/RecipeCard',
+  title: 'Vinz – Capstone Project/RecipeCard',
   component: RecipeCard,
 }
 

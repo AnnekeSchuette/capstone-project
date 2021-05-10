@@ -2,7 +2,7 @@ import SearchDishForm from 'components/SearchDishForm/SearchDishForm'
 import { actions } from '@storybook/addon-actions'
 
 export default {
-  title: 'Capstone Project/SearchDish',
+  title: 'Vinz – Capstone Project/SearchDish',
   component: SearchDishForm,
 }
 

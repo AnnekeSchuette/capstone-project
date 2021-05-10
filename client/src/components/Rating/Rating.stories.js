@@ -1,7 +1,7 @@
 import Rating from 'components/Rating/Rating'
 
 export default {
-  title: 'Capstone Project/Rating',
+  title: 'Vinz – Capstone Project/Rating',
   component: Rating,
 }
 

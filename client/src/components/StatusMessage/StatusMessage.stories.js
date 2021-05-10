@@ -1,7 +1,7 @@
 import StatusMessage from 'components/StatusMessage/StatusMessage'
 
 export default {
-  title: 'Capstone Project/StatusMessage',
+  title: 'Vinz – Capstone Project/StatusMessage',
   component: StatusMessage,
 }
 

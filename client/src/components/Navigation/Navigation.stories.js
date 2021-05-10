@@ -21,7 +21,7 @@ const pages = [
 ]
 
 export default {
-  title: 'Capstone Project/Navigation',
+  title: 'Vinz – Capstone Project/Navigation',
   component: Navigation,
 }
 

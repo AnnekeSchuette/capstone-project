@@ -2,7 +2,7 @@ import WineCard from 'components/WineCard/WineCard'
 import { actions } from '@storybook/addon-actions'
 
 export default {
-  title: 'Capstone Project/WineCard',
+  title: 'Vinz – Capstone Project/WineCard',
   component: WineCard,
 }
 

@@ -1,7 +1,7 @@
 import BadgeList from 'components/BadgeList/BadgeList'
 
 export default {
-  title: 'Capstone Project/BadgeList',
+  title: 'Vinz – Capstone Project/BadgeList',
   component: BadgeList,
 }
 

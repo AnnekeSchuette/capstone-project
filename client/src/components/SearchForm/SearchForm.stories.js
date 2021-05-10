@@ -2,7 +2,7 @@ import SearchForm from 'components/SearchForm/SearchForm'
 import { actions } from '@storybook/addon-actions'
 
 export default {
-  title: 'Capstone Project/SearchForm',
+  title: 'Vinz – Capstone Project/SearchForm',
   component: SearchForm,
 }
 

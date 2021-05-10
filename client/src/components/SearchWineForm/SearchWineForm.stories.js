@@ -2,7 +2,7 @@ import SearchWineForm from 'components/SearchWineForm/SearchWineForm'
 import { actions } from '@storybook/addon-actions'
 
 export default {
-  title: 'Capstone Project/SearchWine',
+  title: 'Vinz – Capstone Project/SearchWine',
   component: SearchWineForm,
 }
 
